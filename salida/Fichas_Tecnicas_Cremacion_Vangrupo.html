@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fichas Técnicas Cremación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul: #1B365D; --azul-profundo: #0F2537;
+  --dorado: #C5A059; --dorado-brillo: #D4AF37;
+  --alterno: #F4F7FA; --texto: #2C3E50;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #E9EDF2; color: var(--texto);
+  font-family: "Montserrat", "Segoe UI", Calibri, Arial, sans-serif; line-height: 1.45; }
+.portada { max-width: 820px; margin: 32px auto 0; padding: 0 16px; text-align: center; }
+.portada h1 { font-family: "Playfair Display", Georgia, serif; color: var(--azul-profundo);
+  margin: 0 0 4px; font-size: 28px; }
+.portada p { margin: 0; color: var(--dorado); font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; font-size: 12px; }
+.ficha { max-width: 820px; margin: 24px auto; background: #fff;
+  border: 2px solid var(--dorado); box-shadow: 0 6px 24px rgba(15,37,55,.12); }
+.ficha header { background: linear-gradient(135deg, var(--azul-profundo), var(--azul));
+  color: #fff; padding: 22px 28px 18px; border-bottom: 4px solid var(--dorado); }
+.ficha header .marca { display: flex; justify-content: space-between; font-size: 11px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--dorado-brillo); font-weight: 700; }
+.ficha header h2 { font-family: "Playfair Display", Georgia, serif; margin: 10px 0 4px;
+  font-size: 26px; font-weight: 700; }
+.ficha header .sub { font-style: italic; opacity: .85; font-size: 13px; }
+.cuerpo { padding: 8px 28px 24px; }
+.bloque h3 { margin: 18px 0 8px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--azul-profundo); border-left: 4px solid var(--dorado); padding: 4px 10px;
+  background: linear-gradient(90deg, rgba(197,160,89,.22), transparent); }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid #E1E6EC; }
+th { width: 34%; color: var(--azul); font-weight: 700; }
+tr:nth-child(odd) { background: var(--alterno); }
+ul { margin: 0; padding-left: 18px; }
+li { margin: 2px 0; }
+.precio { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+.precio .monto { flex: 0 0 auto; background: var(--azul); color: #fff; padding: 14px 20px;
+  border-bottom: 3px solid var(--dorado); min-width: 220px; }
+.precio .monto small { display: block; color: var(--dorado-brillo); font-size: 11px;
+  letter-spacing: .1em; text-transform: uppercase; }
+.precio .monto strong { font-size: 24px; font-family: "Playfair Display", Georgia, serif; }
+.precio .monto span { display: block; font-size: 12px; opacity: .85; }
+.precio .cond { flex: 1 1 260px; background: var(--alterno); padding: 12px 16px; font-size: 13.5px; }
+.campana { background: #FBF6EC; border: 1px dashed var(--dorado); padding: 10px 14px; font-size: 14px; }
+.campana li::marker { color: var(--dorado); }
+.perfil { font-size: 14px; }
+footer { border-top: 1px solid #E1E6EC; padding: 10px 28px; font-size: 11px; color: #7A8794;
+  display: flex; justify-content: space-between; }
+@media (max-width: 600px) {
+  .cuerpo, .ficha header, footer { padding-left: 16px; padding-right: 16px; }
+  th { width: 42%; }
+}
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .portada { display: none; }
+  .ficha { box-shadow: none; margin: 0 auto; page-break-after: always; break-after: page; }
+  .ficha:last-of-type { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+<div class="portada">
+  <h1>Portafolio de Cremación</h1>
+  <p>La Auxiliadora · Vangrupo · Campaña Día de los Difuntos 2026</p>
+</div>
+
+<article class="ficha">
+  <header>
+    <div class="marca"><span>La Auxiliadora · Vangrupo</span><span>Ficha Técnica · VG-CRE-01</span></div>
+    <h2>Solución Modular de Cremación</h2>
+    <div class="sub">Línea Cremación Modular · Cremación · Módulo add-on</div>
+  </header>
+  <div class="cuerpo">
+    <section class="bloque"><h3>Visión General</h3>
+      <table>
+        <tr><th>Concepto</th><td>Módulo de cremación integrable a cualquier plan funerario vigente o nuevo de Vangrupo, sin necesidad de cambiar de plan.</td></tr>
+        <tr><th>Capacidad / Cobertura</th><td>Individual (1 titular / beneficiario por módulo).</td></tr>
+      </table>
+    </section>
+    <section class="bloque"><h3>Especificaciones Técnicas</h3>
+      <table><tr><th>Tipo de producto</th><td>Módulo adicional (add-on) a plan funerario</td></tr><tr><th>Modalidad de cremación</th><td>Individual</td></tr><tr><th>Urna</th><td>Cineraria, línea modular</td></tr><tr><th>Gestión legal</th><td>Trámites básicos incluidos</td></tr><tr><th>Bono de lanzamiento</th><td>Columbario temporal · 12 meses</td></tr><tr><th>Servicios incluidos</th><td><ul><li>Proceso completo de cremación individual</li><li>Urna cineraria de línea modular</li><li>Trámites legales básicos</li><li>Integración al plan funerario base (actual o nuevo)</li></ul></td></tr></table>
+    </section>
+    <section class="bloque"><h3>Precio &amp; Condiciones de Pago</h3>
+      <div class="precio">
+        <div class="monto"><small>Precio sugerido</small><strong>US$ 700 – US$ 1.000</strong>
+          <span>Según el plan base</span></div>
+        <div class="cond"><b>Condiciones:</b> Hasta 120 cuotas mensuales (aprox. US$ 6,00 – US$ 8,50/mes).<br><small>Referencia: US$ 5,83 – US$ 8,33 sin intereses (120 cuotas)</small></div>
+      </div>
+    </section>
+    <section class="bloque"><h3>Diferenciales de la Campaña de Difuntos</h3>
+      <div class="campana"><ul><li>BONO ESPECIAL: Alquiler temporal de columbario por 1 año incluido</li><li>Producto ancla de la campaña: cuota de entrada más accesible del portafolio</li></ul></div>
+    </section>
+    <section class="bloque"><h3>Perfil del Comprador</h3>
+      <p class="perfil">Afiliados actuales y nuevos que desean incorporar la cremación a su plan con una cuota mensual mínima.</p>
+    </section>
+  </div>
+  <footer><span>Campaña Día de los Difuntos 2026</span><span>Precios sugeridos en USD · sujetos a cambios</span></footer>
+</article>
+
+<article class="ficha">
+  <header>
+    <div class="marca"><span>La Auxiliadora · Vangrupo</span><span>Ficha Técnica · VG-CRE-02</span></div>
+    <h2>Jardín de Aspersión de Cenizas</h2>
+    <div class="sub">Jardines de la Memoria · Destino final · Aspersión</div>
+  </header>
+  <div class="cuerpo">
+    <section class="bloque"><h3>Visión General</h3>
+      <table>
+        <tr><th>Concepto</th><td>Área reservada en jardín natural para la liberación ceremonial de cenizas, en armonía con la naturaleza.</td></tr>
+        <tr><th>Capacidad / Cobertura</th><td>Servicio individual.</td></tr>
+      </table>
+    </section>
+    <section class="bloque"><h3>Especificaciones Técnicas</h3>
+      <table><tr><th>Tipo de producto</th><td>Servicio ceremonial de destino final</td></tr><tr><th>Capacidad</th><td>Individual</td></tr><tr><th>Espacio</th><td>Jardín natural reservado (sin espacio fijo asignado)</td></tr><tr><th>Mantenimiento</th><td>Incluido</td></tr><tr><th>Servicios incluidos</th><td><ul><li>Acompañamiento ceremonial</li><li>Tiempo privado para la familia en entorno botánico</li><li>Asistencia protocolar</li><li>Mantenimiento del área</li></ul></td></tr></table>
+    </section>
+    <section class="bloque"><h3>Precio &amp; Condiciones de Pago</h3>
+      <div class="precio">
+        <div class="monto"><small>Precio sugerido</small><strong>US$ 150 – US$ 250</strong>
+          <span>Pago único por servicio</span></div>
+        <div class="cond"><b>Condiciones:</b> Pago único; combinable con la Solución Modular de Cremación.</div>
+      </div>
+    </section>
+    <section class="bloque"><h3>Diferenciales de la Campaña de Difuntos</h3>
+      <div class="campana"><ul><li>Ceremonia de aspersión con acompañamiento durante la temporada de Difuntos</li><li>Complemento natural para quienes contratan la Solución Modular</li></ul></div>
+    </section>
+    <section class="bloque"><h3>Perfil del Comprador</h3>
+      <p class="perfil">Personas que buscan un concepto de libertad total, sin necesidad de un espacio físico fijo.</p>
+    </section>
+  </div>
+  <footer><span>Campaña Día de los Difuntos 2026</span><span>Precios sugeridos en USD · sujetos a cambios</span></footer>
+</article>
+
+<article class="ficha">
+  <header>
+    <div class="marca"><span>La Auxiliadora · Vangrupo</span><span>Ficha Técnica · VG-CRE-03S</span></div>
+    <h2>Jardín de Cenizas · Standard</h2>
+    <div class="sub">Jardines de la Memoria · Inhumación · Destino final · Inhumación</div>
+  </header>
+  <div class="cuerpo">
+    <section class="bloque"><h3>Visión General</h3>
+      <table>
+        <tr><th>Concepto</th><td>Inhumación de urnas en parcelas ajardinadas con demarcación personalizada: un lugar físico permanente de homenaje.</td></tr>
+        <tr><th>Capacidad / Cobertura</th><td>Individual (o paquete doble promocional).</td></tr>
+      </table>
+    </section>
+    <section class="bloque"><h3>Especificaciones Técnicas</h3>
+      <table><tr><th>Versión</th><td>Standard</td></tr><tr><th>Capacidad</th><td>Individual (o paquete doble promocional)</td></tr><tr><th>Ubicación</th><td>Sectores ajardinados generales</td></tr><tr><th>Homenaje</th><td>Placa conmemorativa individual estándar</td></tr><tr><th>Servicios incluidos</th><td><ul><li>Inhumación de urna en parcela ajardinada</li><li>Ubicación en sectores ajardinados generales</li><li>Placa conmemorativa individual estándar</li><li>Lugar físico permanente de homenaje</li></ul></td></tr></table>
+    </section>
+    <section class="bloque"><h3>Precio &amp; Condiciones de Pago</h3>
+      <div class="precio">
+        <div class="monto"><small>Precio sugerido</small><strong>US$ 400 – US$ 600</strong>
+          <span>Por espacio individual</span></div>
+        <div class="cond"><b>Condiciones:</b> Pago único o financiado según política comercial vigente.</div>
+      </div>
+    </section>
+    <section class="bloque"><h3>Diferenciales de la Campaña de Difuntos</h3>
+      <div class="campana"><ul><li>Paquete doble promocional disponible durante la campaña</li></ul></div>
+    </section>
+    <section class="bloque"><h3>Perfil del Comprador</h3>
+      <p class="perfil">Familias que desean un lugar permanente para visitar y rendir homenaje, con una inversión moderada.</p>
+    </section>
+  </div>
+  <footer><span>Campaña Día de los Difuntos 2026</span><span>Precios sugeridos en USD · sujetos a cambios</span></footer>
+</article>
+
+<article class="ficha">
+  <header>
+    <div class="marca"><span>La Auxiliadora · Vangrupo</span><span>Ficha Técnica · VG-CRE-03P</span></div>
+    <h2>Jardín de Cenizas · Premium</h2>
+    <div class="sub">Jardines de la Memoria · Inhumación · Destino final · Inhumación familiar</div>
+  </header>
+  <div class="cuerpo">
+    <section class="bloque"><h3>Visión General</h3>
+      <table>
+        <tr><th>Concepto</th><td>Inhumación familiar de urnas en sectores VIP del parque, con placa patrimonial de acabado superior.</td></tr>
+        <tr><th>Capacidad / Cobertura</th><td>Hasta 4 espacios (familiar).</td></tr>
+      </table>
+    </section>
+    <section class="bloque"><h3>Especificaciones Técnicas</h3>
+      <table><tr><th>Versión</th><td>Premium</td></tr><tr><th>Capacidad</th><td>Hasta 4 espacios (familiar)</td></tr><tr><th>Ubicación</th><td>Sectores VIP / preferenciales del parque</td></tr><tr><th>Homenaje</th><td>Placa patrimonial con acabado superior</td></tr><tr><th>Servicios incluidos</th><td><ul><li>Inhumación de hasta 4 urnas</li><li>Ubicación en sectores VIP / preferenciales del parque</li><li>Placa patrimonial con acabado superior</li><li>Lugar físico permanente de homenaje familiar</li></ul></td></tr></table>
+    </section>
+    <section class="bloque"><h3>Precio &amp; Condiciones de Pago</h3>
+      <div class="precio">
+        <div class="monto"><small>Precio sugerido</small><strong>US$ 1.490 – US$ 1.990</strong>
+          <span>Por parcela familiar (hasta 4 espacios)</span></div>
+        <div class="cond"><b>Condiciones:</b> Pago único o financiado según política comercial vigente.</div>
+      </div>
+    </section>
+    <section class="bloque"><h3>Diferenciales de la Campaña de Difuntos</h3>
+      <div class="campana"><ul><li>Selección prioritaria de ubicación VIP durante la campaña</li></ul></div>
+    </section>
+    <section class="bloque"><h3>Perfil del Comprador</h3>
+      <p class="perfil">Familias que buscan un espacio patrimonial y exclusivo para varias generaciones.</p>
+    </section>
+  </div>
+  <footer><span>Campaña Día de los Difuntos 2026</span><span>Precios sugeridos en USD · sujetos a cambios</span></footer>
+</article>
+
+<article class="ficha">
+  <header>
+    <div class="marca"><span>La Auxiliadora · Vangrupo</span><span>Ficha Técnica · VG-CRE-04</span></div>
+    <h2>Jardín de Inhumación de Cenizas PET</h2>
+    <div class="sub">Jardines de la Memoria · Mascotas · Mascotas · Cremación e inhumación</div>
+  </header>
+  <div class="cuerpo">
+    <section class="bloque"><h3>Visión General</h3>
+      <table>
+        <tr><th>Concepto</th><td>Servicio de cremación e inhumación de cenizas de mascotas en un área verde dedicada.</td></tr>
+        <tr><th>Capacidad / Cobertura</th><td>Individual (una mascota por servicio).</td></tr>
+      </table>
+    </section>
+    <section class="bloque"><h3>Especificaciones Técnicas</h3>
+      <table><tr><th>Tipo de producto</th><td>Add-on al plan funerario</td></tr><tr><th>Servicio</th><td>Cremación + inhumación de cenizas</td></tr><tr><th>Espacio</th><td>Área verde dedicada a mascotas</td></tr><tr><th>Recurrencia</th><td>Mensual o tarifa única</td></tr><tr><th>Servicios incluidos</th><td><ul><li>Cremación de la mascota</li><li>Inhumación de cenizas en área verde dedicada</li><li>Espacio de homenaje para la familia</li></ul></td></tr></table>
+    </section>
+    <section class="bloque"><h3>Precio &amp; Condiciones de Pago</h3>
+      <div class="precio">
+        <div class="monto"><small>Precio sugerido</small><strong>US$ 5/mes</strong>
+          <span>Adicional al plan</span></div>
+        <div class="cond"><b>Condiciones:</b> US$ 5,00/mes adicional al plan, o tarifa única proporcional (add-on).</div>
+      </div>
+    </section>
+    <section class="bloque"><h3>Diferenciales de la Campaña de Difuntos</h3>
+      <div class="campana"><ul><li>Extensión del plan familiar a las mascotas con una cuota mínima</li></ul></div>
+    </section>
+    <section class="bloque"><h3>Perfil del Comprador</h3>
+      <p class="perfil">Familias afiliadas que consideran a su mascota parte del hogar y desean un cierre digno.</p>
+    </section>
+  </div>
+  <footer><span>Campaña Día de los Difuntos 2026</span><span>Precios sugeridos en USD · sujetos a cambios</span></footer>
+</article>
+</body>
+</html>
