@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Ficha Técnica — Productos de Cremación · La Auxiliadora (Vangrupo)
-Campaña Día de los Difuntos (Finados).
+Campaña Día de los Muertos (Finados).
 
 Genera, a partir de una única fuente de datos (PRODUCTOS):
   1. Ficha_Tecnica_Cremacion_Vangrupo.xlsx
@@ -35,7 +35,7 @@ TEXTO = "2C3E50"
 BLANCO = "FFFFFF"
 
 MARCA = "La Auxiliadora · Vangrupo"
-CAMPANA = "Campaña Día de los Difuntos 2026"
+CAMPANA = "Campaña Día de los Muertos 2026"
 N_CUOTAS = 120
 
 # ---------------------------------------------------------------------------
@@ -106,7 +106,7 @@ PRODUCTOS = [
         "precio_nota": "Pago único por servicio",
         "pago": "Pago único; combinable con la Solución Modular de Cremación.",
         "finados": [
-            "Ceremonia de aspersión con acompañamiento durante la temporada de Difuntos",
+            "Ceremonia de aspersión con acompañamiento durante la temporada del Día de los Muertos",
             "Complemento natural para quienes contratan la Solución Modular",
         ],
         "specs": [
@@ -273,7 +273,7 @@ COLUMNAS = [
     ("Perfil de Cliente", 36),
     ("Precio Sugerido (USD)", 22),
     ("Condiciones de Pago / Financiamiento", 34),
-    ("Observaciones del Lanzamiento (Difuntos)", 44),
+    ("Observaciones del Lanzamiento (Día de los Muertos)", 44),
 ]
 
 HOJA_TABLA = "Tabla Gral. - Visión Comercial"  # límite Excel: 31 caracteres
@@ -475,7 +475,7 @@ def construir_fichas(ws) -> None:
         if cuota_referencial(p):
             fila = _fila_dato(ws, fila, "Cuota referencial", cuota_referencial(p), False)
 
-        fila = _bloque_titulo(ws, fila, "Diferenciales de la Campaña de Difuntos")
+        fila = _bloque_titulo(ws, fila, "Diferenciales de la Campaña Día de los Muertos")
         fila = _fila_dato(ws, fila, "Campaña", viñetas(p["finados"]), True)
 
         fila = _bloque_titulo(ws, fila, "Perfil del Comprador")
@@ -606,7 +606,7 @@ def ficha_html(p: dict) -> str:
         <div class="cond"><b>Condiciones:</b> {e(p['pago'])}{cuota_html}</div>
       </div>
     </section>
-    <section class="bloque"><h3>Diferenciales de la Campaña de Difuntos</h3>
+    <section class="bloque"><h3>Diferenciales de la Campaña Día de los Muertos</h3>
       <div class="campana">{_li(p['finados'])}</div>
     </section>
     <section class="bloque"><h3>Perfil del Comprador</h3>

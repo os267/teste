@@ -1,6 +1,6 @@
 # Ficha Técnica — Portafolio de Cremación · La Auxiliadora (Vangrupo)
 
-Campaña Día de los Difuntos 2026.
+Campaña Día de los Muertos 2026.
 
 ## Generar los entregables
 
