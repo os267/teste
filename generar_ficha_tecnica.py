@@ -56,29 +56,22 @@ PRODUCTOS = [
             "Proceso completo de cremación individual",
             "Urna cineraria de línea modular",
             "Trámites legales básicos",
+            "Alquiler temporal de columbario por 1 año",
             "Integración al plan funerario base (actual o nuevo)",
         ],
         "perfil": (
             "Afiliados actuales y nuevos que desean incorporar la cremación a su "
             "plan con una cuota mensual mínima."
         ),
-        "precio_min": 700,
-        "precio_max": 1000,
-        "precio_nota": "Según el plan base",
-        "pago": (
-            f"Hasta {N_CUOTAS} cuotas mensuales "
-            "(aprox. US$ 6,00 – US$ 8,50/mes)."
-        ),
-        "finados": [
-            "BONO ESPECIAL: Alquiler temporal de columbario por 1 año incluido",
-            "Producto ancla de la campaña: cuota de entrada más accesible del portafolio",
-        ],
+        "precio": 1000,
+        "precio_nota": "Por módulo individual",
+        "pago": f"Hasta {N_CUOTAS} cuotas mensuales (aprox. US$ 8,50/mes).",
         "specs": [
             ("Tipo de producto", "Módulo adicional (add-on) a plan funerario"),
             ("Modalidad de cremación", "Individual"),
             ("Urna", "Cineraria, línea modular"),
             ("Gestión legal", "Trámites básicos incluidos"),
-            ("Bono de lanzamiento", "Columbario temporal · 12 meses"),
+            ("Columbario", "Alquiler temporal · 12 meses incluido"),
         ],
     },
     {
@@ -95,37 +88,32 @@ PRODUCTOS = [
             "Acompañamiento ceremonial",
             "Tiempo privado para la familia en entorno botánico",
             "Asistencia protocolar",
-            "Mantenimiento del área",
+            "Placa memorial que registra la aspersión realizada en el lugar",
         ],
         "perfil": (
             "Personas que buscan un concepto de libertad total, sin necesidad de "
             "un espacio físico fijo."
         ),
-        "precio_min": 150,
-        "precio_max": 250,
+        "precio": 250,
         "precio_nota": "Pago único por servicio",
         "pago": "Pago único; combinable con la Solución Modular de Cremación.",
-        "finados": [
-            "Ceremonia de aspersión con acompañamiento durante la temporada del Día de los Muertos",
-            "Complemento natural para quienes contratan la Solución Modular",
-        ],
         "specs": [
             ("Tipo de producto", "Servicio ceremonial de destino final"),
             ("Capacidad", "Individual"),
             ("Espacio", "Jardín natural reservado (sin espacio fijo asignado)"),
-            ("Mantenimiento", "Incluido"),
+            ("Homenaje", "Placa memorial de la aspersión"),
         ],
     },
     {
-        "id": "VG-CRE-03S",
-        "nombre": "Jardín de Cenizas · Standard",
+        "id": "VG-CRE-03I",
+        "nombre": "Jardín de Cenizas · Individual",
         "submarca": "Jardines de la Memoria · Inhumación",
-        "categoria": "Destino final · Inhumación",
+        "categoria": "Destino final · Inhumación individual",
         "concepto": (
             "Inhumación de urnas en parcelas ajardinadas con demarcación "
             "personalizada: un lugar físico permanente de homenaje."
         ),
-        "capacidad": "Individual (o paquete doble promocional).",
+        "capacidad": "Individual.",
         "servicios": [
             "Inhumación de urna en parcela ajardinada",
             "Ubicación en sectores ajardinados generales",
@@ -136,23 +124,19 @@ PRODUCTOS = [
             "Familias que desean un lugar permanente para visitar y rendir "
             "homenaje, con una inversión moderada."
         ),
-        "precio_min": 400,
-        "precio_max": 600,
+        "precio": 600,
         "precio_nota": "Por espacio individual",
         "pago": "Pago único o financiado según política comercial vigente.",
-        "finados": [
-            "Paquete doble promocional disponible durante la campaña",
-        ],
         "specs": [
-            ("Versión", "Standard"),
-            ("Capacidad", "Individual (o paquete doble promocional)"),
+            ("Versión", "Individual"),
+            ("Capacidad", "1 espacio"),
             ("Ubicación", "Sectores ajardinados generales"),
             ("Homenaje", "Placa conmemorativa individual estándar"),
         ],
     },
     {
-        "id": "VG-CRE-03P",
-        "nombre": "Jardín de Cenizas · Premium",
+        "id": "VG-CRE-03F",
+        "nombre": "Jardín de Cenizas · Familiar",
         "submarca": "Jardines de la Memoria · Inhumación",
         "categoria": "Destino final · Inhumación familiar",
         "concepto": (
@@ -172,14 +156,11 @@ PRODUCTOS = [
         ),
         "precio_min": 1490,
         "precio_max": 1990,
-        "precio_nota": "Por parcela familiar (hasta 4 espacios)",
+        "precio_nota": "Variable según la cantidad de personas · hasta 4 espacios",
         "pago": "Pago único o financiado según política comercial vigente.",
-        "finados": [
-            "Selección prioritaria de ubicación VIP durante la campaña",
-        ],
         "specs": [
-            ("Versión", "Premium"),
-            ("Capacidad", "Hasta 4 espacios (familiar)"),
+            ("Versión", "Familiar"),
+            ("Capacidad", "Hasta 4 espacios"),
             ("Ubicación", "Sectores VIP / preferenciales del parque"),
             ("Homenaje", "Placa patrimonial con acabado superior"),
         ],
@@ -203,19 +184,13 @@ PRODUCTOS = [
             "Familias afiliadas que consideran a su mascota parte del hogar y "
             "desean un cierre digno."
         ),
-        "precio_min": None,
-        "precio_max": None,
-        "precio_mensual": 5.00,
-        "precio_nota": "Adicional al plan",
-        "pago": "US$ 5,00/mes adicional al plan, o tarifa única proporcional (add-on).",
-        "finados": [
-            "Extensión del plan familiar a las mascotas con una cuota mínima",
-        ],
+        "precio": 500,
+        "precio_nota": "Pago único por servicio",
+        "pago": "Pago único; puede contratarse como adicional al plan funerario.",
         "specs": [
-            ("Tipo de producto", "Add-on al plan funerario"),
+            ("Tipo de producto", "Servicio de pago único"),
             ("Servicio", "Cremación + inhumación de cenizas"),
             ("Espacio", "Área verde dedicada a mascotas"),
-            ("Recurrencia", "Mensual o tarifa única"),
         ],
     },
 ]
@@ -232,8 +207,9 @@ def usd(valor: float) -> str:
 
 
 def texto_precio(p: dict) -> str:
-    if p.get("precio_mensual") is not None:
-        return f"{usd(p['precio_mensual'])}/mes"
+    """Precio único, o rango cuando depende de variables (p. ej. cantidad de personas)."""
+    if "precio" in p:
+        return usd(p["precio"])
     return f"{usd(p['precio_min'])} – {usd(p['precio_max'])}"
 
 
@@ -241,10 +217,7 @@ def cuota_referencial(p: dict) -> str:
     """Cuota sin intereses sobre N_CUOTAS (referencia para la fuerza de ventas)."""
     if p["id"] != "VG-CRE-01":
         return ""
-    return (
-        f"{usd(p['precio_min'] / N_CUOTAS)} – {usd(p['precio_max'] / N_CUOTAS)}"
-        f" sin intereses ({N_CUOTAS} cuotas)"
-    )
+    return f"{usd(p['precio'] / N_CUOTAS)}/mes sin intereses ({N_CUOTAS} cuotas)"
 
 
 def viñetas(items: list) -> str:
@@ -273,7 +246,6 @@ COLUMNAS = [
     ("Perfil de Cliente", 36),
     ("Precio Sugerido (USD)", 22),
     ("Condiciones de Pago / Financiamiento", 34),
-    ("Observaciones del Lanzamiento (Día de los Muertos)", 44),
 ]
 
 HOJA_TABLA = "Tabla Gral. - Visión Comercial"  # límite Excel: 31 caracteres
@@ -294,7 +266,6 @@ def dataframe_comercial() -> pd.DataFrame:
             p["perfil"],
             f"{texto_precio(p)}\n({p['precio_nota']})",
             p["pago"],
-            viñetas(p["finados"]),
         ])
     return pd.DataFrame(filas, columns=[c for c, _ in COLUMNAS])
 
@@ -475,9 +446,6 @@ def construir_fichas(ws) -> None:
         if cuota_referencial(p):
             fila = _fila_dato(ws, fila, "Cuota referencial", cuota_referencial(p), False)
 
-        fila = _bloque_titulo(ws, fila, "Diferenciales de la Campaña Día de los Muertos")
-        fila = _fila_dato(ws, fila, "Campaña", viñetas(p["finados"]), True)
-
         fila = _bloque_titulo(ws, fila, "Perfil del Comprador")
         fila = _fila_dato(ws, fila, "Cliente objetivo", p["perfil"], True)
 
@@ -554,8 +522,6 @@ li {{ margin: 2px 0; }}
 .precio .monto strong {{ font-size: 24px; font-family: "Playfair Display", Georgia, serif; }}
 .precio .monto span {{ display: block; font-size: 12px; opacity: .85; }}
 .precio .cond {{ flex: 1 1 260px; background: var(--alterno); padding: 12px 16px; font-size: 13.5px; }}
-.campana {{ background: #FBF6EC; border: 1px dashed var(--dorado); padding: 10px 14px; font-size: 14px; }}
-.campana li::marker {{ color: var(--dorado); }}
 .perfil {{ font-size: 14px; }}
 footer {{ border-top: 1px solid #E1E6EC; padding: 10px 28px; font-size: 11px; color: #7A8794;
   display: flex; justify-content: space-between; }}
@@ -605,9 +571,6 @@ def ficha_html(p: dict) -> str:
           <span>{e(p['precio_nota'])}</span></div>
         <div class="cond"><b>Condiciones:</b> {e(p['pago'])}{cuota_html}</div>
       </div>
-    </section>
-    <section class="bloque"><h3>Diferenciales de la Campaña Día de los Muertos</h3>
-      <div class="campana">{_li(p['finados'])}</div>
     </section>
     <section class="bloque"><h3>Perfil del Comprador</h3>
       <p class="perfil">{e(p['perfil'])}</p>
