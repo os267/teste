@@ -25,6 +25,7 @@ pip install pillow numpy
 python gerar_placas_memorial.py
 ```
 
-Insere placas de acrílico cristal de 15×10 cm, centralizadas sobre as tampas de granito da foto
-`insumos/jardin_tampas_granito.jpg`, com texto gravado ("Em memória de", nome, datas). Resultado em
-`salida/jardin_placas_memorial.jpg`. Nomes, datas e posição das tampas ficam na lista `TAMPAS` do script.
+Troca os cilindros de granito da foto `insumos/jardin_tampas_granito.jpg` por cilindros de concreto
+aparente (mantendo a luz do ambiente e a folhagem na frente) e insere placas de bronze fundido de 15×10 cm,
+centralizadas sobre as tampas, com moldura e texto em relevo ("Em memória de", nome, datas). Resultado em
+`salida/jardin_placas_memorial.jpg`. Nomes, datas e geometria dos cilindros ficam na lista `TAMPAS` do script.
