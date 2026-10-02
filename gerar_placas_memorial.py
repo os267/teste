@@ -265,21 +265,170 @@ def colar_placa(base, t, rng):
     base.alpha_composite(camada, (x0, y0))
 
 
+# --------------------------------------------------------------------------- tampa de madeira
+
+TEX_MAD = 1200  # textura da bolacha de madeira (diâmetro em px)
+
+
+def textura_bolacha(nome, datas, rng):
+    """Topo de uma bolacha (fatia de tronco): anéis de crescimento, casca e gravação a laser."""
+    n = TEX_MAD
+    yy, xx = np.mgrid[0:n, 0:n].astype(float)
+    # Medula levemente fora do centro, anéis irregulares
+    mx, my = n * 0.47, n * 0.52
+    dx, dy = xx - mx, yy - my
+    r = np.hypot(dx, dy)
+    ang = np.arctan2(dy, dx)
+    ondula = 9 * np.sin(ang * 3 + 0.7) + 5 * np.sin(ang * 7 + 2.1) + 6 * ruido((n, n), 40, rng)
+    rr = r + ondula
+    # Espaçamento variável dos anéis (anos de crescimento mais e menos rápido)
+    fase = rr / 11.0 + 2.2 * np.sin(rr / 95) + 1.3 * np.sin(rr / 37 + 1.0)
+    aneis = (0.5 + 0.5 * np.sin(fase * 2 * np.pi)) ** 4  # lenho tardio: faixas finas e escuras
+    aneis *= 0.7 + 0.3 * (0.5 + 0.5 * np.sin(rr / 60 + 0.4))
+    fibra = ruido((n, n), 1.0, rng)
+
+    claro = np.array([222.0, 184.0, 132.0])
+    escuro = np.array([168.0, 116.0, 70.0])
+    cor = claro * (1 - aneis[..., None] * 0.75) + escuro * (aneis[..., None] * 0.75)
+    # Cerne mais escuro no centro, alburno mais claro perto da casca
+    cerne = np.clip(1 - r / (n * 0.30), 0, 1) ** 1.5
+    cor = cor * (1 - 0.10 * cerne[..., None]) + np.array([150.0, 98.0, 58.0]) * 0.10 * cerne[..., None]
+    cor += (fibra * 5 + ruido((n, n), 25, rng) * 7)[..., None]
+
+    # Rachaduras radiais finas (secagem)
+    rach = Image.new("L", (n, n), 0)
+    dr = ImageDraw.Draw(rach)
+    for a0, comp in [(0.6, 0.30), (2.9, 0.22), (4.4, 0.16)]:
+        pts = []
+        for k in np.linspace(0.42, 0.42 + comp, 14):
+            raio = k * n / 2
+            aa = a0 + 0.04 * np.sin(k * 30)
+            pts.append((n / 2 + raio * np.cos(aa), n / 2 + raio * np.sin(aa)))
+        dr.line(pts, fill=255, width=4)
+    rach = np.asarray(rach.filter(ImageFilter.GaussianBlur(1.2)), float) / 255.0
+    cor = cor * (1 - 0.55 * rach[..., None])
+
+    # Casca na borda + câmbio claro logo antes
+    rc = np.hypot(xx - n / 2, yy - n / 2) / (n / 2)
+    casca = np.clip((rc - 0.935) / 0.01, 0, 1)
+    cambio = np.clip(1 - np.abs(rc - 0.925) / 0.012, 0, 1)
+    tom_casca = np.array([92.0, 64.0, 42.0]) + (ruido((n, n), 2.0, rng) * 14)[..., None]
+    cor = cor * (1 - 0.25 * cambio[..., None]) + np.array([235.0, 205.0, 160.0]) * 0.25 * cambio[..., None]
+    cor = cor * (1 - casca[..., None]) + tom_casca * casca[..., None]
+
+    # Gravação a laser: texto queimado (marrom escuro) com leve halo tostado
+    grav = Image.new("L", (n, n), 0)
+    d = ImageDraw.Draw(grav)
+    f_topo = ImageFont.truetype(FONTE_TEXTO, 52)
+    f_nome = ImageFont.truetype(FONTE_NOME, 112)
+    f_datas = ImageFont.truetype(FONTE_TEXTO, 84)
+    f_rodape = ImageFont.truetype(FONTE_ITALICO, 60)
+    partes = nome.split()
+    meio = (len(partes) + 1) // 2
+    linhas = [" ".join(partes[:meio]), " ".join(partes[meio:])]
+    c = n / 2
+    y = c - 250
+    d.text((c, y), "EM MEMÓRIA DE", font=f_topo, fill=255, anchor="ma")
+    y += 95
+    for linha in linhas:
+        d.text((c, y), linha, font=f_nome, fill=255, anchor="ma")
+        y += 125
+    y += 20
+    d.line([(c - 170, y), (c + 170, y)], fill=255, width=6)
+    y += 35
+    d.text((c, y), datas, font=f_datas, fill=255, anchor="ma")
+    d.text((c, y + 125), "Saudades eternas", font=f_rodape, fill=255, anchor="ma")
+    halo = np.asarray(grav.filter(ImageFilter.GaussianBlur(5)), float) / 255.0
+    g = np.asarray(grav.filter(ImageFilter.GaussianBlur(0.8)), float) / 255.0
+    cor = cor * (1 - 0.18 * halo[..., None])
+    queimado = np.array([62.0, 36.0, 20.0]) + (fibra * 6)[..., None]
+    cor = cor * (1 - g[..., None]) + queimado * g[..., None]
+
+    return Image.fromarray(np.clip(cor, 0, 255).astype(np.uint8), "RGB")
+
+
+def aplicar_madeira(img, t, rng, ss=4):
+    """Substitui a tampa (topo + borda) por uma bolacha de madeira gravada a laser."""
+    cx, cy = t["centro"]
+    x0, x1 = int(cx - t["a"] - 6), int(cx + t["a"] + 7)
+    y0, y1 = int(cy - t["b"] - 6), int(t["corpo_base"] + 6)
+    arr = img[y0:y1, x0:x1].astype(float)
+    h, w, _ = arr.shape
+    lc = (cx - x0, cy - y0)
+    loc = dict(t, centro=lc, corpo_base=t["corpo_base"] - y0)
+    topo, aba, _, xx, yy = mascaras_cilindro(loc, (h, w), ss)
+    a, b = t["a"] + 2, t["b"] + 1.5
+
+    # Topo: textura circular projetada na elipse (grade fina)
+    tex = textura_bolacha(t["nome"], t["datas"], rng)
+    k = TEX_MAD / 2
+    # px da grade fina -> textura
+    coef = (k / (a * ss), 0, k - (lc[0] + 0.5 / ss - 0.5) * k / a,
+            0, k / (b * ss), k - (lc[1] + 0.5 / ss - 0.5) * k / b)
+    topo_rgb = np.asarray(tex.transform((w * ss, h * ss), Image.AFFINE, coef, Image.BICUBIC), float)
+
+    # Borda: casca rugosa com estrias verticais e sombreamento cilíndrico
+    u = np.clip((xx - lc[0]) / a, -1, 1)
+    lateral = 0.85 - 0.25 * u - 0.12 * u ** 2
+    # Casca: placas irregulares alongadas na vertical + fissuras escuras
+    hh, ww = h * ss, w * ss
+    alongado = np.asarray(Image.fromarray((rng.random((max(2, hh // 45), ww // 2)) * 255).astype(np.uint8))
+                          .resize((ww, hh), Image.BICUBIC).filter(ImageFilter.GaussianBlur(ss * 0.8)), float)
+    alongado = (alongado - alongado.mean()) / (alongado.std() + 1e-6)
+    fissura = np.clip(-alongado - 1.0, 0, None)
+    estrias = alongado * 7 + ruido((hh, ww), 1.0, rng) * 6 - fissura * 22
+    casca = np.array([88.0, 62.0, 42.0])[None, None, :] * lateral[..., None] + estrias[..., None]
+    # Fio claro da madeira serrada no topo da casca
+    arco_top = lc[1] + b * np.sqrt(np.clip(1 - u ** 2, 0, None))
+    fio = np.clip(1 - (yy - arco_top) / (0.8 * ss / ss), 0, 1)[..., None]
+    casca = casca * (1 - 0.35 * fio) + np.array([200.0, 160.0, 110.0]) * 0.35 * fio
+
+    rgb_ss = np.where(topo[..., None], topo_rgb, casca)
+    alfa_ss = (topo | aba).astype(float)
+    soma = (rgb_ss * alfa_ss[..., None]).reshape(h, ss, w, ss, 3).mean(axis=(1, 3))
+    cob = cobertura(topo | aba, ss)
+    cor = soma / np.maximum(cob, 1e-6)[..., None]
+
+    # Mantém as manchas de sol/sombra do ambiente
+    lum = 0.299 * arr[..., 0] + 0.587 * arr[..., 1] + 0.114 * arr[..., 2]
+    luz = np.asarray(Image.fromarray(np.clip(lum, 0, 255).astype(np.uint8))
+                     .filter(ImageFilter.GaussianBlur(max(2.0, t["b"] / 6))), float)
+    cob_topo = cobertura(topo, ss)
+    ref = np.median(luz[cob_topo > 0.99])
+    mod = np.clip(luz / (ref + 1e-6), 0.6, 1.5) ** 0.35
+    cor = cor * mod[..., None]
+
+    alfa = cob[..., None]
+    saida = img.copy()
+    saida[y0:y1, x0:x1] = np.clip(arr * (1 - alfa) + np.clip(cor, 0, 255) * alfa, 0, 255)
+    return saida
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--entrada", default="insumos/jardin_tampas_granito.jpg")
-    ap.add_argument("--saida", default="salida/jardin_placas_memorial.jpg")
+    ap.add_argument("--versao", choices=["bronze", "madeira"], default="bronze",
+                    help="bronze: placa de bronze sobre tampa de concreto; "
+                         "madeira: tampa de bolacha de madeira gravada a laser")
+    ap.add_argument("--saida", default=None)
     args = ap.parse_args()
+    saida = args.saida or {
+        "bronze": "salida/jardin_placas_memorial.jpg",
+        "madeira": "salida/jardin_tampa_madeira_laser.jpg",
+    }[args.versao]
 
     rng = np.random.default_rng(7)
     arr = np.asarray(Image.open(args.entrada).convert("RGB"))
     for t in TAMPAS:
         arr = aplicar_concreto(arr, t, rng)
+        if args.versao == "madeira":
+            arr = aplicar_madeira(arr, t, rng)
     base = Image.fromarray(arr).convert("RGBA")
-    for t in TAMPAS:
-        colar_placa(base, t, rng)
-    base.convert("RGB").save(args.saida, quality=95)
-    print(f"Imagem gerada: {args.saida}")
+    if args.versao == "bronze":
+        for t in TAMPAS:
+            colar_placa(base, t, rng)
+    base.convert("RGB").save(saida, quality=95)
+    print(f"Imagem gerada: {saida}")
 
 
 if __name__ == "__main__":
