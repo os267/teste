@@ -3,25 +3,25 @@ from PIL import Image, ImageDraw, ImageFilter
 random.seed(3); np.random.seed(3)
 src=Image.open('foto_original.jpg').convert('RGB'); W,H=src.size
 # path edges (inner = slope side, outer = road side), sampled along t
-inner=[(-20,1430),(300,1360),(600,1290),(850,1225),(1030,1150),(1220,1065)]
-outer=[(-20,1700),(700,1700),(1000,1600),(1110,1530),(1200,1470),(1230,1450)]
+inner=[(-20,1620),(400,1560),(700,1480),(900,1400),(1060,1310),(1220,1215)]
+outer=[(-20,1760),(700,1700),(1000,1600),(1110,1530),(1200,1470),(1230,1450)]
 def interp(pts,n=200):
     pts=np.array(pts,float); d=np.r_[0,np.cumsum(np.hypot(*np.diff(pts,axis=0).T))]
     s=np.linspace(0,d[-1],n); return np.c_[np.interp(s,d,pts[:,0]),np.interp(s,d,pts[:,1])]
 I=interp(inner); O=interp(outer)
 def scale_at(y): return 0.35+0.65*np.clip((y-1050)/550,0,1)  # perspective size factor
-# gravel layer
-grav=Image.new('RGB',(W,H),(150,145,135)); gd=ImageDraw.Draw(grav)
-for _ in range(260000):
-    x=random.uniform(0,W); y=random.uniform(1000,H); s=scale_at(y)
-    r=random.uniform(1.2,3.2)*s*1.5
-    v=random.randint(105,205); tint=random.choice([(0,0,0),(10,6,-4),(-5,-3,2),(14,10,4)])
-    c=tuple(int(np.clip(v+t,0,255)) for t in tint)
-    nv=random.randint(4,6); ang=sorted(random.uniform(0,6.283) for _ in range(nv))
-    gd.polygon([(x+r*random.uniform(.6,1.1)*np.cos(a),y+0.6*r*random.uniform(.6,1.1)*np.sin(a)) for a in ang],fill=c,outline=tuple(max(0,k-45) for k in c))
-grav=grav.filter(ImageFilter.GaussianBlur(0.5))
-sh=np.random.rand(H//40+1,W//40+1); sh=np.asarray(Image.fromarray((sh*255).astype('uint8')).resize((W,H),Image.BICUBIC)).astype(float)/255
-grav=Image.fromarray(np.clip(np.asarray(grav)*(0.85+0.25*sh[...,None]),0,255).astype('uint8'))
+# gravel layer: textura real do pedrisco branco da imagem de referência,
+# com as sombras removidas e escalada conforme a perspectiva
+ref=Image.open('referencia_pedrisco_branco.jpg').convert('RGB').crop((930,830,1530,1024))
+t=np.asarray(ref).astype(float)
+lum=np.asarray(ref.convert('L').filter(ImageFilter.GaussianBlur(18))).astype(float)
+t=np.clip(212+(t/lum[...,None]*212-212)*0.75,0,255)
+t=np.concatenate([t,t[:,::-1]],1); t=np.concatenate([t,t[::-1]],0)  # espelha p/ ficar contínua
+th,tw=t.shape[:2]
+ys,xs=np.mgrid[0:H,0:W].astype(float)
+k=1/(scale_at(ys)*0.6)
+u=(xs*k).astype(int)%tw; v=(ys*k).astype(int)%th
+grav=Image.fromarray(t[v,u].astype('uint8')).filter(ImageFilter.GaussianBlur(0.7))
 mask=Image.new('L',(W,H),0); md=ImageDraw.Draw(mask)
 poly=[tuple(p) for p in I]+[tuple(p) for p in O[::-1]]
 md.polygon(poly,fill=255)
@@ -41,11 +41,11 @@ def edging(E, inward, base_w):
         if n[1]*inward<0: n=-n
         p=[seg[0],seg[1],seg[1]+n*bw,seg[0]+n*bw]
         sh=random.randint(-10,10)
-        col=(158+sh,82+sh,62+sh) if k%2==0 else (148+sh,76+sh,58+sh)
-        d.polygon([tuple(q) for q in p],fill=col,outline=(90,55,45))
+        col=(188+sh,188+sh,183+sh) if k%2==0 else (178+sh,178+sh,173+sh)
+        d.polygon([tuple(q) for q in p],fill=col,outline=(125,125,120))
         # top highlight
-        d.line([tuple(seg[0]),tuple(seg[1])],fill=(190,120,95),width=max(1,int(2*s)))
+        d.line([tuple(seg[0]),tuple(seg[1])],fill=(222,222,216),width=max(1,int(2*s)))
         pos=b; k+=1
-edging(I,+1,26)   # slope side
-edging(O,-1,75)   # road side (replaces curb)
-out.save('mockup.jpg',quality=92)
+edging(I,+1,22)   # slope side
+edging(O,-1,40)   # road side (replaces curb)
+out.save('simulacao.jpg',quality=92)

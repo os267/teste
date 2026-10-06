@@ -1,11 +1,12 @@
-# Caminho de pedrisco (1 m) com meio-fio de paver
+# Caminho de pedrisco branco (1 m) com meio-fio de paver
 
 ![Antes e depois](antes_depois.jpg)
 
 Caminho de **1,00 m de largura total**, no lugar da faixa de grama e do meio-fio de
-concreto atuais, ao pé do talude. Acabamento em pedrisco, contido por uma linha de
-paver em pé de cada lado: um lado contra o talude e o outro substituindo o meio-fio
-junto à rua.
+concreto atuais, ao pé do talude. Acabamento em **pedrisco branco** (no padrão da imagem de referência
+`referencia_pedrisco_branco.jpg`), contido por uma linha de
+paver em pé de cada lado: em **cinza-claro**: um lado contra o talude e o outro
+substituindo o meio-fio junto à rua. A faixa de grama e as dracenas ficam onde estão.
 
 ## Corte transversal
 
@@ -26,8 +27,8 @@ junto à rua.
 
 ## Execução
 
-1. Retirar a grama ornamental, as dracenas (*Cordyline*) e o meio-fio de concreto.
-   Replantar as dracenas ao pé do talude, logo atrás da linha de paver.
+1. Retirar o meio-fio de concreto e só a parte da faixa de grama que fica dentro
+   do 1,00 m do caminho, preservando as dracenas (*Cordyline*).
 2. Escavar uns 15 cm e compactar o solo com placa vibratória ou soquete.
 3. Abrir uma vala de cada lado e assentar os pavers em pé sobre concreto
    (traço 1:3:4), com reforço de concreto pelo lado de fora. Conferir o
@@ -41,16 +42,16 @@ junto à rua.
 
 | Item | Quantidade/m | Observação |
 |---|---|---|
-| Paver 20×10×8 cm | 10 un | 5 por lado (+5 % de quebra) |
+| Paver 20×10×8 cm cinza-claro | 10 un | 5 por lado (+5 % de quebra) |
 | Concreto de fixação dos pavers | 0,03 m³ | ~0,015 m³ por lado |
 | Manta geotêxtil (bidim RT-10 ou similar) | 1,0 m² | |
 | Brita graduada / bica corrida | 0,07 m³ | +20 % de compactação → ~0,085 m³ |
-| Pedrisco (4,8–9,5 mm) | 0,045 m³ | ≈ 70 kg |
+| Pedrisco branco (mármore ou dolomita britada, 4,8–9,5 mm) | 0,045 m³ | ≈ 70 kg |
 | Escavação / bota-fora | 0,15 m³ | |
 
 Para chegar ao total da obra, é só multiplicar pelo comprimento. Exemplo com **20 m**:
 200 pavers, 0,6 m³ de concreto, 20 m² de manta, 1,7 m³ de brita graduada,
-0,9 m³ de pedrisco (≈1,4 t).
+0,9 m³ de pedrisco branco (≈1,4 t).
 
 ## Cuidados
 
@@ -60,8 +61,9 @@ Para chegar ao total da obra, é só multiplicar pelo comprimento. Exemplo com *
 - **Inclinação:** se o caminho tiver mais de ~5 % de declive no sentido do
   comprimento, o pedrisco tende a escorrer. Nesse caso, use grelha estabilizadora
   (colmeia plástica) sob o pedrisco ou faça travessas de paver a cada 2–3 m.
-- **Pedrisco:** prefira pedra britada angular, que trava melhor do que seixo
-  rolado. Faça uma reposição leve uma vez por ano.
+- **Pedrisco branco:** prefira mármore ou dolomita britados (angulares), que travam
+  melhor do que seixo rolado. O branco mostra terra e folhas, então vale passar o
+  soprador ou o rastelo com frequência e fazer uma reposição leve uma vez por ano.
 - **Água do talude:** se escorre muita terra na chuva, vale fazer uma canaleta ou
   um dreno raso junto à linha de paver do lado do talude.
 
