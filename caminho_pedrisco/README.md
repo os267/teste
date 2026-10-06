@@ -5,7 +5,7 @@
 Caminho de **1,00 m de largura total**, no lugar do meio-fio de
 concreto atual, entre a faixa de grama e a rua. Acabamento em **pedrisco branco** (no padrão da imagem de referência
 `referencia_pedrisco_branco.jpg`), contido por uma linha de
-paver **cinza-claro** em pé de cada lado: um lado contra o talude e o outro
+paver **cinza-claro** em pé de cada lado: um lado junto à faixa de grama e o outro
 substituindo o meio-fio junto à rua. A faixa de grama e as dracenas ficam onde estão.
 
 ## Corte transversal
