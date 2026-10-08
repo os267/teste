@@ -1,9 +1,11 @@
 # Sermões FDQC: texto base
 
 - `sermoes_fdqc.xlsx`: os 240 vídeos da lista, com título completo, pregador, série, período aproximado, link e uma sugestão de texto base (com grau de confiança).
-- `preencher_texto_base.py`: preenche a data exata e procura o texto base na descrição e na legenda de cada vídeo.
+- `sermoes_fdqc_preenchida.xlsx`: **planilha preenchida**. Os vídeos foram cruzados com o podcast da igreja (feed público do SoundCloud), e os 10 primeiros minutos de cada áudio foram transcritos para identificar o texto anunciado. Cada linha traz a data de publicação no podcast, o status do texto base e o trecho da transcrição que serve de evidência.
+- `transcricoes/`: as transcrições automáticas (10 primeiros minutos) de 218 sermões.
+- `preencher_texto_base.py`: alternativa via YouTube (data e legenda), para rodar no seu computador. Não é mais necessária.
 
-## Passo 1: script (rodar no seu computador)
+## Alternativa: script do YouTube (rodar no seu computador)
 
 ```
 pip install yt-dlp openpyxl
@@ -12,7 +14,7 @@ python preencher_texto_base.py sermoes_fdqc.xlsx
 
 Gera `sermoes_fdqc_preenchida.xlsx`. Se o script parar no meio, rode de novo com o arquivo `_preenchida.xlsx`: ele continua de onde parou.
 
-## Passo 2: NotebookLM para o que sobrar
+## NotebookLM para o que sobrar (linhas "Sem áudio no podcast")
 
 1. Crie um caderno por série (ou por lote de até 50 vídeos) e adicione cada link como fonte do YouTube.
 2. Use o prompt:
