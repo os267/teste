@@ -1,0 +1,327 @@
+<title>Sermões FDQC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cabeçalho + barra de filtros fixa; o mapa da Bíblia (capítulo a capítulo) é a peça central; painéis de ranking em grade; tabela no fim. */
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#14181f; --ink-2:#4a5260; --ink-3:#7a8291; --line:#e1e5eb; --line-2:#eef1f4;
+  --accent:#1c5cab; --accent-soft:#e3eefb;
+  --h0:#eef1f5; --h1:#b7d3f6; --h2:#6da7ec; --h3:#2a78d6; --h4:#184f95; --h5:#0d366b;
+  --good:#0a7d0a; --good-bg:#e5f4e5; --warn:#8a5a00; --warn-bg:#fdf1d6; --serious:#a6421a; --serious-bg:#fbe7de; --muted-bg:#eef0f3;
+  --f-display:"Literata",Georgia,"Times New Roman",serif; --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --shadow:0 1px 2px rgba(20,24,31,.06);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151a; --panel:#1a1e25; --ink:#eef1f5; --ink-2:#b5bcc8; --ink-3:#8a92a0; --line:#2c323c; --line-2:#232831;
+  --accent:#6da7ec; --accent-soft:#1d2a3c;
+  --h0:#222831; --h1:#184f95; --h2:#256abf; --h3:#3987e5; --h4:#6da7ec; --h5:#b7d3f6;
+  --good:#5fcf5f; --good-bg:#16301a; --warn:#f2c14e; --warn-bg:#3a2e12; --serious:#f09a72; --serious-bg:#3b2219; --muted-bg:#262b33;
+  --shadow:none; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151a; --panel:#1a1e25; --ink:#eef1f5; --ink-2:#b5bcc8; --ink-3:#8a92a0; --line:#2c323c; --line-2:#232831;
+  --accent:#6da7ec; --accent-soft:#1d2a3c;
+  --h0:#222831; --h1:#184f95; --h2:#256abf; --h3:#3987e5; --h4:#6da7ec; --h5:#b7d3f6;
+  --good:#5fcf5f; --good-bg:#16301a; --warn:#f2c14e; --warn-bg:#3a2e12; --serious:#f09a72; --serious-bg:#3b2219; --muted-bg:#262b33;
+  --shadow:none; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:20px;padding-block:24px 64px;display:flex;flex-direction:column;gap:22px}
+h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0;font-weight:700;letter-spacing:-.01em}
+h1{font-size:clamp(26px,3.4vw,36px);line-height:1.15}
+h2{font-size:19px}
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.sub{color:var(--ink-2);max-width:70ch;margin:6px 0 0}
+header{display:flex;flex-direction:column;gap:4px}
+
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 10px;align-items:end}
+.f{display:flex;flex-direction:column;gap:3px;min-width:0}
+.f label{font:600 11px/1 var(--f-body);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.f select,.f input{font:14px var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 8px;height:34px;max-width:100%}
+.f input[type=search]{width:220px}
+.f select{max-width:220px}
+.f.years{flex-direction:row;gap:6px;align-items:end}
+.f.years .f select{width:84px}
+button{font:600 13px var(--f-body);cursor:pointer;border-radius:6px}
+.btn{height:34px;padding:0 12px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip-toggle{height:34px;padding:0 10px;border:1px solid var(--line);background:var(--panel);color:var(--ink-3)}
+.chip-toggle[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.active-filter{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 10px;border-radius:6px;background:var(--accent);color:var(--panel);border:0}
+
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px}
+.kpi .v{font:700 30px/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.kpi .v small{font:500 15px var(--f-body);color:var(--ink-3)}
+.kpi .l{color:var(--ink-2);font-size:13px}
+.meter{height:6px;border-radius:3px;background:var(--line-2);overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:3px}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.note{color:var(--ink-3);font-size:13px}
+
+/* mapa da Bíblia */
+.bible{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 28px}
+.testament{display:flex;flex-direction:column;gap:2px;min-width:0}
+.testament>h3{font:600 12px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:6px 0 4px}
+.genre{font:italic 500 13px var(--f-display);color:var(--ink-2);margin:10px 0 2px}
+.book{display:grid;grid-template-columns:118px minmax(0,1fr);gap:8px;align-items:start;padding:2px 0}
+.book .bn{font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;line-height:12px;padding-top:1px}
+.book .bn:hover{color:var(--accent)}
+.book .bn b{font:500 11px var(--f-mono);color:var(--ink-3);display:inline-block;width:30px}
+.book.none .bn{color:var(--ink-3)}
+.cells{display:flex;flex-wrap:wrap;gap:2px}
+.c{width:12px;height:12px;border-radius:2px;background:var(--h0);cursor:pointer;border:0;padding:0}
+.c[data-l="1"]{background:var(--h1)}.c[data-l="2"]{background:var(--h2)}.c[data-l="3"]{background:var(--h3)}.c[data-l="4"]{background:var(--h4)}.c[data-l="5"]{background:var(--h5)}
+.c:hover,.c.sel{outline:2px solid var(--ink);outline-offset:1px}
+.legend{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-3);flex-wrap:wrap}
+.legend .c{cursor:default}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bars{display:flex;flex-direction:column;gap:5px}
+.bar{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr) 36px;gap:8px;align-items:center;font-size:13px;cursor:pointer;border-radius:4px}
+.bar:hover .bl{color:var(--accent)}
+.bar .bl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink-2)}
+.bar .bt{height:14px;background:transparent}
+.bar .bt i{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0;min-width:2px}
+.bar .bv{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.cols{display:flex;align-items:flex-end;gap:6px;height:160px;padding-top:18px;border-bottom:1px solid var(--line)}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%;cursor:pointer;min-width:0}
+.col i{display:block;width:100%;max-width:42px;background:var(--accent);border-radius:4px 4px 0 0;min-height:2px}
+.col span{font:500 11px var(--f-body);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.col:hover i{background:var(--h4)}
+.xlabels{display:flex;gap:6px}
+.xlabels span{flex:1;text-align:center;font-size:11px;color:var(--ink-3);min-width:0}
+.split{display:flex;height:22px;border-radius:5px;overflow:hidden;gap:2px}
+.split i{display:block;height:100%}
+.split-l{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2)}
+.tagcloud{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 12px var(--f-mono);padding:3px 7px;border-radius:5px;background:var(--muted-bg);color:var(--ink-2);border:1px solid var(--line);cursor:pointer}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font:600 11px/1 var(--f-body);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+th[aria-sort]::after{content:" ↓";color:var(--accent)}
+th[aria-sort="ascending"]::after{content:" ↑"}
+td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top}
+td.d{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+td.t a{color:var(--ink);text-decoration:none;font-weight:600}
+td.t a:hover{color:var(--accent);text-decoration:underline}
+td.t .s{display:block;color:var(--ink-3);font-size:12px}
+td.r{font:500 13px var(--f-mono);color:var(--ink);white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:4px;font:600 11px/1 var(--f-body);padding:4px 7px;border-radius:999px;white-space:nowrap}
+.pill.Confirmado{background:var(--good-bg);color:var(--good)}
+.pill.Provável{background:var(--warn-bg);color:var(--warn)}
+.pill.Incerto{background:var(--serious-bg);color:var(--serious)}
+.pill.Temático,.pill.Panorama,.pill.Não{background:var(--muted-bg);color:var(--ink-2)}
+.more{align-self:center}
+
+#tip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:var(--bg);padding:8px 10px;border-radius:6px;font-size:12.5px;line-height:1.4;max-width:320px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+#tip b{font-family:var(--f-display)}
+#tip ul{margin:4px 0 0;padding-left:16px}
+.empty{color:var(--ink-3);font-size:13px}
+footer{color:var(--ink-3);font-size:12.5px;max-width:90ch}
+
+@media (max-width:980px){.bible,.grid2,.grid3{grid-template-columns:minmax(0,1fr)}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.wrap{padding-inline:16px}.f input[type=search]{width:100%}.f.search{flex-basis:100%}.book{grid-template-columns:92px minmax(0,1fr)}.book .bn b{display:none}.bar{grid-template-columns:minmax(0,110px) minmax(0,1fr) 30px}.c{width:11px;height:11px}}
+@media (prefers-reduced-motion:no-preference){.bar .bt i,.col i,.meter i{transition:width .25s ease,height .25s ease}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Família dos Que Creem</span>
+    <h1>Sermões FDQC</h1>
+    <p class="sub" id="lede"></p>
+  </header>
+
+  <div class="filters" role="search">
+    <div class="f search"><label for="q">Buscar</label><input id="q" type="search" placeholder="Título, texto, série…"></div>
+    <div class="f"><label for="fp">Pregador</label><select id="fp"></select></div>
+    <div class="f"><label for="fs">Série</label><select id="fs"></select></div>
+    <div class="f"><label for="ft">Tipo</label><select id="ft"></select></div>
+    <div class="f years"><div class="f"><label for="y1">De</label><select id="y1"></select></div><div class="f"><label for="y2">Até</label><select id="y2"></select></div></div>
+    <div class="f"><label>Confiança do texto</label><div class="chips" id="fc"></div></div>
+    <span id="chapfilter"></span>
+    <button class="btn" id="reset" type="button">Limpar filtros</button>
+  </div>
+
+  <section class="kpis" aria-label="Resumo">
+    <div class="kpi"><span class="v" id="k1"></span><span class="l">gravações no filtro</span></div>
+    <div class="kpi"><span class="v" id="k2"></span><span class="l">pregadores</span></div>
+    <div class="kpi"><span class="v" id="k3"></span><span class="l">livros da Bíblia com sermão</span><div class="meter"><i id="m3"></i></div></div>
+    <div class="kpi"><span class="v" id="k4"></span><span class="l">capítulos pregados</span><div class="meter"><i id="m4"></i></div></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-map">
+    <div class="panel-head">
+      <h2 id="h-map">Mapa da Bíblia</h2>
+      <div class="legend"><span>Sermões por capítulo:</span><span class="c" data-l="0"></span>0<span class="c" data-l="1"></span>1<span class="c" data-l="2"></span>2<span class="c" data-l="3"></span>3–4<span class="c" data-l="4"></span>5–7<span class="c" data-l="5"></span>8+</div>
+    </div>
+    <p class="note">Cada quadrado é um capítulo. Clique num capítulo ou no nome do livro para ver os sermões dele na tabela.</p>
+    <div class="bible" id="bible"></div>
+  </section>
+
+  <div class="grid2">
+    <section class="panel" aria-labelledby="h-gap">
+      <div class="panel-head"><h2 id="h-gap">Livros ainda não pregados</h2><span class="note" id="gapn"></span></div>
+      <div id="gaps"></div>
+    </section>
+    <section class="panel" aria-labelledby="h-test">
+      <div class="panel-head"><h2 id="h-test">Antigo × Novo Testamento</h2></div>
+      <div id="split"></div>
+      <h2 style="font-size:16px;margin-top:8px">Por gênero literário</h2>
+      <div class="bars" id="genres"></div>
+    </section>
+  </div>
+
+  <div class="grid3">
+    <section class="panel" aria-labelledby="h-books"><div class="panel-head"><h2 id="h-books">Livros mais pregados</h2></div><div class="bars" id="books"></div></section>
+    <section class="panel" aria-labelledby="h-chaps"><div class="panel-head"><h2 id="h-chaps">Capítulos mais pregados</h2></div><div class="bars" id="chaps"></div></section>
+    <section class="panel" aria-labelledby="h-preg"><div class="panel-head"><h2 id="h-preg">Quem mais pregou</h2></div><div class="bars" id="preg"></div></section>
+  </div>
+
+  <div class="grid2">
+    <section class="panel" aria-labelledby="h-year"><div class="panel-head"><h2 id="h-year">Gravações por ano</h2><span class="note">clique numa coluna para filtrar o ano</span></div><div class="cols" id="years"></div><div class="xlabels" id="yearsx"></div></section>
+    <section class="panel" aria-labelledby="h-ser"><div class="panel-head"><h2 id="h-ser">Séries</h2><span class="note" id="sern"></span></div><div class="tablewrap" style="max-height:290px;overflow-y:auto"><table><thead><tr><th>Série</th><th>Sermões</th><th>Período</th></tr></thead><tbody id="series"></tbody></table></div></section>
+  </div>
+
+  <section class="panel" aria-labelledby="h-tab">
+    <div class="panel-head"><h2 id="h-tab">Sermões</h2><span class="note" id="tabn"></span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th data-k="data" aria-sort="descending">Data</th><th data-k="titulo">Título</th><th data-k="pregador">Pregador</th><th data-k="texto">Texto base</th><th data-k="confianca">Confiança</th></tr></thead>
+      <tbody id="rows"></tbody></table></div>
+    <button class="btn more" id="more" type="button">Mostrar mais</button>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const DATA = /*DATA*/null;
+const L = DATA.livros, S = DATA.sermoes;
+const INFO = Object.fromEntries(L.map((b,i)=>[b.ab,{...b,i}]));
+const CONFS = ["Confirmado","Provável","Incerto","Temático","Panorama","Não identificado"];
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+S.forEach(s=>{ s._q = norm([s.titulo,s.pregador,s.serie,s.texto,s.livros].join(" ")); s._d = s.data? s.data.split("/").reverse().join("") : String(s.ano||0)+"0000"; });
+
+const st = {q:"",p:"",s:"",t:"",y1:"",y2:"",conf:new Set(["Confirmado","Provável","Incerto"]),book:null,chap:null,sort:["data",-1],limit:60};
+try{ const saved = JSON.parse(localStorage.getItem("fdqc-conf")||"null"); if(saved) st.conf = new Set(saved); }catch(e){}
+
+function opts(sel, vals, all){ sel.innerHTML = `<option value="">${all}</option>` + vals.map(v=>`<option value="${esc(v[0])}">${esc(v[0])} (${v[1]})</option>`).join(""); }
+function countBy(arr, f){ const m=new Map(); arr.forEach(x=>{const k=f(x); if(k) m.set(k,(m.get(k)||0)+1)}); return [...m].sort((a,b)=>b[1]-a[1]||String(a[0]).localeCompare(b[0])); }
+opts($("fp"), countBy(S,s=>s.pregador), "Todos");
+opts($("fs"), countBy(S,s=>s.serie).sort((a,b)=>a[0].localeCompare(b[0])), "Todas");
+opts($("ft"), countBy(S,s=>s.tipo), "Todos");
+const years = [...new Set(S.map(s=>s.ano).filter(Boolean))].sort();
+for(const id of ["y1","y2"]) $(id).innerHTML = `<option value="">${id==="y1"?"início":"hoje"}</option>` + years.map(y=>`<option>${y}</option>`).join("");
+$("fc").innerHTML = CONFS.map(c=>`<button type="button" class="chip-toggle" data-c="${c}" aria-pressed="${st.conf.has(c)}">${c}</button>`).join("");
+
+function base(){ // todos os filtros exceto capítulo
+  const q = norm(st.q);
+  return S.filter(s => (!q || s._q.includes(q)) && (!st.p || s.pregador===st.p) && (!st.s || s.serie===st.s) && (!st.t || s.tipo===st.t)
+    && (!st.y1 || (s.ano||0) >= +st.y1) && (!st.y2 || (s.ano||9999) <= +st.y2) && st.conf.has(s.confianca));
+}
+const hasRef = (s,ab,ch) => s.refs.some(([a,cs])=>a===ab && (ch==null || cs.includes(ch)));
+
+function render(){
+  const B = base();
+  const T = st.book ? B.filter(s=>hasRef(s,st.book,st.chap)) : B;
+  // cobertura
+  const cov = {}; L.forEach(b=>cov[b.ab]={n:0,ch:new Map()});
+  B.forEach(s=>s.refs.forEach(([a,cs])=>{ const c=cov[a]; c.n++; cs.forEach(ch=>{ if(!c.ch.has(ch)) c.ch.set(ch,[]); c.ch.get(ch).push(s); }); }));
+  const booksDone = L.filter(b=>cov[b.ab].n>0).length;
+  const chapsDone = L.reduce((t,b)=>t+cov[b.ab].ch.size,0), chapsAll = L.reduce((t,b)=>t+b.caps,0);
+  $("k1").textContent = T.length;
+  $("k2").textContent = new Set(T.map(s=>s.pregador).filter(Boolean)).size;
+  $("k3").innerHTML = `${booksDone}<small> / 66</small>`; $("m3").style.width = (booksDone/66*100)+"%";
+  $("k4").innerHTML = `${chapsDone}<small> / ${chapsAll} · ${(chapsDone/chapsAll*100).toFixed(1).replace(".",",")}%</small>`; $("m4").style.width=(chapsDone/chapsAll*100)+"%";
+  // mapa
+  const lvl = n => n===0?0:n===1?1:n===2?2:n<=4?3:n<=7?4:5;
+  const groups = ["AT","NT"].map(t=>{ let g="", html=`<div class="testament"><h3>${t==="AT"?"Antigo Testamento":"Novo Testamento"}</h3>`;
+    L.filter(b=>b.test===t).forEach(b=>{ if(b.genero!==g){ g=b.genero; html+=`<div class="genre">${g}</div>`; }
+      const c=cov[b.ab]; let cells="";
+      for(let i=1;i<=b.caps;i++){ const n=(c.ch.get(i)||[]).length; cells+=`<button type="button" class="c${st.book===b.ab&&st.chap===i?" sel":""}" data-l="${lvl(n)}" data-b="${b.ab}" data-ch="${i}" aria-label="${esc(b.nome)} ${i}: ${n} sermões"></button>`; }
+      html+=`<div class="book${c.n?"":" none"}"><span class="bn" data-b="${b.ab}" title="${esc(b.nome)}"><b>${b.ab}</b>${esc(b.nome)}</span><div class="cells">${cells}</div></div>`; });
+    return html+"</div>"; });
+  $("bible").innerHTML = groups.join("");
+  $("bible")._cov = cov;
+  // lacunas
+  const gaps = L.filter(b=>cov[b.ab].n===0);
+  $("gapn").textContent = `${gaps.length} de 66`;
+  $("gaps").innerHTML = ["AT","NT"].map(t=>{ const g=gaps.filter(b=>b.test===t); return `<p class="eyebrow" style="margin:6px 0">${t==="AT"?"Antigo Testamento":"Novo Testamento"} · ${g.length}</p><div class="tagcloud">${g.map(b=>`<span class="tag" title="${b.caps} capítulos">${esc(b.nome)}</span>`).join("")||'<span class="empty">Todos têm pelo menos um sermão.</span>'}</div>`; }).join("");
+  // AT x NT (por referência de livro)
+  let at=0,nt=0; B.forEach(s=>s.refs.forEach(([a])=>INFO[a].test==="AT"?at++:nt++));
+  const tot=at+nt||1;
+  $("split").innerHTML = `<div class="split"><i style="width:${at/tot*100}%;background:var(--h2)"></i><i style="width:${nt/tot*100}%;background:var(--h4)"></i></div><div class="split-l"><span>AT · ${at} (${Math.round(at/tot*100)}%)</span><span>NT · ${nt} (${Math.round(nt/tot*100)}%)</span></div>`;
+  const gen = new Map(); B.forEach(s=>s.refs.forEach(([a])=>gen.set(INFO[a].genero,(gen.get(INFO[a].genero)||0)+1)));
+  const genOrder = [...new Set(L.map(b=>b.genero))].map(g=>[g,gen.get(g)||0]);
+  bars($("genres"), genOrder, null);
+  // rankings
+  bars($("books"), L.map(b=>[b.nome,cov[b.ab].n,b.ab]).filter(x=>x[1]).sort((a,b)=>b[1]-a[1]).slice(0,12), x=>{st.book=x[2];st.chap=null;go();});
+  const ch=[]; L.forEach(b=>cov[b.ab].ch.forEach((v,k)=>ch.push([`${b.nome} ${k}`,v.length,b.ab,k])));
+  bars($("chaps"), ch.sort((a,b)=>b[1]-a[1]||INFO[a[2]].i-INFO[b[2]].i).slice(0,12), x=>{st.book=x[2];st.chap=x[3];go();});
+  bars($("preg"), countBy(B,s=>s.pregador).slice(0,14), x=>{st.p=x[0];$("fp").value=x[0];go();});
+  // anos
+  const yc = countBy(B,s=>s.ano).sort((a,b)=>a[0]-b[0]); const ym=Math.max(1,...yc.map(x=>x[1]));
+  $("years").innerHTML = yc.map(([y,n])=>`<div class="col" data-y="${y}" data-tip="${y}: ${n} gravações"><span>${n}</span><i style="height:${n/ym*100}%"></i></div>`).join("") || '<p class="empty">Nenhuma gravação no filtro.</p>';
+  $("yearsx").innerHTML = yc.map(([y])=>`<span>${y}</span>`).join("");
+  // séries
+  const ser = new Map(); B.forEach(s=>{ if(!s.serie) return; const o=ser.get(s.serie)||{n:0,y:[]}; o.n++; if(s.ano) o.y.push(s.ano); ser.set(s.serie,o); });
+  const sl=[...ser].sort((a,b)=>Math.max(...(b[1].y.length?b[1].y:[0]))-Math.max(...(a[1].y.length?a[1].y:[0]))||b[1].n-a[1].n);
+  $("sern").textContent = `${sl.length} séries · ${B.filter(s=>!s.serie).length} avulsos`;
+  $("series").innerHTML = sl.map(([k,o])=>{ const a=Math.min(...o.y), b=Math.max(...o.y); return `<tr data-s="${esc(k)}" style="cursor:pointer"><td>${esc(k)}</td><td class="d">${o.n}</td><td class="d">${o.y.length?(a===b?a:a+"–"+b):"—"}</td></tr>`; }).join("");
+  // tabela
+  const [k,dir] = st.sort;
+  const rows = T.slice().sort((a,b)=>{ const x = k==="data"? a._d : norm(a[k]), y = k==="data"? b._d : norm(b[k]); return (x<y?-1:x>y?1:0)*dir; });
+  $("tabn").textContent = `${T.length} gravações`;
+  $("rows").innerHTML = rows.slice(0,st.limit).map(s=>`<tr>
+    <td class="d">${s.data? esc(s.data) : (s.ano? "≈ "+s.ano : "—")}</td>
+    <td class="t"><a href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.titulo)}</a><span class="s">${esc(s.serie||"Avulso")} · ${esc(s.tipo)}${s.youtube?"":" · podcast"}</span></td>
+    <td>${esc(s.pregador||"—")}</td>
+    <td class="r">${esc(s.texto||"—")}</td>
+    <td><span class="pill ${esc(s.confianca.split(" ")[0])}">${esc(s.confianca)}</span></td></tr>`).join("") || `<tr><td colspan="5" class="empty">Nenhuma gravação com esses filtros.</td></tr>`;
+  $("more").hidden = rows.length <= st.limit;
+  $("chapfilter").innerHTML = st.book ? `<button type="button" class="active-filter" id="clearchap">${esc(INFO[st.book].nome)}${st.chap?" "+st.chap:""} ✕</button>` : "";
+  document.querySelectorAll("th[data-k]").forEach(th=>{ if(th.dataset.k===k) th.setAttribute("aria-sort",dir<0?"descending":"ascending"); else th.removeAttribute("aria-sort"); });
+}
+function bars(el, list, click){
+  const m = Math.max(1,...list.map(x=>x[1]));
+  el.innerHTML = list.map((x,i)=>`<div class="bar" data-i="${i}" data-tip="${esc(x[0])}: ${x[1]}"><span class="bl">${esc(x[0])}</span><span class="bt"><i style="width:${x[1]/m*100}%"></i></span><span class="bv">${x[1]}</span></div>`).join("") || '<p class="empty">Nada no filtro.</p>';
+  el._list = list; el._click = click; if(!click) el.querySelectorAll(".bar").forEach(b=>b.style.cursor="default");
+}
+function go(){ st.limit=60; render(); }
+
+$("q").addEventListener("input",e=>{st.q=e.target.value;go();});
+[["fp","p"],["fs","s"],["ft","t"],["y1","y1"],["y2","y2"]].forEach(([id,k])=>$(id).addEventListener("change",e=>{st[k]=e.target.value;go();}));
+$("fc").addEventListener("click",e=>{ const b=e.target.closest("[data-c]"); if(!b) return; const c=b.dataset.c; st.conf.has(c)?st.conf.delete(c):st.conf.add(c); b.setAttribute("aria-pressed",st.conf.has(c)); try{localStorage.setItem("fdqc-conf",JSON.stringify([...st.conf]))}catch(e){} go(); });
+$("reset").addEventListener("click",()=>{ Object.assign(st,{q:"",p:"",s:"",t:"",y1:"",y2:"",book:null,chap:null}); ["q","fp","fs","ft","y1","y2"].forEach(id=>$(id).value=""); go(); });
+$("chapfilter").addEventListener("click",e=>{ if(e.target.closest("#clearchap")){ st.book=null; st.chap=null; go(); }});
+$("more").addEventListener("click",()=>{ st.limit+=100; render(); });
+document.querySelector("thead tr:last-child") && document.querySelectorAll("th[data-k]").forEach(th=>th.addEventListener("click",()=>{ const k=th.dataset.k; st.sort = st.sort[0]===k ? [k,-st.sort[1]] : [k, k==="data"?-1:1]; render(); }));
+$("bible").addEventListener("click",e=>{ const c=e.target.closest("[data-b]"); if(!c) return; st.book=c.dataset.b; st.chap=c.dataset.ch?+c.dataset.ch:null; go(); $("h-tab").scrollIntoView({behavior:"smooth",block:"start"}); });
+document.addEventListener("click",e=>{ const b=e.target.closest(".bar"); if(b){ const el=b.parentElement; if(el._click){ el._click(el._list[+b.dataset.i]); } }
+  const y=e.target.closest(".col"); if(y){ st.y1=st.y2=y.dataset.y; $("y1").value=$("y2").value=y.dataset.y; go(); }
+  const s=e.target.closest("tr[data-s]"); if(s){ st.s=s.dataset.s; $("fs").value=s.dataset.s; go(); } });
+// tooltip
+const tip=$("tip");
+document.addEventListener("pointermove",e=>{
+  const c=e.target.closest(".c[data-b]"), t=e.target.closest("[data-tip]");
+  if(c){ const cov=$("bible")._cov, list=cov[c.dataset.b].ch.get(+c.dataset.ch)||[];
+    tip.innerHTML=`<b>${esc(INFO[c.dataset.b].nome)} ${c.dataset.ch}</b> · ${list.length} ${list.length===1?"sermão":"sermões"}${list.length?`<ul>${list.slice(0,5).map(s=>`<li>${esc(s.titulo.split(" - ")[0])} <span style="opacity:.7">(${esc(s.pregador||"?")}${s.ano?", "+s.ano:""})</span></li>`).join("")}${list.length>5?`<li>+${list.length-5}…</li>`:""}</ul>`:""}`;
+  } else if(t){ tip.textContent=t.dataset.tip; } else { tip.hidden=true; return; }
+  tip.hidden=false; const w=tip.offsetWidth,h=tip.offsetHeight; let x=e.clientX+14,y=e.clientY+14;
+  if(x+w>innerWidth-8) x=e.clientX-w-14; if(y+h>innerHeight-8) y=e.clientY-h-14; tip.style.left=Math.max(8,x)+"px"; tip.style.top=Math.max(8,y)+"px"; });
+document.addEventListener("pointerleave",()=>tip.hidden=true);
+
+const nyt=S.filter(s=>s.youtube).length;
+$("lede").textContent = `${S.length} gravações de ${Math.min(...years)} a ${Math.max(...years)}: pregações de culto, séries, especiais e palestras. Filtre por pregador, série, período ou confiança do texto base e veja o que já foi pregado de cada livro da Bíblia.`;
+$("foot").textContent = `Fontes: lista de vídeos do YouTube (${nyt} com link direto) e o podcast da igreja no SoundCloud. Data = publicação no podcast (o culto costuma ser no domingo anterior); vídeos sem áudio no podcast têm só o ano aproximado (≈). O texto base vem do título do episódio, da transcrição dos 10 primeiros minutos do áudio ou do NotebookLM. "Temático" indica sermão sem texto único anunciado; esses não entram no mapa. Por padrão o mapa conta textos Confirmados, Prováveis e Incertos.`;
+render();
+</script>
