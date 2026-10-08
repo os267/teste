@@ -22,3 +22,17 @@ Gera `sermoes_fdqc_preenchida.xlsx`. Se o script parar no meio, rode de novo com
 > Para cada fonte, informe: título do vídeo | texto bíblico base anunciado pelo pregador (livro, capítulo e versículos) | trecho da fala em que ele anuncia o texto. Se não houver um texto base anunciado, escreva "temático" e liste as passagens mais citadas. Responda em tabela.
 
 3. Confira os casos duvidosos pelo trecho citado (o NotebookLM mostra a fonte) e cole o resultado na planilha.
+
+## Atualização semanal automática
+
+Toda quinta-feira à noite uma rotina agendada roda:
+
+```
+pip install faster-whisper openpyxl numpy
+python sermoes/scripts/atualizar.py   # busca episódios novos no podcast e atualiza dados/sermoes.json
+python sermoes/scripts/gerar.py       # (chamado pelo atualizar.py) gera planilha e dashboard
+```
+
+- `dados/sermoes.json`: a base (fonte de verdade). Para corrigir um texto base à mão, edite aqui e rode `gerar.py`.
+- `dados/ultima_atualizacao.md`: resumo da última execução (o que entrou e o que precisa de revisão).
+- `sermoes_fdqc_completa.xlsx` e `dashboard.html`: gerados a partir da base.
