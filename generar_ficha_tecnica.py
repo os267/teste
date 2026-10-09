@@ -31,10 +31,12 @@ AZUL_PROFUNDO = "0F2537"
 DORADO = "C5A059"
 DORADO_BRILLO = "D4AF37"
 FONDO_ALTERNO = "F4F7FA"
+FONDO_PROXIMO = "FBF3E1"
 TEXTO = "2C3E50"
 BLANCO = "FFFFFF"
 
 MARCA = "La Auxiliadora · Vangrupo"
+ETIQUETA_PROXIMO = "PRÓXIMO LANZAMIENTO · se lanzará en otro momento"
 CAMPANA = "Campaña Día de los Muertos 2026"
 N_CUOTAS = 120
 
@@ -187,33 +189,6 @@ PRODUCTOS = [
         ],
     },
     {
-        "id": "VG-CRE-03C",
-        "nombre": "Jardín de Cenizas · Ceremonial",
-        "submarca": "Jardines de la Memoria · Jardín 3",
-        "categoria": "Destino final · Inhumación con ceremonia",
-        "concepto": (
-            "Jardín para inhumación de urnas de cenizas con ceremonia de agua, "
-            "con fuentes como elemento central del rito de despedida."
-        ),
-        "capacidad": "A definir.",
-        "servicios": [
-            "Inhumación de urnas de cenizas",
-            "Ceremonia con agua en fuente",
-        ],
-        "perfil": (
-            "Familias que valoran un rito de despedida simbólico y un entorno "
-            "contemplativo."
-        ),
-        "precio_texto": "A definir",
-        "precio_nota": "Producto en definición",
-        "pago": "A definir.",
-        "specs": [
-            ("Ambiente", "Jardín 3"),
-            ("Elemento central", "Fuente de agua para la ceremonia"),
-            ("Entorno", "Barrera visual que separa el jardín del crematorio"),
-        ],
-    },
-    {
         "id": "VG-CRE-04",
         "nombre": "Jardín de Mascotas",
         "submarca": "Jardines de la Memoria · Mascotas",
@@ -248,6 +223,34 @@ PRODUCTOS = [
             ("Permanencia", "3 años; luego el nombre pasa a una placa memorial en el "
                             "monumento y el espacio se reutiliza"),
             ("Placa memorial", "US$ 50"),
+        ],
+    },
+    {
+        "id": "VG-CRE-03C",
+        "proximo_lanzamiento": True,
+        "nombre": "Jardín de Cenizas · Ceremonial",
+        "submarca": "Jardines de la Memoria · Jardín 3",
+        "categoria": "Destino final · Inhumación con ceremonia",
+        "concepto": (
+            "Jardín para inhumación de urnas de cenizas con ceremonia de agua, "
+            "con fuentes como elemento central del rito de despedida."
+        ),
+        "capacidad": "A definir.",
+        "servicios": [
+            "Inhumación de urnas de cenizas",
+            "Ceremonia con agua en fuente",
+        ],
+        "perfil": (
+            "Familias que valoran un rito de despedida simbólico y un entorno "
+            "contemplativo."
+        ),
+        "precio_texto": "A definir",
+        "precio_nota": "Producto en definición",
+        "pago": "A definir.",
+        "specs": [
+            ("Ambiente", "Jardín 3"),
+            ("Elemento central", "Fuente de agua para la ceremonia"),
+            ("Entorno", "Barrera visual que separa el jardín del crematorio"),
         ],
     },
 ]
@@ -317,7 +320,7 @@ def dataframe_comercial() -> pd.DataFrame:
     for p in PRODUCTOS:
         filas.append([
             p["id"],
-            p["nombre"],
+            p["nombre"] + ("\n★ PRÓXIMO LANZAMIENTO" if p.get("proximo_lanzamiento") else ""),
             p["categoria"],
             p["concepto"],
             p["capacidad"],
@@ -364,7 +367,9 @@ def estilizar_tabla(ws) -> None:
     borde_fino = borde("D5DCE4")
     for i, fila in enumerate(ws.iter_rows(min_row=FILA_ENCABEZADO + 1,
                                           max_row=ws.max_row, max_col=ncols)):
-        fondo = relleno(FONDO_ALTERNO) if i % 2 == 0 else relleno(BLANCO)
+        proximo = PRODUCTOS[i].get("proximo_lanzamiento", False)
+        fondo = relleno(FONDO_PROXIMO) if proximo else (
+            relleno(FONDO_ALTERNO) if i % 2 == 0 else relleno(BLANCO))
         max_lineas = 1
         for c in fila:
             c.fill = fondo
@@ -378,6 +383,10 @@ def estilizar_tabla(ws) -> None:
         fila[0].font = Font(name="Calibri", size=10, bold=True, color=AZUL_MARINO)
         fila[0].alignment = Alignment(horizontal="center", vertical="top")
         fila[1].font = Font(name="Calibri", size=11, bold=True, color=AZUL_MARINO)
+        if proximo:
+            for c in fila:
+                c.border = Border(top=Side(style="medium", color=DORADO),
+                                  bottom=Side(style="medium", color=DORADO))
         fila[7].font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
         ws.row_dimensions[fila[0].row].height = max(30, 14.5 * max_lineas + 6)
 
@@ -487,6 +496,15 @@ def construir_fichas(ws) -> None:
             ws.cell(row=fila, column=col).fill = relleno(AZUL_PROFUNDO)
         ws.row_dimensions[fila].height = 20
         fila += 1
+        if p.get("proximo_lanzamiento"):
+            ws.merge_cells(start_row=fila, start_column=COL_ETQ, end_row=fila, end_column=COL_FIN)
+            c = ws.cell(row=fila, column=COL_ETQ, value=f"★  {ETIQUETA_PROXIMO}")
+            c.font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
+            c.alignment = Alignment(horizontal="center", vertical="center")
+            for col in range(COL_ETQ, COL_FIN + 1):
+                ws.cell(row=fila, column=col).fill = relleno(DORADO_BRILLO)
+            ws.row_dimensions[fila].height = 24
+            fila += 1
 
         fila = _bloque_titulo(ws, fila, "Visión General")
         fila = _fila_dato(ws, fila, "Concepto", p["concepto"], True)
@@ -563,6 +581,9 @@ body {{ margin: 0; background: #E9EDF2; color: var(--texto);
 .ficha header h2 {{ font-family: "Playfair Display", Georgia, serif; margin: 10px 0 4px;
   font-size: 26px; font-weight: 700; }}
 .ficha header .sub {{ font-style: italic; opacity: .85; font-size: 13px; }}
+.ficha.proximo {{ border: 3px dashed var(--dorado); }}
+.ficha .aviso {{ background: var(--dorado-brillo); color: var(--azul-profundo); text-align: center;
+  font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding: 8px 16px; }}
 .cuerpo {{ padding: 8px 28px 24px; }}
 .bloque h3 {{ margin: 18px 0 8px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
   color: var(--azul-profundo); border-left: 4px solid var(--dorado); padding: 4px 10px;
@@ -607,13 +628,15 @@ def ficha_html(p: dict) -> str:
     specs = "".join(f"<tr><th>{e(k)}</th><td>{e(v)}</td></tr>" for k, v in p["specs"])
     cuota = cuota_referencial(p)
     cuota_html = f"<br><small>Referencia: {e(cuota)}</small>" if cuota else ""
+    aviso = (f'\n  <div class="aviso">★ {e(ETIQUETA_PROXIMO)}</div>'
+             if p.get("proximo_lanzamiento") else "")
     return f"""
-<article class="ficha">
+<article class="ficha{' proximo' if p.get('proximo_lanzamiento') else ''}">
   <header>
     <div class="marca"><span>{e(MARCA)}</span><span>Ficha Técnica · {e(p['id'])}</span></div>
     <h2>{e(p['nombre'])}</h2>
     <div class="sub">{e(p['submarca'])} · {e(p['categoria'])}</div>
-  </header>
+  </header>{aviso}
   <div class="cuerpo">
     <section class="bloque"><h3>Visión General</h3>
       <table>
