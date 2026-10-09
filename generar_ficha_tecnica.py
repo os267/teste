@@ -127,14 +127,18 @@ PRODUCTOS = [
             "homenaje, con una inversión moderada."
         ),
         "precio": 600,
-        "precio_nota": "Por espacio individual",
-        "pago": "Pago único o financiado según política comercial vigente.",
+        "precio_nota": "Por espacio individual · mantenimiento US$ 15/año",
+        "pago": (
+            "Pago único o financiado según política comercial vigente. "
+            "Cuota de mantenimiento: US$ 15 anual."
+        ),
         "specs": [
             ("Ambiente", "Jardín 1"),
             ("Contenedor", "Ø 32 cm × 40 cm de altura; enterrado dejando 20 cm a la vista"),
             ("Identificación", "Tapa de granito con la información del difunto"),
             ("Paisajismo", "Plantas de sombra de diferentes alturas y texturas"),
             ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
+            ("Mantenimiento", "US$ 15 anual"),
         ],
     },
     {
@@ -158,14 +162,18 @@ PRODUCTOS = [
             "generaciones."
         ),
         "precio": 2000,
-        "precio_nota": "Por parcela familiar · hasta 4 espacios",
-        "pago": "Pago único o financiado según política comercial vigente.",
+        "precio_nota": "Por parcela familiar · hasta 4 espacios · mantenimiento US$ 25/año",
+        "pago": (
+            "Pago único o financiado según política comercial vigente. "
+            "Cuota de mantenimiento: US$ 25 anual."
+        ),
         "specs": [
             ("Ambiente", "Jardín 1"),
             ("Capacidad", "4 contenedores agrupados en losa"),
             ("Identificación", "Tapa de granito por espacio, con la información del difunto"),
             ("Permanencia", "Sin plazo"),
             ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
+            ("Mantenimiento", "US$ 25 anual"),
         ],
     },
     {
@@ -184,14 +192,18 @@ PRODUCTOS = [
             "Placa de identificación",
             "Ubicación en el Jardín 2 o en el Bosque de las Orquídeas",
             "Entorno natural con agua corriente",
+            "Permanencia de 3 años; luego, placa memorial en el monumento",
         ],
         "perfil": (
             "Personas con conciencia ambiental que desean que sus cenizas vuelvan "
             "a la tierra, con un lugar identificado para visitar."
         ),
         "precio": 600,
-        "precio_nota": "Por espacio individual",
-        "pago": "Pago único o financiado según política comercial vigente.",
+        "precio_nota": "Por espacio individual · placa memorial US$ 150",
+        "pago": (
+            "Pago único o financiado según política comercial vigente. "
+            "Placa memorial en el monumento al término del plazo: US$ 150."
+        ),
         "specs": [
             ("Ambientes", "Jardín 2 · Ecológico o Bosque de las Orquídeas"),
             ("Espacio por urna", "30 × 30 cm, 40 cm de profundidad"),
@@ -199,6 +211,9 @@ PRODUCTOS = [
             ("Identificación (Jardín 2)", "Placa de madera de 20 cm fijada a una varilla metálica, "
                                          "en posición vertical y sin contacto con el suelo"),
             ("Identificación (Bosque)", "Placa de mármol de 20 × 15 cm"),
+            ("Permanencia", "3 años; luego el nombre pasa a una placa memorial en el "
+                            "monumento y el espacio se reutiliza"),
+            ("Placa memorial", "US$ 150"),
             ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
         ],
     },
@@ -243,7 +258,7 @@ PRODUCTOS = [
         "servicios": [
             "Inhumación ecológica de la urna en el jardín",
             "Placa de madera de 20 cm para identificación",
-            "Nombre de la mascota en la placa conmemorativa del jardín",
+            "Permanencia de 3 años; luego, placa memorial en el monumento",
             "Cremación de la mascota (opción Jardín + Cremación)",
         ],
         "perfil": (
@@ -252,13 +267,18 @@ PRODUCTOS = [
         ),
         "precio_texto": "US$ 350 / US$ 500",
         "precio_nota": "US$ 350 solo jardín · US$ 500 jardín + cremación",
-        "pago": "Pago único; puede contratarse como adicional al plan funerario.",
+        "pago": (
+            "Pago único; puede contratarse como adicional al plan funerario. "
+            "Placa memorial en el monumento al término del plazo: US$ 50."
+        ),
         "specs": [
             ("Tipo de producto", "Servicio de pago único"),
             ("Espacio por urna", "15 × 20 cm o 15 × 30 cm, según el tamaño de la urna"),
             ("Urna", "Biodegradable; se integra al suelo"),
             ("Identificación", "Placa de madera de 20 cm"),
-            ("Homenaje", "Placa conmemorativa colectiva en el jardín"),
+            ("Permanencia", "3 años; luego el nombre pasa a una placa memorial en el "
+                            "monumento y el espacio se reutiliza"),
+            ("Placa memorial", "US$ 50"),
         ],
     },
 ]
