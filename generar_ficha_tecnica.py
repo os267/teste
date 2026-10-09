@@ -75,37 +75,6 @@ PRODUCTOS = [
         ],
     },
     {
-        "id": "VG-CRE-02",
-        "nombre": "Jardín de Aspersión de Cenizas",
-        "submarca": "Jardines de la Memoria",
-        "categoria": "Destino final · Aspersión",
-        "concepto": (
-            "Liberación ceremonial de cenizas en el área de esparcimiento del "
-            "Jardín Ecológico, junto al agua corriente, en armonía con la naturaleza."
-        ),
-        "capacidad": "Servicio individual.",
-        "servicios": [
-            "Acompañamiento ceremonial",
-            "Tiempo privado para la familia en entorno botánico",
-            "Asistencia protocolar",
-            "Placa memorial que registra la aspersión realizada en el lugar",
-        ],
-        "perfil": (
-            "Personas que buscan un concepto de libertad total, sin necesidad de "
-            "un espacio físico fijo."
-        ),
-        "precio": 250,
-        "precio_nota": "Pago único por servicio",
-        "pago": "Pago único; combinable con la Solución Modular de Cremación.",
-        "specs": [
-            ("Tipo de producto", "Servicio ceremonial de destino final"),
-            ("Capacidad", "Individual"),
-            ("Ubicación", "Jardín 2 · Ecológico, área de esparcimiento de cenizas"),
-            ("Entorno", "Agua corriente que se extiende hasta el jardín"),
-            ("Homenaje", "Placa memorial de la aspersión"),
-        ],
-    },
-    {
         "id": "VG-CRE-03I",
         "nombre": "Jardín de Cenizas · Individual",
         "submarca": "Jardines de la Memoria · Jardín 1",
