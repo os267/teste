@@ -217,7 +217,7 @@ PRODUCTOS = [
         "id": "VG-CRE-04",
         "nombre": "Jardín de Mascotas",
         "submarca": "Jardines de la Memoria · Mascotas",
-        "categoria": "Mascotas · Inhumación ecológica",
+        "categoria": "Destino final · Inhumación ecológica",
         "concepto": (
             "Jardín para inhumación ecológica de cenizas de mascotas: la urna "
             "biodegradable se entierra directamente en el suelo y se identifica "
