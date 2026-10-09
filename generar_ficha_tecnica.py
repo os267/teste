@@ -299,7 +299,6 @@ def borde(color: str, estilo: str = "thin") -> Border:
 # Aba 1: Tabla General
 # ---------------------------------------------------------------------------
 COLUMNAS = [
-    ("ID del Producto", 13),
     ("Nombre Comercial", 26),
     ("Categoría / Línea", 24),
     ("Concepto / Descripción", 42),
@@ -319,7 +318,6 @@ def dataframe_comercial() -> pd.DataFrame:
     filas = []
     for p in PRODUCTOS:
         filas.append([
-            p["id"],
             p["nombre"] + ("\n★ PRÓXIMO LANZAMIENTO" if p.get("proximo_lanzamiento") else ""),
             p["categoria"],
             p["concepto"],
@@ -345,7 +343,7 @@ def estilizar_tabla(ws) -> None:
     ws.row_dimensions[1].height = 34
 
     ws.merge_cells(f"A2:{ultima}2")
-    ws["A2"] = f"{CAMPANA}  ·  Precios sugeridos en dólares estadounidenses (USD)"
+    ws["A2"] = CAMPANA
     ws["A2"].font = Font(name="Calibri", size=11, italic=True, bold=True, color=AZUL_PROFUNDO)
     ws["A2"].fill = relleno(DORADO)
     ws["A2"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
@@ -380,17 +378,15 @@ def estilizar_tabla(ws) -> None:
             texto = str(c.value or "")
             lineas = sum(max(1, -(-len(l) // int(ancho * 1.1))) for l in texto.split("\n"))
             max_lineas = max(max_lineas, lineas)
-        fila[0].font = Font(name="Calibri", size=10, bold=True, color=AZUL_MARINO)
-        fila[0].alignment = Alignment(horizontal="center", vertical="top")
-        fila[1].font = Font(name="Calibri", size=11, bold=True, color=AZUL_MARINO)
+        fila[0].font = Font(name="Calibri", size=11, bold=True, color=AZUL_MARINO)
         if proximo:
             for c in fila:
                 c.border = Border(top=Side(style="medium", color=DORADO),
                                   bottom=Side(style="medium", color=DORADO))
-        fila[7].font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
+        fila[6].font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
         ws.row_dimensions[fila[0].row].height = max(30, 14.5 * max_lineas + 6)
 
-    ws.freeze_panes = ws.cell(row=FILA_ENCABEZADO + 1, column=3)
+    ws.freeze_panes = ws.cell(row=FILA_ENCABEZADO + 1, column=2)
     ws.auto_filter.ref = f"A{FILA_ENCABEZADO}:{ultima}{ws.max_row}"
     ws.sheet_view.showGridLines = False
     ws.sheet_properties.tabColor = AZUL_MARINO
@@ -477,13 +473,10 @@ def construir_fichas(ws) -> None:
         inicio = fila
 
         # Encabezado de la ficha
-        ws.merge_cells(start_row=fila, start_column=COL_ETQ, end_row=fila, end_column=COL_FIN - 1)
+        ws.merge_cells(start_row=fila, start_column=COL_ETQ, end_row=fila, end_column=COL_FIN)
         c = ws.cell(row=fila, column=COL_ETQ, value=p["nombre"].upper())
         c.font = Font(name="Calibri", size=14, bold=True, color=BLANCO)
         c.alignment = Alignment(vertical="center", indent=1)
-        c = ws.cell(row=fila, column=COL_FIN, value=p["id"])
-        c.font = Font(name="Calibri", size=11, bold=True, color=DORADO_BRILLO)
-        c.alignment = Alignment(horizontal="right", vertical="center", indent=1)
         for col in range(COL_ETQ, COL_FIN + 1):
             ws.cell(row=fila, column=col).fill = relleno(AZUL_MARINO)
         ws.row_dimensions[fila].height = 30
@@ -633,7 +626,7 @@ def ficha_html(p: dict) -> str:
     return f"""
 <article class="ficha{' proximo' if p.get('proximo_lanzamiento') else ''}">
   <header>
-    <div class="marca"><span>{e(MARCA)}</span><span>Ficha Técnica · {e(p['id'])}</span></div>
+    <div class="marca"><span>{e(MARCA)}</span><span>Ficha Técnica</span></div>
     <h2>{e(p['nombre'])}</h2>
     <div class="sub">{e(p['submarca'])} · {e(p['categoria'])}</div>
   </header>{aviso}
@@ -658,7 +651,7 @@ def ficha_html(p: dict) -> str:
       <p class="perfil">{e(p['perfil'])}</p>
     </section>
   </div>
-  <footer><span>{e(CAMPANA)}</span><span>Precios sugeridos en USD · sujetos a cambios</span></footer>
+  <footer><span>{e(CAMPANA)}</span></footer>
 </article>"""
 
 
