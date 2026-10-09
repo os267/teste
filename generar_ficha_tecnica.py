@@ -80,8 +80,8 @@ PRODUCTOS = [
         "submarca": "Jardines de la Memoria",
         "categoria": "Destino final · Aspersión",
         "concepto": (
-            "Área reservada en jardín natural para la liberación ceremonial de "
-            "cenizas, en armonía con la naturaleza."
+            "Liberación ceremonial de cenizas en el área de esparcimiento del "
+            "Jardín Ecológico, junto al agua corriente, en armonía con la naturaleza."
         ),
         "capacidad": "Servicio individual.",
         "servicios": [
@@ -100,25 +100,27 @@ PRODUCTOS = [
         "specs": [
             ("Tipo de producto", "Servicio ceremonial de destino final"),
             ("Capacidad", "Individual"),
-            ("Espacio", "Jardín natural reservado (sin espacio fijo asignado)"),
+            ("Ubicación", "Jardín 2 · Ecológico, área de esparcimiento de cenizas"),
+            ("Entorno", "Agua corriente que se extiende hasta el jardín"),
             ("Homenaje", "Placa memorial de la aspersión"),
         ],
     },
     {
         "id": "VG-CRE-03I",
         "nombre": "Jardín de Cenizas · Individual",
-        "submarca": "Jardines de la Memoria · Inhumación",
+        "submarca": "Jardines de la Memoria · Jardín 1",
         "categoria": "Destino final · Inhumación individual",
         "concepto": (
-            "Inhumación de urnas en parcelas ajardinadas con demarcación "
-            "personalizada: un lugar físico permanente de homenaje."
+            "Inhumación de la urna de cenizas en un contenedor enterrado con tapa "
+            "de granito grabada, en un jardín de plantas de sombra: un lugar "
+            "físico permanente de homenaje."
         ),
-        "capacidad": "Individual.",
+        "capacidad": "Individual (1 urna).",
         "servicios": [
-            "Inhumación de urna en parcela ajardinada",
-            "Ubicación en sectores ajardinados generales",
-            "Placa conmemorativa individual estándar",
-            "Lugar físico permanente de homenaje",
+            "Inhumación de la urna en contenedor individual",
+            "Tapa de granito con los datos del difunto",
+            "Ubicación en el Jardín 1, con paisajismo de plantas de sombra",
+            "Espacio de contemplación con banco",
         ],
         "perfil": (
             "Familias que desean un lugar permanente para visitar y rendir "
@@ -128,69 +130,135 @@ PRODUCTOS = [
         "precio_nota": "Por espacio individual",
         "pago": "Pago único o financiado según política comercial vigente.",
         "specs": [
-            ("Versión", "Individual"),
-            ("Capacidad", "1 espacio"),
-            ("Ubicación", "Sectores ajardinados generales"),
-            ("Homenaje", "Placa conmemorativa individual estándar"),
+            ("Ambiente", "Jardín 1"),
+            ("Contenedor", "Ø 32 cm × 40 cm de altura; enterrado dejando 20 cm a la vista"),
+            ("Identificación", "Tapa de granito con la información del difunto"),
+            ("Paisajismo", "Plantas de sombra de diferentes alturas y texturas"),
+            ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
         ],
     },
     {
         "id": "VG-CRE-03F",
         "nombre": "Jardín de Cenizas · Familiar",
-        "submarca": "Jardines de la Memoria · Inhumación",
+        "submarca": "Jardines de la Memoria · Jardín 1",
         "categoria": "Destino final · Inhumación familiar",
         "concepto": (
-            "Inhumación familiar de urnas en sectores VIP del parque, con placa "
-            "patrimonial de acabado superior."
+            "Parcela familiar en el Jardín 1 con cuatro contenedores agrupados, "
+            "cada uno con tapa de granito grabada, sin plazo de permanencia."
         ),
         "capacidad": "Hasta 4 espacios (familiar).",
         "servicios": [
             "Inhumación de hasta 4 urnas",
-            "Ubicación en sectores VIP / preferenciales del parque",
-            "Placa patrimonial con acabado superior",
-            "Lugar físico permanente de homenaje familiar",
+            "Tapa de granito grabada para cada espacio",
+            "Ubicación en el Jardín 1, con paisajismo de plantas de sombra",
+            "Lugar físico permanente de homenaje familiar, sin plazo",
         ],
         "perfil": (
-            "Familias que buscan un espacio patrimonial y exclusivo para varias "
+            "Familias que buscan un espacio propio y permanente para varias "
             "generaciones."
         ),
-        "precio_min": 1490,
-        "precio_max": 1990,
-        "precio_nota": "Variable según la cantidad de personas · hasta 4 espacios",
+        "precio": 2000,
+        "precio_nota": "Por parcela familiar · hasta 4 espacios",
         "pago": "Pago único o financiado según política comercial vigente.",
         "specs": [
-            ("Versión", "Familiar"),
-            ("Capacidad", "Hasta 4 espacios"),
-            ("Ubicación", "Sectores VIP / preferenciales del parque"),
-            ("Homenaje", "Placa patrimonial con acabado superior"),
+            ("Ambiente", "Jardín 1"),
+            ("Capacidad", "4 contenedores agrupados en losa"),
+            ("Identificación", "Tapa de granito por espacio, con la información del difunto"),
+            ("Permanencia", "Sin plazo"),
+            ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
+        ],
+    },
+    {
+        "id": "VG-CRE-03E",
+        "nombre": "Jardín de Cenizas · Ecológico",
+        "submarca": "Jardines de la Memoria · Jardín 2",
+        "categoria": "Destino final · Inhumación ecológica",
+        "concepto": (
+            "La urna biodegradable se entierra directamente en el suelo, se cubre "
+            "con tierra y se descompone integrándose a la naturaleza. Jardín con "
+            "agua corriente y área de esparcimiento de cenizas."
+        ),
+        "capacidad": "Individual (1 urna).",
+        "servicios": [
+            "Inhumación ecológica de la urna directamente en el suelo",
+            "Placa de identificación",
+            "Ubicación en el Jardín 2 o en el Bosque de las Orquídeas",
+            "Entorno natural con agua corriente",
+        ],
+        "perfil": (
+            "Personas con conciencia ambiental que desean que sus cenizas vuelvan "
+            "a la tierra, con un lugar identificado para visitar."
+        ),
+        "precio": 600,
+        "precio_nota": "Por espacio individual",
+        "pago": "Pago único o financiado según política comercial vigente.",
+        "specs": [
+            ("Ambientes", "Jardín 2 · Ecológico o Bosque de las Orquídeas"),
+            ("Espacio por urna", "30 × 30 cm, 40 cm de profundidad"),
+            ("Urna", "Biodegradable; se integra al suelo"),
+            ("Identificación (Jardín 2)", "Placa de madera de 20 cm fijada a una varilla metálica, "
+                                         "en posición vertical y sin contacto con el suelo"),
+            ("Identificación (Bosque)", "Placa de mármol de 20 × 15 cm"),
+            ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
+        ],
+    },
+    {
+        "id": "VG-CRE-03C",
+        "nombre": "Jardín de Cenizas · Ceremonial",
+        "submarca": "Jardines de la Memoria · Jardín 3",
+        "categoria": "Destino final · Inhumación con ceremonia",
+        "concepto": (
+            "Jardín para inhumación de urnas de cenizas con ceremonia de agua, "
+            "con fuentes como elemento central del rito de despedida."
+        ),
+        "capacidad": "A definir.",
+        "servicios": [
+            "Inhumación de urnas de cenizas",
+            "Ceremonia con agua en fuente",
+        ],
+        "perfil": (
+            "Familias que valoran un rito de despedida simbólico y un entorno "
+            "contemplativo."
+        ),
+        "precio_texto": "A definir",
+        "precio_nota": "Producto en definición",
+        "pago": "A definir.",
+        "specs": [
+            ("Ambiente", "Jardín 3"),
+            ("Elemento central", "Fuente de agua para la ceremonia"),
+            ("Entorno", "Barrera visual que separa el jardín del crematorio"),
         ],
     },
     {
         "id": "VG-CRE-04",
-        "nombre": "Jardín de Inhumación de Cenizas PET",
+        "nombre": "Jardín de Mascotas",
         "submarca": "Jardines de la Memoria · Mascotas",
-        "categoria": "Mascotas · Cremación e inhumación",
+        "categoria": "Mascotas · Inhumación ecológica",
         "concepto": (
-            "Servicio de cremación e inhumación de cenizas de mascotas en un área "
-            "verde dedicada."
+            "Jardín para inhumación ecológica de cenizas de mascotas: la urna "
+            "biodegradable se entierra directamente en el suelo y se identifica "
+            "con una placa de madera."
         ),
         "capacidad": "Individual (una mascota por servicio).",
         "servicios": [
-            "Cremación de la mascota",
-            "Inhumación de cenizas en área verde dedicada",
-            "Espacio de homenaje para la familia",
+            "Inhumación ecológica de la urna en el jardín",
+            "Placa de madera de 20 cm para identificación",
+            "Nombre de la mascota en la placa conmemorativa del jardín",
+            "Cremación de la mascota (opción Jardín + Cremación)",
         ],
         "perfil": (
-            "Familias afiliadas que consideran a su mascota parte del hogar y "
-            "desean un cierre digno."
+            "Familias que consideran a su mascota parte del hogar y desean un "
+            "cierre digno."
         ),
-        "precio": 500,
-        "precio_nota": "Pago único por servicio",
+        "precio_texto": "US$ 350 / US$ 500",
+        "precio_nota": "US$ 350 solo jardín · US$ 500 jardín + cremación",
         "pago": "Pago único; puede contratarse como adicional al plan funerario.",
         "specs": [
             ("Tipo de producto", "Servicio de pago único"),
-            ("Servicio", "Cremación + inhumación de cenizas"),
-            ("Espacio", "Área verde dedicada a mascotas"),
+            ("Espacio por urna", "15 × 20 cm o 15 × 30 cm, según el tamaño de la urna"),
+            ("Urna", "Biodegradable; se integra al suelo"),
+            ("Identificación", "Placa de madera de 20 cm"),
+            ("Homenaje", "Placa conmemorativa colectiva en el jardín"),
         ],
     },
 ]
@@ -208,6 +276,8 @@ def usd(valor: float) -> str:
 
 def texto_precio(p: dict) -> str:
     """Precio único, o rango cuando depende de variables (p. ej. cantidad de personas)."""
+    if "precio_texto" in p:
+        return p["precio_texto"]
     if "precio" in p:
         return usd(p["precio"])
     return f"{usd(p['precio_min'])} – {usd(p['precio_max'])}"
