@@ -623,7 +623,7 @@ def construir_comisiones(ws) -> None:
         if precio is None:
             valores = [prod, "A definir", "", "A definir", "", pago, estorno, obs]
         else:
-            valores = [prod, precio, f"=B{f}/{1 + IVA}", pct, f"=C{f}*D{f}", pago, estorno, obs]
+            valores = [prod, precio, f"=B{f}*100/{round(100 * (1 + IVA))}", pct, f"=C{f}*D{f}", pago, estorno, obs]
         fondo = relleno(FONDO_ALTERNO if i % 2 == 0 else BLANCO)
         for col, v in enumerate(valores, start=1):
             c = ws.cell(row=f, column=col, value=v)
