@@ -74,7 +74,7 @@ PRODUCTOS = [
             ("Modalidad de cremación", "Individual"),
             ("Urna", "Cineraria, línea modular"),
             ("Gestión legal", "Trámites básicos incluidos"),
-            ("Columbario", "Alquiler temporal · 12 meses incluido (Hogar de Las Memorias)"),
+            ("Columbario", "Alquiler temporal · 12 meses incluido"),
         ],
     },
     {
@@ -206,7 +206,7 @@ PRODUCTOS = [
             "Inhumación ecológica de la urna en el jardín",
             "Placa de madera de 20 cm para identificación",
             "Permanencia de 3 años",
-            "Cremación de la mascota (opción US$ 550)",
+            "Cremación de la mascota y urna biodegradable (opción US$ 550)",
         ],
         "perfil": (
             "Familias que consideran a su mascota parte del hogar y desean un "
@@ -214,15 +214,17 @@ PRODUCTOS = [
         ),
         "precio_texto": "US$ 400 / US$ 550",
         "precios": (400, 550),
-        "precio_nota": "US$ 400 solo espacio · US$ 550 con cremación",
+        "precio_nota": "US$ 400 solo espacio (urna aparte) · US$ 550 con cremación y urna",
         "pago": (
             "Pago único; puede contratarse como adicional al plan funerario. "
-            "La opción de US$ 550 incluye la cremación de la mascota."
+            "La opción de US$ 550 incluye la cremación de la mascota y la urna biodegradable; "
+            "en la opción de US$ 400 (solo espacio) la urna biodegradable se adquiere por separado."
         ),
         "specs": [
             ("Tipo de producto", "Servicio de pago único"),
             ("Espacio por urna", "15 × 20 cm o 15 × 30 cm, según el tamaño de la urna"),
-            ("Urna", "Biodegradable; se integra al suelo"),
+            ("Urna", "Biodegradable; se integra al suelo. Incluida solo en la opción con cremación "
+                     "(US$ 550); con solo espacio (US$ 400) se adquiere por separado"),
             ("Identificación", "Placa de madera de 20 cm"),
             ("Permanencia", "3 años; luego el espacio se reutiliza"),
             ("Placa memorial", "En el monumento al término del plazo (valor a confirmar)"),
@@ -759,7 +761,10 @@ footer {{ border-top: 1px solid #E1E6EC; padding: 10px 28px; font-size: 11px; co
   @page {{ size: A4; margin: 12mm; }}
   body {{ background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
   .portada {{ display: none; }}
-  .ficha {{ box-shadow: none; margin: 0 auto; page-break-after: always; break-after: page; }}
+  .ficha {{ box-shadow: none; margin: 0 auto; max-width: none; zoom: .8;
+    page-break-after: always; break-after: page; break-inside: avoid; }}
+  .bloque h3 {{ margin: 12px 0 6px; }}
+  th, td {{ padding: 5px 10px; }}
   .ficha:last-of-type {{ page-break-after: auto; break-after: auto; }}
 }}
 """
