@@ -164,11 +164,159 @@ def tabla_datos(doc, encabezados, filas, anchos, *, resaltar=None):
     return t
 
 
+NATIVO = False  # True: las figuras se dibujan con tablas del propio documento (sin imágenes)
+
+
 def figura(doc, nombre: str, ancho=ANCHO_UTIL, pie: str = ""):
-    par = parrafo(doc, alinear=WD_ALIGN_PARAGRAPH.CENTER, antes=4, despues=2)
-    par.add_run().add_picture(str(FIGURAS / f"{nombre}.png"), width=ancho)
+    if NATIVO:
+        FIGURAS_NATIVAS[nombre](doc)
+    else:
+        par = parrafo(doc, alinear=WD_ALIGN_PARAGRAPH.CENTER, antes=4, despues=2)
+        par.add_run().add_picture(str(FIGURAS / f"{nombre}.png"), width=ancho)
     if pie:
         parrafo(doc, pie, size=8.5, italic=True, color=GRIS, alinear=WD_ALIGN_PARAGRAPH.CENTER, despues=10)
+
+
+# ---------------------------------------------------------------------------
+# figuras nativas (tablas editables en Google Docs)
+# ---------------------------------------------------------------------------
+def _celda(c, fondo=None, margen=0.25):
+    if fondo:
+        sombrear(c, fondo)
+    margen_celda(c, margen)
+    return primer_parrafo(c)
+
+
+def _nuevo_parrafo(c, alinear=None):
+    par = c.add_paragraph()
+    par.paragraph_format.space_after = Pt(2)
+    if alinear is not None:
+        par.alignment = alinear
+    return par
+
+
+def nat_logos(doc):
+    t = tabla_simple(doc, 1, 3, [Cm(5.5)] * 3)
+    for i, marca in enumerate(("La Auxiliadora", "Hogar de las Memorias", "Vangrupo")):
+        c = t.cell(0, i)
+        borde = (DORADO, 12)
+        bordes(c, top=borde, left=borde, bottom=borde, right=borde)
+        p = _celda(c, margen=0.45)
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run(p, "LOGO", size=8, bold=True, color=GRIS)
+        run(_nuevo_parrafo(c, WD_ALIGN_PARAGRAPH.CENTER), marca, size=12, bold=True, color=AZUL)
+
+
+def nat_portafolio(doc):
+    colores = [AZUL, "4F7A5A", AZUL, "4F7A5A", DORADO, "8A8F98"]
+    t = tabla_simple(doc, 2, 3, [Cm(5.67)] * 3)
+    for i, (p, col) in enumerate(zip(C.PRODUCTOS, colores)):
+        c = t.cell(i // 3, i % 3)
+        bordes(c, top=(col, 36), left=("FFFFFF", 24), right=("FFFFFF", 24), bottom=("FFFFFF", 24))
+        par = _celda(c, CREMA if p.get("proximo") else CLARO, 0.3)
+        if p.get("proximo"):
+            run(par, "PRÓXIMO LANZAMIENTO", size=7.5, bold=True, color="B8860B")
+            par = _nuevo_parrafo(c)
+        run(par, p["etiqueta"].upper(), size=7.5, color=GRIS)
+        run(_nuevo_parrafo(c), p["corto"], size=12.5, bold=True, color=AZUL_P)
+        run(_nuevo_parrafo(c), p["precio"], size=16, bold=True, color=col)
+        run(_nuevo_parrafo(c), p["pago"], size=8.5)
+
+
+def nat_embudo(doc):
+    n = len(C.EMBUDO)
+    t = tabla_simple(doc, n, 3, [Cm(1.1), Cm(4.6), Cm(11.3)])
+    tonos = ["1B365D", "2E4A70", "425E83", "567296", "6A86A9", "7E9ABC", "92AECF"]
+    for i, (etapa, desc) in enumerate(C.EMBUDO):
+        c0, c1, c2 = t.cell(i, 0), t.cell(i, 1), t.cell(i, 2)
+        for c in (c0, c1, c2):
+            bordes(c, bottom=("FFFFFF", 16))
+        p0 = _celda(c0, DORADO)
+        p0.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run(p0, str(i + 1), size=12, bold=True, color=AZUL_P)
+        run(_celda(c1, tonos[i]), etapa, size=11.5, bold=True, color="FFFFFF")
+        run(_celda(c2, CLARO if i % 2 == 0 else "FFFFFF"), desc, size=10)
+
+
+def nat_conversacion(doc):
+    t = tabla_simple(doc, 2, len(C.CONVERSACION), [Cm(3.4)] * len(C.CONVERSACION))
+    for i, (paso, desc) in enumerate(C.CONVERSACION):
+        c0, c1 = t.cell(0, i), t.cell(1, i)
+        bordes(c0, right=("FFFFFF", 24), bottom=(DORADO, 24))
+        p = _celda(c0, AZUL)
+        run(p, f"{i + 1}  ", size=13, bold=True, color=DORADO)
+        run(p, paso, size=10.5, bold=True, color="FFFFFF")
+        run(_celda(c1), desc, size=9)
+
+
+def nat_equipos(doc):
+    t = tabla_simple(doc, 3, 3, [Cm(5.67)] * 3)
+    for i, (eq, desc, prod) in enumerate(C.EQUIPOS):
+        cab, mid, pie = t.cell(0, i), t.cell(1, i), t.cell(2, i)
+        bordes(cab, bottom=(DORADO, 24), left=("FFFFFF", 24), right=("FFFFFF", 24))
+        run(_celda(cab, AZUL), eq, size=10.5, bold=True, color="FFFFFF")
+        bordes(mid, left=("FFFFFF", 24), right=("FFFFFF", 24))
+        run(_celda(mid, CLARO), desc, size=9.5)
+        borde = (DORADO, 12)
+        bordes(pie, top=borde, left=borde, bottom=borde, right=borde)
+        p = _celda(pie)
+        run(p, "▼ PRODUCTO FOCO  ", size=7.5, bold=True, color=DORADO)
+        run(_nuevo_parrafo(pie), prod, size=9.5, bold=True, color=AZUL)
+
+
+def nat_ciclo(doc):
+    pasos = [
+        ("Inhumación", "Urna biodegradable en el jardín, con placa de identificación."),
+        ("3 años", "La familia visita un lugar señalado; la urna se integra a la tierra."),
+        ("Placa memorial", "El nombre pasa al monumento del jardín (incluida en el Ecológico y en Mascotas US$ 550)."),
+        ("Ciclo natural", "El espacio se reutiliza: el jardín sigue vivo para otras familias."),
+    ]
+    t = tabla_simple(doc, 2, 4, [Cm(4.25)] * 4)
+    for i, (tit, desc) in enumerate(pasos):
+        c0, c1 = t.cell(0, i), t.cell(1, i)
+        bordes(c0, right=("FFFFFF", 24))
+        p = _celda(c0, "4F7A5A")
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run(p, f"{i + 1}", size=16, bold=True, color="FFFFFF")
+        run(_nuevo_parrafo(c0, WD_ALIGN_PARAGRAPH.CENTER), tit, size=10.5, bold=True, color="FFFFFF")
+        p1 = _celda(c1, CLARO)
+        p1.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run(p1, desc, size=9)
+
+
+def nat_objeciones(doc):
+    t = tabla_simple(doc, 1, 3, [Cm(5.67)] * 3)
+    for i, (paso, desc) in enumerate(C.METODO_OBJECIONES):
+        c = t.cell(0, i)
+        bordes(c, top=(DORADO, 36), left=("FFFFFF", 24), right=("FFFFFF", 24))
+        p = _celda(c, CLARO, 0.35)
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run(p, paso[0], size=30, bold=True, color=AZUL, font=TITULOS)
+        run(_nuevo_parrafo(c, WD_ALIGN_PARAGRAPH.CENTER), f"{i + 1}. {paso}", size=12, bold=True, color=AZUL_P)
+        run(_nuevo_parrafo(c, WD_ALIGN_PARAGRAPH.CENTER), desc, size=9.5)
+    parrafo(doc, despues=2)
+    recuadro(doc, "", C.PRINCIPIO_OBJECIONES)
+
+
+def nat_comisiones(doc):
+    maximo = max(v for _, v in C.COMISIONES_VALORES)
+    t = tabla_simple(doc, len(C.COMISIONES_VALORES), 2, [Cm(4.5), Cm(12.5)])
+    for i, (nombre, valor) in enumerate(C.COMISIONES_VALORES):
+        c0, c1 = t.cell(i, 0), t.cell(i, 1)
+        p0 = _celda(c0, margen=0.15)
+        p0.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        run(p0, nombre, size=10, bold=True, color=AZUL_P)
+        p1 = _celda(c1, margen=0.15)
+        run(p1, "█" * max(1, round(valor / maximo * 26)), size=10, color=AZUL)
+        monto = f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        run(p1, f"  US$ {monto}", size=10, bold=True, color=AZUL)
+
+
+FIGURAS_NATIVAS = {
+    "00_logos": nat_logos, "01_portafolio": nat_portafolio, "02_embudo": nat_embudo,
+    "03_conversacion": nat_conversacion, "04_objeciones": nat_objeciones, "05_comisiones": nat_comisiones,
+    "06_ciclo_ecologico": nat_ciclo, "07_equipos": nat_equipos,
+}
 
 
 def salto(doc):
@@ -470,6 +618,10 @@ def blanquear_recuadro_azul(doc):
 
 
 def main():
+    global NATIVO, SALIDA
+    if "--nativo" in sys.argv:  # versión liviana para convertir en Google Docs
+        NATIVO = True
+        SALIDA = SALIDA.with_name(SALIDA.stem + "_GoogleDocs.docx")
     doc = Document()
     estilos(doc)
     portada(doc)
@@ -480,7 +632,27 @@ def main():
     blanquear_recuadro_azul(doc)
     SALIDA.parent.mkdir(exist_ok=True)
     doc.save(SALIDA)
+    if NATIVO:
+        quitar_partes_opcionales(SALIDA)
     print(f"✔ {SALIDA} ({SALIDA.stat().st_size:,} bytes)")
+
+
+def quitar_partes_opcionales(ruta: Path) -> None:
+    """Elimina stylesWithEffects.xml (opcional) para que el archivo pese menos."""
+    import re
+    import zipfile
+    datos = {}
+    with zipfile.ZipFile(ruta) as z:
+        for info in z.infolist():
+            datos[info.filename] = z.read(info.filename)
+    datos.pop("word/stylesWithEffects.xml", None)
+    datos["[Content_Types].xml"] = re.sub(rb'<Override PartName="/word/stylesWithEffects.xml"[^>]*/>', b"",
+                                          datos["[Content_Types].xml"])
+    datos["word/_rels/document.xml.rels"] = re.sub(rb'<Relationship [^>]*stylesWithEffects[^>]*/>', b"",
+                                                   datos["word/_rels/document.xml.rels"])
+    with zipfile.ZipFile(ruta, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for nombre, contenido in datos.items():
+            z.writestr(nombre, contenido)
 
 
 if __name__ == "__main__":
