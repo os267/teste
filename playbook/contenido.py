@@ -159,7 +159,7 @@ PRODUCTOS = [
         "corto": "Solución Modular",
         "etiqueta": "Cremación · Add-on",
         "precio": "US$ 1.000",
-        "pago": "Hasta 120 cuotas mensuales (≈ US$ 8,50/mes)",
+        "pago": "Pago en hasta 120 meses, con intereses",
         "que_es": (
             "Módulo de cremación que se integra a cualquier plan funerario vigente o "
             "nuevo de Vangrupo, sin cambiar de plan."
@@ -179,9 +179,8 @@ PRODUCTOS = [
         ],
         "para_quien": "Afiliados actuales y nuevos que quieren sumar la cremación con una cuota mínima.",
         "speech": (
-            "«Usted ya protegió a su familia con su plan. Por menos de lo que cuesta un "
-            "refresco a la semana, alrededor de ocho dólares al mes, puede sumar la "
-            "cremación completa, con urna, trámites y un año de columbario incluido. Así "
+            "«Usted ya protegió a su familia con su plan. Pagando en hasta 120 meses, "
+            "puede sumar la cremación completa, con urna, trámites y un año de columbario incluido. Así "
             "nadie tendrá que decidir ni pagar de golpe en un momento difícil.»"
         ),
         "preguntas": [
@@ -423,8 +422,8 @@ OBJECIONES = [
     ("«Está caro.»",
      "Comprendo, es una inversión.",
      "En la urgencia los costos son mayores y se pagan de golpe. Hoy fija el precio y lo "
-     "paga en cuotas: la Solución Modular cuesta alrededor de US$ 8,50 al mes.",
-     "¿Qué cuota mensual le resultaría cómoda?"),
+     "paga en cuotas: la Solución Modular se paga en hasta 120 meses.",
+     "¿Le resulta más cómodo pagarlo en cuotas mensuales?"),
     ("«Tengo que hablarlo con mi familia.»",
      "Claro, es una decisión de familia.",
      "Facilite esa conversación: ofrezca un resumen simple y quedar disponible para "
@@ -456,7 +455,7 @@ PRINCIPIO_OBJECIONES = (
 # 06 · Precios y reglas
 # ---------------------------------------------------------------------------
 TABLA_PRECIOS = [
-    ("Solución Modular", "US$ 1.000", "Hasta 120 cuotas (≈ US$ 8,50/mes)", "—", "Columbario 1 año incluido"),
+    ("Solución Modular", "US$ 1.000", "Hasta 120 meses, con intereses", "—", "Columbario 1 año incluido"),
     ("Jardín Individual", "US$ 600", "Único o financiado", "US$ 15/año", "Sin plazo"),
     ("Jardín Familiar", "US$ 2.000", "Único o financiado", "US$ 25/año", "Hasta 4 espacios, sin plazo"),
     ("Jardín Ecológico", "US$ 750", "Único o financiado", "—", "3 años · placa memorial incluida"),
@@ -520,7 +519,7 @@ HERRAMIENTAS = [
     ("Ficha Técnica de Cremación", "Precios, especificaciones y condiciones vigentes de cada producto."),
     ("Visita al jardín", "La herramienta de venta más poderosa. Agende siempre que sea posible."),
     ("Presentación «Jardines de Cenizas»", "Fotos y medidas de cada jardín para mostrar en la visita o en la casa."),
-    ("Simulación de cuotas", "Calcule la cuota con el cliente: transparencia genera confianza."),
+    ("Plazo de pago", "Explique que se paga en hasta 120 meses con intereses; no prometa un valor de cuota."),
     ("Registro de contactos", "Un contacto no registrado no existe: sin datos no hay gestión ni comisión."),
 ]
 

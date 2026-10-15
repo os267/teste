@@ -67,7 +67,7 @@ PRODUCTOS = [
         ),
         "precio": 1000,
         "precio_nota": "Por módulo individual",
-        "pago": (f"Hasta {N_CUOTAS} cuotas mensuales con intereses (aprox. US$ 8,50/mes).\n"
+        "pago": (f"Pago en hasta {N_CUOTAS} meses, con intereses.\n"
                  "Debe estar pagado en su totalidad para el uso de la cremación y el columbario"),
         "specs": [
             ("Tipo de producto", "Módulo adicional (add-on) a plan funerario"),
@@ -285,23 +285,13 @@ ETIQUETA_DESCUENTO = f"Precio lanzamiento (−{DESCUENTO_LANZAMIENTO:.0%})"
 
 
 def texto_lanzamiento(p: dict) -> str:
-    """Precio con el descuento especial de lanzamiento (y cuota, si se financia en cuotas)."""
+    """Precio con el descuento especial de lanzamiento."""
     f = 1 - DESCUENTO_LANZAMIENTO
     if "precios" in p:
         return " / ".join(usd(v * f) for v in p["precios"])
     if "precio" not in p:
         return "A definir"
-    texto = usd(p["precio"] * f)
-    if p["id"] == "VG-CRE-01":
-        texto += f" · {N_CUOTAS} cuotas de aprox. {usd(8.50 * f)}/mes"
-    return texto
-
-
-def cuota_referencial(p: dict) -> str:
-    """Cuota mensual con intereses (referencia para la fuerza de ventas)."""
-    if p["id"] != "VG-CRE-01":
-        return ""
-    return f"{usd(8.50)}/mes con intereses ({N_CUOTAS} cuotas)"
+    return usd(p["precio"] * f)
 
 
 def viñetas(items: list) -> str:
@@ -538,8 +528,6 @@ def construir_fichas(ws) -> None:
         fila = _fila_dato(ws, fila, ETIQUETA_DESCUENTO, texto_lanzamiento(p), False, destacado=True)
         fila = _fila_dato(ws, fila, "Base de precio", p["precio_nota"], False)
         fila = _fila_dato(ws, fila, "Condiciones", p["pago"], True)
-        if cuota_referencial(p):
-            fila = _fila_dato(ws, fila, "Cuota referencial", cuota_referencial(p), False)
 
         fila = _bloque_titulo(ws, fila, "Perfil del Comprador")
         fila = _fila_dato(ws, fila, "Cliente objetivo", p["perfil"], True)
@@ -570,7 +558,7 @@ COMISIONES = [
     ("Solución Modular de Cremación", 1000, 0.08,
      "Pago único cuando el cliente paga la 3ª cuota",
      "Si el cliente cancela antes de la 12ª cuota",
-     "Alternativa: comisión = 10 primeras cuotas del cliente (≈ US$ 83), "
+     "Alternativa: comisión = 10 primeras cuotas del cliente, "
      "pagadas mes a mes, sin estorno."),
     ("Jardín de Cenizas · Individual", 600, 0.08,
      "Contado: mes siguiente al pago. Financiado: proporcional a lo cobrado",
@@ -777,8 +765,6 @@ def _li(items: list) -> str:
 def ficha_html(p: dict) -> str:
     e = html.escape
     specs = "".join(f"<tr><th>{e(k)}</th><td>{e(v)}</td></tr>" for k, v in p["specs"])
-    cuota = cuota_referencial(p)
-    cuota_html = f"<br><small>Referencia: {e(cuota)}</small>" if cuota else ""
     aviso = (f'\n  <div class="aviso">★ {e(ETIQUETA_PROXIMO)}</div>'
              if p.get("proximo_lanzamiento") else "")
     return f"""
@@ -804,7 +790,7 @@ def ficha_html(p: dict) -> str:
           <span>{e(p['precio_nota'])}</span></div>
         <div class="monto lanz"><small>{e(ETIQUETA_DESCUENTO)}</small><strong>{e(texto_lanzamiento(p))}</strong>
           <span>Descuento especial de lanzamiento</span></div>
-        <div class="cond"><b>Condiciones:</b> {e(p['pago'])}{cuota_html}</div>
+        <div class="cond"><b>Condiciones:</b> {e(p['pago'])}</div>
       </div>
     </section>
     <section class="bloque"><h3>Perfil del Comprador</h3>
