@@ -46,8 +46,9 @@ def logo(s, archivo, x, y, w, h):
 
 def fila_logos(s, y, alto=Inches(1.25)):
     caja(s, MX, y, ANCHO, alto, fondo=BLANCO, forma=MSO_SHAPE.ROUNDED_RECTANGLE)
-    w = (ANCHO - Inches(0.6)) // 3
-    for i, archivo in enumerate(("la_auxiliadora.png", "hogar_de_las_memorias.png", "vangrupo.png")):
+    archivos = ("la_auxiliadora.png", "hogar_de_las_memorias.png", "las_colinas.png", "vangrupo.png")
+    w = (ANCHO - Inches(0.15) * (len(archivos) + 1)) // len(archivos)
+    for i, archivo in enumerate(archivos):
         logo(s, archivo, MX + Inches(0.15) + i * (w + Inches(0.15)), y + Inches(0.15), w, alto - Inches(0.3))
 
 
