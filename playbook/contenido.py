@@ -462,7 +462,7 @@ TABLA_PRECIOS = [
 
 REGLAS_COMERCIALES = [
     ("Precios", "Precios sugeridos en US$ con IVA incluido. Consulte siempre la Ficha Técnica vigente."),
-    ("Descuentos", "Precio de lanzamiento: 20% de descuento especial en todos los productos (ver Ficha Técnica). Cualquier otro descuento, solo con autorización del supervisor (emergencia: máximo 5%)."),
+    ("Descuentos", "Precio de lanzamiento: 20% en los productos de lanzamiento de este playbook (ver Ficha Técnica). Demás productos del portafolio de cremación: 15%. Cualquier otro descuento, solo con autorización del supervisor (emergencia: máximo 5%)."),
     ("Mantenimiento", "Individual US$ 15/año y Familiar US$ 24/año. No es opcional: se explica antes de firmar."),
     ("Plazos", "Individual y Familiar: 30 años desde la primera inhumación, renovables. Ecológico y Mascotas: 3 años. Se explica con total transparencia en la primera conversación."),
     ("Placas memoriales", "Incluida en el Jardín Ecológico y en el Jardín de Mascotas."),
