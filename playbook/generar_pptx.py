@@ -21,8 +21,10 @@ BASE = Path(__file__).parent
 FIGURAS = BASE / "figuras"
 SALIDA = BASE / "salida" / "Playbook_Comercial_Cremacion_Vangrupo.pptx"
 
-AZUL, AZUL_P, DORADO, CLARO, TEXTO, GRIS = "1B365D", "0F2537", "C5A059", "F4F7FA", "2C3E50", "7A8794"
-VERDE, CREMA, BLANCO = "4F7A5A", "FBF3E1", "FFFFFF"
+import paleta as P  # noqa: E402
+
+AZUL, AZUL_P, DORADO, CLARO, TEXTO, GRIS = P.PRINCIPAL, P.PRINCIPAL_O, P.ACENTO, P.CLARO, P.TEXTO, P.GRIS
+VERDE, CREMA, BLANCO = P.VERDE, P.CREMA, "FFFFFF"
 TITULOS, CUERPO = "Playfair Display", "Montserrat"
 W, H = Inches(13.333), Inches(7.5)
 MX = Inches(0.6)  # margen lateral
@@ -99,7 +101,7 @@ def nueva(prs, fondo=BLANCO):
 
 
 def pie(s, num, oscuro=False):
-    color = "9FB0C4" if oscuro else GRIS
+    color = P.TINTE if oscuro else GRIS
     texto(s, MX, H - Inches(0.45), W - 2 * MX - Inches(1), Inches(0.3), f"{C.TITULO}  ·  {C.MARCAS}",
           size=9, color=color)
     texto(s, W - MX - Inches(1), H - Inches(0.45), Inches(1), Inches(0.3), str(num),
@@ -175,7 +177,7 @@ def portada(prs):
     texto(s, MX + Inches(0.2), Inches(1.5), Inches(11), Inches(1.3), C.TITULO,
           size=60, bold=True, color=BLANCO, font=TITULOS)
     texto(s, MX + Inches(0.2), Inches(2.8), Inches(11), Inches(0.7), C.SUBTITULO,
-          size=26, color="E8EDF3", font=TITULOS)
+          size=26, color="F1ECF7", font=TITULOS)
     caja(s, MX + Inches(0.25), Inches(3.65), Inches(1.4), Inches(0.06), fondo=DORADO)
     texto(s, MX + Inches(0.2), Inches(3.9), Inches(11), Inches(0.5), f"«{C.LEMA}»",
           size=16, italic=True, color=BLANCO, font=TITULOS)
@@ -189,7 +191,7 @@ def portada(prs):
         texto(s, x, Inches(5.1), ancho, alto,
               [[("LOGO", {"size": 9, "bold": True, "color": GRIS})], [(marca, {"size": 15, "bold": True})]],
               color=AZUL, alinear=PP_ALIGN.CENTER, ancla=MSO_ANCHOR.MIDDLE, espacio=0)
-    texto(s, MX + Inches(0.2), Inches(6.55), Inches(11), Inches(0.35), C.VERSION, size=10, color="9FB0C4")
+    texto(s, MX + Inches(0.2), Inches(6.55), Inches(11), Inches(0.35), C.VERSION, size=10, color=P.TINTE)
 
 
 def como_usar(prs, n):
@@ -207,7 +209,7 @@ def como_usar(prs, n):
         y = Inches(2.35) + i * Inches(0.53)
         texto(s, x, y, Inches(0.8), Inches(0.5), num, size=22, bold=True, color=DORADO, font=TITULOS)
         texto(s, x + Inches(0.8), y + Inches(0.08), Inches(4.6), Inches(0.45), tit, size=14, bold=True, color=AZUL)
-        caja(s, x, y + Inches(0.5), Inches(5.3), Emu(9525), fondo="D9DEE4")
+        caja(s, x, y + Inches(0.5), Inches(5.3), Emu(9525), fondo=P.LINEA)
     pie(s, n)
 
 
@@ -218,7 +220,7 @@ def separador(prs, n, num, titulo, frase):
     texto(s, MX + Inches(0.4), Inches(3.75), Inches(11.5), Inches(1.0), titulo, size=40, bold=True,
           color=BLANCO, font=TITULOS)
     caja(s, MX + Inches(0.45), Inches(4.85), Inches(1.4), Inches(0.06), fondo=DORADO)
-    texto(s, MX + Inches(0.4), Inches(5.05), Inches(11), Inches(0.8), frase, size=16, italic=True, color="C9D3DF")
+    texto(s, MX + Inches(0.4), Inches(5.05), Inches(11), Inches(0.8), frase, size=16, italic=True, color=P.TINTE)
     pie(s, n, oscuro=True)
 
 
@@ -313,7 +315,7 @@ def rituales(prs, n):
 def producto_a(prs, n, p):
     proximo = p.get("proximo")
     s = nueva(prs)
-    caja(s, 0, 0, W, Inches(1.65), fondo="8A8F98" if proximo else AZUL)
+    caja(s, 0, 0, W, Inches(1.65), fondo=P.APAGADO if proximo else AZUL)
     caja(s, 0, Inches(1.65), W, Inches(0.07), fondo=DORADO)
     texto(s, MX, Inches(0.28), Inches(8.5), Inches(0.35), p["etiqueta"].upper(), size=11, bold=True, color=DORADO)
     texto(s, MX, Inches(0.6), Inches(8.5), Inches(0.9), p["nombre"], size=30, bold=True, color=BLANCO, font=TITULOS)
@@ -349,13 +351,17 @@ def producto_b(prs, n, p):
     texto(s, MX + Inches(0.3), Inches(2.2), Inches(6.85), Inches(1.95), p["speech"], size=14, italic=True,
           color=AZUL_P, font=TITULOS)
     x2 = Inches(8.2)
-    texto(s, x2, Inches(1.75), Inches(4.55), Inches(0.35), "PREGUNTAS DE DESCUBRIMIENTO", size=11, bold=True, color=AZUL)
-    texto(s, x2, Inches(2.15), Inches(4.55), Inches(2.1), lista(p["preguntas"], marca="?", size=12.5), espacio=6)
+    caja(s, x2 - Inches(0.1), Inches(1.75), Inches(4.75), Inches(2.45), fondo=P.PREGUNTAS[1])
+    caja(s, x2 - Inches(0.1), Inches(1.75), Inches(4.75), Inches(0.07), fondo=P.PREGUNTAS[0])
+    texto(s, x2, Inches(1.9), Inches(4.5), Inches(0.35), "PREGUNTAS DE DESCUBRIMIENTO", size=11, bold=True, color=AZUL)
+    texto(s, x2, Inches(2.3), Inches(4.5), Inches(1.85),
+          lista(p["preguntas"], marca="?", color_marca=P.PREGUNTAS[0], size=12), espacio=5)
     w = Inches(3.9)
-    for i, (tit, txt, col) in enumerate((("Frase de cierre", p["cierre"], AZUL),
-                                         ("Objeción típica", p["objecion"], DORADO),
-                                         ("Tip del asesor", p["tip"], VERDE))):
-        tarjeta(s, MX + i * (w + Inches(0.2)), Inches(4.4), w, Inches(2.45), tit, txt, acento=col, size_c=12)
+    for i, (tit, txt, (col, fondo)) in enumerate((("Frase de cierre", p["cierre"], P.CIERRE),
+                                                  ("Objeción típica", p["objecion"], P.OBJECION),
+                                                  ("Tip del asesor", p["tip"], P.TIP))):
+        tarjeta(s, MX + i * (w + Inches(0.2)), Inches(4.4), w, Inches(2.45), tit, txt, acento=col, fondo=fondo,
+                size_c=12)
     pie(s, n)
 
 

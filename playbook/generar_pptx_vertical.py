@@ -20,6 +20,7 @@ from pptx.util import Inches
 sys.path.insert(0, str(Path(__file__).parent))
 import contenido as C  # noqa: E402
 import generar_pptx as G  # noqa: E402
+import paleta as P  # noqa: E402
 
 # Lienzo A4 vertical: las primitivas de generar_pptx leen estos valores del módulo.
 G.W, G.H, G.MX = Inches(8.27), Inches(11.69), Inches(0.55)
@@ -54,7 +55,7 @@ def fila_logos(s, y, alto=Inches(1.25)):
 
 def bloque(s, x, y, w, h, titulo, contenido, *, fondo=CLARO, acento=DORADO, size=10.5):
     caja(s, x, y, w, h, fondo=fondo)
-    caja(s, x, y, w, Inches(0.05), fondo=acento)
+    caja(s, x, y, w, Inches(0.07), fondo=acento)
     texto(s, x + Inches(0.15), y + Inches(0.12), w - Inches(0.3), Inches(0.3), titulo.upper(),
           size=9.5, bold=True, color=AZUL)
     texto(s, x + Inches(0.15), y + Inches(0.42), w - Inches(0.3), h - Inches(0.5), contenido, size=size, espacio=3)
@@ -69,12 +70,12 @@ def portada(prs):
     texto(s, MX + Inches(0.1), Inches(3.3), ANCHO, Inches(0.4), C.CAMPANA.upper(), size=13, bold=True, color=DORADO)
     texto(s, MX + Inches(0.1), Inches(3.8), ANCHO, Inches(2.2), ["Playbook", "Comercial"],
           size=60, bold=True, color=BLANCO, font=TITULOS, interlineado=0.95, espacio=0)
-    texto(s, MX + Inches(0.1), Inches(6.05), ANCHO, Inches(1.0), C.SUBTITULO, size=22, color="E8EDF3", font=TITULOS)
+    texto(s, MX + Inches(0.1), Inches(6.05), ANCHO, Inches(1.0), C.SUBTITULO, size=22, color="F1ECF7", font=TITULOS)
     caja(s, MX + Inches(0.15), Inches(7.25), Inches(1.4), Inches(0.06), fondo=DORADO)
     texto(s, MX + Inches(0.1), Inches(7.5), ANCHO, Inches(0.9), f"«{C.LEMA}»", size=16, italic=True,
           color=BLANCO, font=TITULOS)
     texto(s, MX + Inches(0.1), Inches(9.9), ANCHO, Inches(0.4), C.MARCAS, size=12, bold=True, color=DORADO)
-    texto(s, MX + Inches(0.1), Inches(10.3), ANCHO, Inches(0.4), C.VERSION, size=10, color="9FB0C4")
+    texto(s, MX + Inches(0.1), Inches(10.3), ANCHO, Inches(0.4), C.VERSION, size=10, color=P.TINTE)
     caja(s, 0, H - Inches(0.25), W, Inches(0.25), fondo=DORADO)
 
 
@@ -92,7 +93,7 @@ def como_usar(prs, n):
         y = Inches(6.6) + i * Inches(0.53)
         texto(s, MX, y, Inches(0.9), Inches(0.5), num, size=22, bold=True, color=DORADO, font=TITULOS)
         texto(s, MX + Inches(0.9), y + Inches(0.09), ANCHO - Inches(0.9), Inches(0.42), tit, size=14, bold=True, color=AZUL)
-        caja(s, MX, y + Inches(0.49), ANCHO, Inches(0.012), fondo="D9DEE4")
+        caja(s, MX, y + Inches(0.49), ANCHO, Inches(0.012), fondo=P.LINEA)
     pie(s, n)
 
 
@@ -141,7 +142,7 @@ def perfiles(prs, n):
         y = Inches(2.15) + i * Inches(1.5)
         caja(s, MX, y, Inches(2.1), Inches(1.38), fondo=AZUL)
         texto(s, MX + Inches(0.12), y, Inches(1.9), Inches(1.38),
-              [[(nom, {"size": 12.5, "bold": True, "color": BLANCO})], [(quien, {"size": 9, "color": "C9D3DF"})]],
+              [[(nom, {"size": 12.5, "bold": True, "color": BLANCO})], [(quien, {"size": 9, "color": P.TINTE})]],
               ancla=MSO_ANCHOR.MIDDLE, espacio=2)
         caja(s, MX + Inches(2.1), y, ANCHO - Inches(2.1), Inches(1.38), fondo=CLARO)
         texto(s, MX + Inches(2.25), y + Inches(0.08), ANCHO - Inches(2.4), Inches(1.25), [
@@ -170,7 +171,7 @@ def proceso(prs, n):
 def producto(prs, n, p):
     proximo = p.get("proximo")
     s = nueva(prs)
-    caja(s, 0, 0, W, Inches(1.6), fondo="8A8F98" if proximo else AZUL)
+    caja(s, 0, 0, W, Inches(1.6), fondo=P.APAGADO if proximo else AZUL)
     caja(s, 0, Inches(1.6), W, Inches(0.07), fondo=DORADO)
     texto(s, MX, Inches(0.25), Inches(4.6), Inches(0.3), p["etiqueta"].upper(), size=9.5, bold=True, color=DORADO)
     texto(s, MX, Inches(0.55), Inches(4.6), Inches(0.95), p["nombre"], size=21, bold=True, color=BLANCO,
@@ -196,10 +197,14 @@ def producto(prs, n, p):
           bold=True, color=AZUL)
     texto(s, MX + Inches(0.25), Inches(6.52), ANCHO - Inches(0.4), Inches(1.05), p["speech"], size=11,
           italic=True, color=AZUL_P, font=TITULOS)
-    bloque(s, MX, Inches(7.75), w, Inches(1.75), "Preguntas de descubrimiento", lista(p["preguntas"], "?", DORADO, 9.5))
-    bloque(s, x2, Inches(7.75), w, Inches(1.75), "Frase de cierre", p["cierre"], acento=AZUL, size=10.5)
-    bloque(s, MX, Inches(9.65), w, Inches(1.45), "Objeción típica", p["objecion"], size=9)
-    bloque(s, x2, Inches(9.65), w, Inches(1.45), "Tip del asesor", p["tip"], acento=VERDE, size=10.5)
+    bloque(s, MX, Inches(7.75), w, Inches(1.75), "Preguntas de descubrimiento", lista(p["preguntas"], "?", P.PREGUNTAS[0], 9.5),
+           acento=P.PREGUNTAS[0], fondo=P.PREGUNTAS[1])
+    bloque(s, x2, Inches(7.75), w, Inches(1.75), "Frase de cierre", p["cierre"], acento=P.CIERRE[0],
+           fondo=P.CIERRE[1], size=10.5)
+    bloque(s, MX, Inches(9.65), w, Inches(1.45), "Objeción típica", p["objecion"], acento=P.OBJECION[0],
+           fondo=P.OBJECION[1], size=9)
+    bloque(s, x2, Inches(9.65), w, Inches(1.45), "Tip del asesor", p["tip"], acento=P.TIP[0],
+           fondo=P.TIP[1], size=10.5)
     pie(s, n)
 
 

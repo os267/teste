@@ -13,17 +13,18 @@ from PIL import Image, ImageChops
 
 sys.path.insert(0, str(Path(__file__).parent))
 import contenido as C  # noqa: E402
+import paleta as P  # noqa: E402
 
 SALIDA = Path(__file__).parent / "figuras"
 CHROMIUM = "/opt/pw-browsers/chromium"
 
-AZUL = "#1B365D"
-AZUL_P = "#0F2537"
-DORADO = "#C5A059"
-DORADO_B = "#D4AF37"
-CLARO = "#F4F7FA"
-TEXTO = "#2C3E50"
-VERDE = "#4F7A5A"
+AZUL = "#" + P.PRINCIPAL
+AZUL_P = "#" + P.PRINCIPAL_O
+DORADO = "#" + P.ACENTO
+DORADO_B = "#" + P.ACENTO_B
+CLARO = "#" + P.CLARO
+TEXTO = "#" + P.TEXTO
+VERDE = "#" + P.VERDE
 
 BASE_CSS = f"""
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -61,7 +62,7 @@ def recortar(destino: Path, margen: int = 40) -> None:
 
 def portafolio():
     tarjetas = ""
-    colores = [AZUL, VERDE, AZUL, VERDE, DORADO, "#8A8F98"]
+    colores = [AZUL, VERDE, "#" + P.TERRACOTA, VERDE, DORADO, "#" + P.APAGADO]
     for p, col in zip(C.PRODUCTOS, colores):
         extra = "<div class='prox'>PRÓXIMO LANZAMIENTO</div>" if p.get("proximo") else ""
         tarjetas += f"""
@@ -76,7 +77,7 @@ def portafolio():
     <style>
     .grid {{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }}
     .card {{ background:{CLARO}; border-radius: 10px; padding: 16px 18px 18px; position:relative; min-height: 150px; }}
-    .et {{ font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color:#7A8794; }}
+    .et {{ font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color:#7D7887; }}
     .nom {{ font-size: 21px; font-weight: 700; color:{AZUL_P}; margin: 6px 0 8px; }}
     .pre {{ font-size: 26px; font-weight: 700; }}
     .pag {{ font-size: 12px; margin-top: 6px; line-height: 1.35; }}
@@ -92,7 +93,7 @@ def embudo():
     n = len(C.EMBUDO)
     for i, (etapa, desc) in enumerate(C.EMBUDO):
         ancho = 100 - i * 8
-        tono = f"rgba(27,54,93,{1 - i * 0.1:.2f})"
+        tono = f"rgba(91,63,128,{1 - i * 0.1:.2f})"  # morado La Auxiliadora
         filas += f"""
         <div class='fila'>
           <div class='barra' style='width:{ancho}%; background:{tono}'>
@@ -180,7 +181,7 @@ def comisiones():
     .bar {{ height: 26px; background: linear-gradient(90deg, {AZUL}, {AZUL_P}); border-radius: 0 6px 6px 0;
       border-right: 4px solid {DORADO}; }}
     .val {{ font-size: 14px; font-weight:700; color:{AZUL}; white-space:nowrap; }}
-    .nota {{ font-size: 11.5px; color:#7A8794; margin-top: 8px; }}
+    .nota {{ font-size: 11.5px; color:#7D7887; margin-top: 8px; }}
     </style>"""
     return render("05_comisiones", css + "<div class='titulo'>Comisión por venta · 8% sobre el precio sin IVA</div>"
                   + filas + "<div class='nota'>Valores por venta; mantenimiento anual no genera comisión.</div>",
@@ -244,7 +245,7 @@ def logos():
     .fila {{ display:flex; justify-content:center; gap: 24px; }}
     .logo {{ width: 240px; height: 96px; border: 2px dashed {DORADO}; border-radius: 10px; display:flex;
       flex-direction:column; align-items:center; justify-content:center; color:{AZUL}; font-weight:700; font-size: 17px; }}
-    .logo span {{ font-size: 10px; letter-spacing: .2em; color:#9AA5B1; margin-bottom: 4px; }}
+    .logo span {{ font-size: 10px; letter-spacing: .2em; color:#8E8799; margin-bottom: 4px; }}
     </style>"""
     return render("00_logos", css + f"<div class='fila'>{cajas}</div>", 900, 400)
 
