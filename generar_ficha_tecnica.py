@@ -205,7 +205,7 @@ PRODUCTOS = [
         "servicios": [
             "Inhumación ecológica de la urna en el jardín",
             "Placa de madera de 20 cm para identificación",
-            "Permanencia de 3 años",
+            "Permanencia de 3 años; luego, placa memorial en el monumento (incluida)",
             "Cremación de la mascota y urna biodegradable (opción US$ 550)",
         ],
         "perfil": (
@@ -227,7 +227,7 @@ PRODUCTOS = [
                      "(US$ 550); con solo espacio (US$ 400) se adquiere por separado"),
             ("Identificación", "Placa de madera de 20 cm"),
             ("Permanencia", "3 años; luego el espacio se reutiliza"),
-            ("Placa memorial", "En el monumento al término del plazo (valor a confirmar)"),
+            ("Placa memorial", "Incluida en el precio; en el monumento al término del plazo"),
         ],
     },
     {
