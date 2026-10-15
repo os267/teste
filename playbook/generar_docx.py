@@ -391,7 +391,7 @@ def s05(doc):
             p0 = primer_parrafo(c0)
             run(p0, f"{letra}  ", size=12, bold=True, color=DORADO, font=TITULOS)
             run(p0, nombre, size=9, bold=True, color=AZUL)
-            texto = f"«{texto}»" if letra != "R" or texto.startswith("Facilite") is False else texto
+            texto = texto if letra == "R" else f"«{texto}»"
             run(primer_parrafo(c1), texto, size=10, italic=(letra != "R"))
         parrafo(doc, despues=6)
     salto(doc)
@@ -411,10 +411,11 @@ def s06(doc):
 
 def s07(doc):
     seccion(doc, "07", "Política de comisiones")
-    recuadro(doc, "Propuesta pendiente de validación",
-             "Valores sugeridos, sujetos a confirmación de la Gerencia Comercial antes de aplicarse.",
+    recuadro(doc, "Comisión única de 8%",
+             "Todos los productos comisionan 8% sobre el precio sin IVA. Confirmar con la Gerencia "
+             "Comercial antes de aplicar.",
              fondo=CREMA, borde="B8860B", color_titulo="B8860B")
-    figura(doc, "05_comisiones", pie="Figura 7 · Comisión por venta, calculada sobre el precio sin IVA.")
+    figura(doc, "05_comisiones", pie="Figura 7 · Comisión por venta (8% sobre el precio sin IVA).")
     tabla_datos(doc, ["Producto", "%", "Comisión (sin IVA)", "Cuándo se paga", "Estorno"],
                 [list(f) for f in C.COMISIONES], [Cm(3.4), Cm(1.4), Cm(2.6), Cm(5.6), Cm(4)],
                 resaltar=lambda f: f[0] == "Jardín Ceremonial")

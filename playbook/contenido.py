@@ -23,7 +23,7 @@ COMO_USAR = (
 )
 
 PENDIENTES = [
-    "Política de comisiones: PROPUESTA pendiente de validación con el Gerente Comercial.",
+    "Política de comisiones: 8% en todos los productos. Confirmar con el Gerente Comercial antes de aplicar.",
     "Jardín de Mascotas: confirmar si la urna biodegradable está incluida en el precio.",
     "Placas de madera: confirmar el tratamiento de la madera para contacto con el suelo.",
     "Jardín Ceremonial: producto en definición. No se vende ni se cotiza todavía.",
@@ -56,7 +56,7 @@ POR_QUE_AHORA = [
     ("Un lugar para volver",
      "La familia tiene un sitio físico, digno y verde para visitar y recordar."),
     ("Precio accesible",
-     "Desde US$ 350 y con financiamiento: un destino final al alcance de más familias."),
+     "Desde US$ 400 y con financiamiento: un destino final al alcance de más familias."),
     ("Naturaleza y legado",
      "Jardines de plantas de sombra, agua corriente y bosque: un homenaje que vive."),
     ("Sin decisiones bajo presión",
@@ -168,11 +168,12 @@ PRODUCTOS = [
             "Proceso completo de cremación individual",
             "Urna cineraria de línea modular",
             "Trámites legales básicos",
-            "Alquiler temporal de columbario por 1 año",
+            "Alquiler temporal de columbario por 1 año (nivel 1, Hogar de las Memorias)",
         ],
         "reglas": [
             "Se vende como adicional a un plan funerario (actual o nuevo).",
             "Cobertura individual: un módulo por titular o beneficiario.",
+            "Debe estar pagado en su totalidad para usar la cremación y el columbario.",
             "El columbario temporal es por 12 meses; al término, la familia elige "
             "destino final (oportunidad para ofrecer un Jardín de Cenizas).",
         ],
@@ -281,8 +282,8 @@ PRODUCTOS = [
         "nombre": "Jardín de Cenizas · Ecológico",
         "corto": "Jardín Ecológico",
         "etiqueta": "Jardín 2 · Bosque de las Orquídeas",
-        "precio": "US$ 600",
-        "pago": "Pago único o financiado · Placa memorial US$ 150 al término del plazo",
+        "precio": "US$ 750",
+        "pago": "Pago único o financiado · Placa memorial incluida",
         "que_es": (
             "La urna biodegradable se entierra directamente en el suelo y se integra a la "
             "naturaleza. Jardín con agua corriente, en el Jardín 2 o en el Bosque de las "
@@ -292,12 +293,12 @@ PRODUCTOS = [
             "Inhumación ecológica con urna biodegradable",
             "Placa de identificación (madera en el Jardín 2 · mármol en el Bosque)",
             "Entorno natural con agua corriente",
-            "Permanencia de 3 años; luego, nombre en la placa memorial del monumento",
+            "Permanencia de 3 años; luego, nombre en la placa memorial del monumento (incluida)",
         ],
         "reglas": [
             "Capacidad: 1 urna. Espacio de 30 × 30 cm, 40 cm de profundidad.",
             "Permanencia: 3 años. Después, el espacio se reutiliza.",
-            "Placa memorial en el monumento: US$ 150 (se cobra al término del plazo).",
+            "Placa memorial en el monumento: incluida en el precio de US$ 750.",
             "Explique el plazo de 3 años con total transparencia desde la primera conversación.",
         ],
         "para_quien": "Personas con conciencia ambiental que desean que sus cenizas vuelvan a la tierra.",
@@ -324,8 +325,8 @@ PRODUCTOS = [
         "nombre": "Jardín de Mascotas",
         "corto": "Jardín de Mascotas",
         "etiqueta": "Mascotas · Inhumación ecológica",
-        "precio": "US$ 350 / US$ 500",
-        "pago": "US$ 350 solo jardín · US$ 500 jardín + cremación · Placa memorial US$ 50",
+        "precio": "US$ 400 / US$ 550",
+        "pago": "US$ 400 solo espacio · US$ 550 con placa memorial incluida",
         "que_es": (
             "Inhumación ecológica de las cenizas de la mascota: la urna biodegradable se "
             "entierra en el jardín y se identifica con una placa de madera."
@@ -333,28 +334,28 @@ PRODUCTOS = [
         "incluye": [
             "Inhumación ecológica en el jardín de mascotas",
             "Placa de madera de 20 cm para identificación",
-            "Cremación de la mascota (opción Jardín + Cremación)",
-            "Permanencia de 3 años; luego, nombre en la placa memorial del monumento",
+            "Permanencia de 3 años",
+            "Placa memorial en el monumento al término del plazo (opción US$ 550)",
         ],
         "reglas": [
             "Capacidad: 1 mascota por servicio.",
             "Permanencia: 3 años. Después, el espacio se reutiliza.",
-            "Placa memorial en el monumento: US$ 50 (se cobra al término del plazo).",
+            "Placa memorial en el monumento: incluida solo en la opción de US$ 550.",
             "Pago único; puede contratarse como adicional al plan funerario.",
         ],
         "para_quien": "Familias que consideran a su mascota parte del hogar y desean un cierre digno.",
         "speech": (
             "«Su compañero fue parte de la familia, y merece una despedida a la altura. En "
             "nuestro Jardín de Mascotas descansa con su nombre, en un lugar verde donde "
-            "ustedes pueden volver a recordarlo. Podemos encargarnos también de la "
-            "cremación, todo en un solo lugar.»"
+            "ustedes pueden volver a recordarlo. Y con la placa memorial, su nombre "
+            "queda para siempre en el monumento del jardín.»"
         ),
         "preguntas": [
             "¿Cómo se llamaba su compañero?",
-            "¿Ya realizaron la cremación o necesitan que nos encarguemos?",
+            "¿Les gustaría que su nombre quede para siempre en el monumento memorial?",
             "¿Les gustaría un lugar para visitarlo con los niños?",
         ],
-        "cierre": "«¿Prefieren la opción con cremación incluida, para no preocuparse por nada más?»",
+        "cierre": "«¿Prefieren la opción con placa memorial incluida, para que su nombre quede siempre en el jardín?»",
         "objecion": (
             "«Es solo una mascota.» → No discuta el vínculo de la familia. Si el cliente "
             "minimiza, respete y ofrezca la información por escrito para que decida con calma."
@@ -458,8 +459,8 @@ TABLA_PRECIOS = [
     ("Solución Modular", "US$ 1.000", "Hasta 120 cuotas (≈ US$ 8,50/mes)", "—", "Columbario 1 año incluido"),
     ("Jardín Individual", "US$ 600", "Único o financiado", "US$ 15/año", "Sin plazo"),
     ("Jardín Familiar", "US$ 2.000", "Único o financiado", "US$ 25/año", "Hasta 4 espacios, sin plazo"),
-    ("Jardín Ecológico", "US$ 600", "Único o financiado", "—", "3 años · placa memorial US$ 150"),
-    ("Jardín de Mascotas", "US$ 350 / 500", "Pago único", "—", "3 años · placa memorial US$ 50"),
+    ("Jardín Ecológico", "US$ 750", "Único o financiado", "—", "3 años · placa memorial incluida"),
+    ("Jardín de Mascotas", "US$ 400 / 550", "Pago único", "—", "3 años · placa incluida en la opción de US$ 550"),
     ("Jardín Ceremonial", "A definir", "A definir", "A definir", "Próximo lanzamiento"),
 ]
 
@@ -469,7 +470,7 @@ REGLAS_COMERCIALES = [
                    "Siempre con autorización del supervisor."),
     ("Mantenimiento", "Individual US$ 15/año y Familiar US$ 25/año. No es opcional: se explica antes de firmar."),
     ("Plazo de 3 años", "Ecológico y Mascotas: se explica con total transparencia en la primera conversación."),
-    ("Placas memoriales", "US$ 150 (personas) y US$ 50 (mascotas), cobradas al término del plazo."),
+    ("Placas memoriales", "Incluida en el Jardín Ecológico (US$ 750) y en la opción de Mascotas de US$ 550."),
     ("Dueño del contacto", "Quien registra primero. Sin interacción en 15 días, el contacto puede reasignarse."),
     ("Lo que NO se promete", "Fechas o precios del Jardín Ceremonial; descuentos fuera de política; "
                              "ubicaciones específicas sin confirmar disponibilidad."),
@@ -481,26 +482,27 @@ DESCUENTO_NO_ES_SALIDA = (
 )
 
 # ---------------------------------------------------------------------------
-# 07 · Comisiones (propuesta)
+# 07 · Comisiones (8%)
 # ---------------------------------------------------------------------------
 COMISIONES = [
-    ("Solución Modular", "10%", "US$ 88,50", "Pago único al pagar el cliente la 3ª cuota", "Si cancela antes de la 12ª cuota"),
-    ("Jardín Individual", "10%", "US$ 53,10", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
+    ("Solución Modular", "8%", "US$ 70,80", "Pago único al pagar el cliente la 3ª cuota", "Si cancela antes de la 12ª cuota"),
+    ("Jardín Individual", "8%", "US$ 42,48", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
     ("Jardín Familiar", "8%", "US$ 141,59", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
-    ("Jardín Ecológico", "10%", "US$ 53,10", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
-    ("Mascotas · solo jardín", "8%", "US$ 24,78", "Mes siguiente al pago", "Cancelación en 90 días"),
-    ("Mascotas · jardín + cremación", "8%", "US$ 35,40", "Mes siguiente al pago", "Cancelación en 90 días"),
+    ("Jardín Ecológico", "8%", "US$ 53,10", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
+    ("Mascotas · solo espacio", "8%", "US$ 28,32", "Mes siguiente al pago", "Cancelación en 90 días"),
+    ("Mascotas · con placa", "8%", "US$ 38,94", "Mes siguiente al pago", "Cancelación en 90 días"),
     ("Jardín Ceremonial", "A definir", "—", "—", "—"),
 ]
 
 COMISIONES_VALORES = [  # para la figura
-    ("Solución Modular", 88.50), ("Jardín Individual", 53.10), ("Jardín Familiar", 141.59),
-    ("Jardín Ecológico", 53.10), ("Mascotas · solo jardín", 24.78), ("Mascotas + cremación", 35.40),
+    ("Solución Modular", 70.80), ("Jardín Individual", 42.48), ("Jardín Familiar", 141.59),
+    ("Jardín Ecológico", 53.10), ("Mascotas · solo espacio", 28.32), ("Mascotas · con placa", 38.94),
 ]
 
 REGLAS_COMISION = [
     "Base de cálculo: valor efectivamente cobrado al cliente, sin IVA (13%).",
-    "No generan comisión: cuotas de mantenimiento ni placas memoriales.",
+    "Comisión única de 8% para todos los productos.",
+    "No generan comisión: cuotas de mantenimiento anual (US$ 15 / US$ 25).",
     "Bono de venta combinada: US$ 15 al vender la Solución Modular junto con cualquier jardín.",
     "Acelerador Día de los Muertos (opcional): +2 pp en Individual y Ecológico hasta el 30/11/2026.",
     "Estorno: la comisión se descuenta de los pagos siguientes al asesor.",

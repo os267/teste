@@ -182,8 +182,8 @@ def comisiones():
     .val {{ font-size: 14px; font-weight:700; color:{AZUL}; white-space:nowrap; }}
     .nota {{ font-size: 11.5px; color:#7A8794; margin-top: 8px; }}
     </style>"""
-    return render("05_comisiones", css + "<div class='titulo'>Comisión por venta (propuesta, sin IVA)</div>"
-                  + filas + "<div class='nota'>Propuesta pendiente de validación con la Gerencia Comercial.</div>",
+    return render("05_comisiones", css + "<div class='titulo'>Comisión por venta · 8% sobre el precio sin IVA</div>"
+                  + filas + "<div class='nota'>Valores por venta; mantenimiento anual no genera comisión.</div>",
                   960, 700)
 
 
@@ -191,7 +191,7 @@ def ciclo():
     pasos = [
         ("1", "Inhumación", "Urna biodegradable en el jardín, con placa de identificación."),
         ("2", "3 años", "La familia visita un lugar señalado; la urna se integra a la tierra."),
-        ("3", "Placa memorial", "El nombre pasa al monumento del jardín (US$ 150 personas · US$ 50 mascotas)."),
+        ("3", "Placa memorial", "El nombre pasa al monumento del jardín (incluida en el Ecológico y en Mascotas US$ 550)."),
         ("4", "Ciclo natural", "El espacio se reutiliza: el jardín sigue vivo para otras familias."),
     ]
     html_pasos = ""
