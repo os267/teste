@@ -1,6 +1,6 @@
 """
 Contenido del Playbook Comercial — Portafolio de Cremación y Jardines de Cenizas.
-La Auxiliadora · Hogar de las Memorias · Vangrupo.
+La Auxiliadora · Hogar de las Memorias · Parque Memorial Las Colinas · Vangrupo.
 
 Fuente única para la versión Google Docs (generar_docx.py) y la versión Canva
 (generar_pptx.py). Datos de productos y precios: Ficha Técnica Cremación Vangrupo
@@ -10,7 +10,7 @@ Estructura inspirada en el Playbook de Ventas Alta Loma.
 
 TITULO = "Playbook Comercial"
 SUBTITULO = "Portafolio de Cremación y Jardines de Cenizas"
-MARCAS = "La Auxiliadora · Hogar de las Memorias · Vangrupo"
+MARCAS = "La Auxiliadora · Hogar de las Memorias · Las Colinas · Vangrupo"
 CAMPANA = "Campaña Día de los Muertos 2026"
 LEMA = "Acompañar, no vender: la familia primero, siempre."
 VERSION = "Versión 1.0 · Octubre 2026 · Uso interno del equipo comercial"
@@ -44,7 +44,7 @@ INDICE = [
 # 01 · Quiénes somos
 # ---------------------------------------------------------------------------
 QUIENES_SOMOS = (
-    "En La Auxiliadora y Hogar de las Memorias, empresas de Vangrupo, no vendemos "
+    "En La Auxiliadora, Hogar de las Memorias y Parque Memorial Las Colinas, empresas de Vangrupo, no vendemos "
     "nichos, parcelas ni servicios: acompañamos a las familias salvadoreñas a honrar "
     "la memoria de quienes aman. La cremación es una decisión cada vez más elegida, y "
     "nuestros nuevos jardines de cenizas responden a una pregunta que muchas familias "
@@ -442,7 +442,7 @@ OBJECIONES = [
      "¿Le explico qué incluye el cuidado del jardín?"),
     ("«No confío en estos planes.»",
      "Es una preocupación válida.",
-     "Somos La Auxiliadora y Hogar de las Memorias, empresas de Vangrupo con trayectoria "
+     "Somos La Auxiliadora, Hogar de las Memorias y Las Colinas, empresas de Vangrupo con trayectoria "
      "en El Salvador. El contrato es transparente y puede visitar el jardín cuando quiera.",
      "¿Agendamos una visita sin compromiso?"),
 ]

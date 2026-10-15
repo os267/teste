@@ -100,7 +100,7 @@ def nueva(prs, fondo=BLANCO):
 
 def pie(s, num, oscuro=False):
     color = "9FB0C4" if oscuro else GRIS
-    texto(s, MX, H - Inches(0.45), Inches(9), Inches(0.3), f"{C.TITULO}  ·  {C.MARCAS}",
+    texto(s, MX, H - Inches(0.45), W - 2 * MX - Inches(1), Inches(0.3), f"{C.TITULO}  ·  {C.MARCAS}",
           size=9, color=color)
     texto(s, W - MX - Inches(1), H - Inches(0.45), Inches(1), Inches(0.3), str(num),
           size=9, color=color, alinear=PP_ALIGN.RIGHT)
