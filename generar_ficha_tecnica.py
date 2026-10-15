@@ -58,7 +58,7 @@ PRODUCTOS = [
             "Proceso completo de cremación individual",
             "Urna cineraria de línea modular",
             "Trámites legales básicos",
-            "Alquiler temporal de columbario por 1 año en nivel 1 HDLM",
+            "Alquiler temporal de columbario por 1 año",
             "Integración al plan funerario base (actual o nuevo)",
         ],
         "perfil": (
@@ -67,7 +67,7 @@ PRODUCTOS = [
         ),
         "precio": 1000,
         "precio_nota": "Por módulo individual",
-        "pago": (f"Hasta {N_CUOTAS} cuotas mensuales (aprox. US$ 8,50/mes).\n"
+        "pago": (f"Hasta {N_CUOTAS} cuotas mensuales con intereses (aprox. US$ 8,50/mes).\n"
                  "Debe estar pagado en su totalidad para el uso de la cremación y el columbario"),
         "specs": [
             ("Tipo de producto", "Módulo adicional (add-on) a plan funerario"),
@@ -206,7 +206,7 @@ PRODUCTOS = [
             "Inhumación ecológica de la urna en el jardín",
             "Placa de madera de 20 cm para identificación",
             "Permanencia de 3 años",
-            "Placa memorial en el monumento al término del plazo (opción US$ 550)",
+            "Cremación de la mascota (opción US$ 550)",
         ],
         "perfil": (
             "Familias que consideran a su mascota parte del hogar y desean un "
@@ -214,10 +214,10 @@ PRODUCTOS = [
         ),
         "precio_texto": "US$ 400 / US$ 550",
         "precios": (400, 550),
-        "precio_nota": "US$ 400 solo espacio · US$ 550 con placa memorial",
+        "precio_nota": "US$ 400 solo espacio · US$ 550 con cremación",
         "pago": (
             "Pago único; puede contratarse como adicional al plan funerario. "
-            "La opción de US$ 550 incluye la placa memorial en el monumento al término del plazo."
+            "La opción de US$ 550 incluye la cremación de la mascota."
         ),
         "specs": [
             ("Tipo de producto", "Servicio de pago único"),
@@ -225,7 +225,7 @@ PRODUCTOS = [
             ("Urna", "Biodegradable; se integra al suelo"),
             ("Identificación", "Placa de madera de 20 cm"),
             ("Permanencia", "3 años; luego el espacio se reutiliza"),
-            ("Placa memorial", "En el monumento al término del plazo; incluida en la opción de US$ 550"),
+            ("Placa memorial", "En el monumento al término del plazo (valor a confirmar)"),
         ],
     },
     {
@@ -296,10 +296,10 @@ def texto_lanzamiento(p: dict) -> str:
 
 
 def cuota_referencial(p: dict) -> str:
-    """Cuota sin intereses sobre N_CUOTAS (referencia para la fuerza de ventas)."""
+    """Cuota mensual con intereses (referencia para la fuerza de ventas)."""
     if p["id"] != "VG-CRE-01":
         return ""
-    return f"{usd(p['precio'] / N_CUOTAS)}/mes sin intereses ({N_CUOTAS} cuotas)"
+    return f"{usd(8.50)}/mes con intereses ({N_CUOTAS} cuotas)"
 
 
 def viñetas(items: list) -> str:
@@ -586,7 +586,7 @@ COMISIONES = [
      "Mes siguiente al pago (pago único)",
      "Cancelación en los primeros 90 días",
      ""),
-    ("Jardín de Mascotas · con placa memorial", 550, 0.08,
+    ("Jardín de Mascotas · jardín + cremación", 550, 0.08,
      "Mes siguiente al pago (pago único)",
      "Cancelación en los primeros 90 días",
      ""),
