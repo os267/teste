@@ -182,7 +182,8 @@ def producto(prs, n, p):
     texto(s, Inches(5.1), Inches(0.55), Inches(2.62), Inches(0.95), p["precio"],
           size=26 if len(p["precio"]) <= 10 else 19, bold=True, color=BLANCO, alinear=PP_ALIGN.RIGHT,
           ancla=MSO_ANCHOR.MIDDLE)
-    texto(s, MX, Inches(1.78), ANCHO, Inches(0.35), p["pago"], size=11, italic=True, color=GRIS)
+    texto(s, MX, Inches(1.78), ANCHO, Inches(0.35), p["pago"], size=11 if len(p["pago"]) <= 85 else 10,
+          italic=True, color=GRIS)
     texto(s, MX, Inches(2.18), ANCHO, Inches(1.15), [
         [("Qué es.  ", {"bold": True, "color": AZUL}), (p["que_es"], {})],
         [("Para quién.  ", {"bold": True, "color": AZUL}), (p["para_quien"], {})],
@@ -223,8 +224,7 @@ def ciclo(prs, n):
     caja(s, MX, Inches(5.0), Inches(0.08), Inches(1.4), fondo=DORADO)
     texto(s, MX + Inches(0.3), Inches(5.0), ANCHO - Inches(0.5), Inches(1.4),
           [[("TRANSPARENCIA   ", {"bold": True, "color": AZUL, "size": 10}),
-            ("Explique el plazo de 3 años desde la primera conversación. La placa memorial está incluida en el "
-             "Jardín Ecológico (US$ 750) y en la opción de Mascotas de US$ 550.", {"size": 11.5})]],
+            ("Explique el plazo de 3 años desde la primera conversación. La placa memorial está incluida en el Jardín Ecológico y en el Jardín de Mascotas.", {"size": 11.5})]],
           ancla=MSO_ANCHOR.MIDDLE)
     pie(s, n)
 

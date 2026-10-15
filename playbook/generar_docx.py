@@ -268,7 +268,7 @@ def nat_ciclo(doc):
     pasos = [
         ("Inhumación", "Urna biodegradable en el jardín, con placa de identificación."),
         ("3 años", "La familia visita un lugar señalado; la urna se integra a la tierra."),
-        ("Placa memorial", "El nombre pasa al monumento del jardín (incluida en el Ecológico y en Mascotas US$ 550)."),
+        ("Placa memorial", "El nombre pasa al monumento del jardín (incluida en el Ecológico y en Mascotas)."),
         ("Ciclo natural", "El espacio se reutiliza: el jardín sigue vivo para otras familias."),
     ]
     t = tabla_simple(doc, 2, 4, [Cm(4.25)] * 4)
@@ -397,7 +397,7 @@ def portada(doc):
 def como_usar(doc):
     subtitulo(doc, "Cómo usar este playbook", size=18, antes=0)
     parrafo(doc, C.COMO_USAR, despues=10)
-    recuadro(doc, "Pendientes de validación (versión 1.0)", C.PENDIENTES, fondo=CREMA, borde=DORADO)
+    recuadro(doc, "Pendientes de validación (versión 1.1)", C.PENDIENTES, fondo=CREMA, borde=DORADO)
     subtitulo(doc, "Contenido", size=18)
     t = tabla_simple(doc, len(C.INDICE), 2, [Cm(2), Cm(15)])
     for i, (num, tit) in enumerate(C.INDICE):

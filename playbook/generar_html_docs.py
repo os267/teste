@@ -153,7 +153,7 @@ def fig_ciclo():
     pasos = [
         ("Inhumación", "Urna biodegradable en el jardín, con placa de identificación."),
         ("3 años", "La familia visita un lugar señalado; la urna se integra a la tierra."),
-        ("Placa memorial", "El nombre pasa al monumento del jardín (incluida en el Ecológico y en Mascotas US$ 550)."),
+        ("Placa memorial", "El nombre pasa al monumento del jardín (incluida en el Ecológico y en Mascotas)."),
         ("Ciclo natural", "El espacio se reutiliza: el jardín sigue vivo para otras familias."),
     ]
     cab = [(p(span(str(i + 1), 16, "#FFFFFF", True), "center", despues=0) + p(span(t, 10.5, "#FFFFFF", True), "center", despues=0),
@@ -201,7 +201,7 @@ def portada():
 
 def como_usar():
     h = sub("Cómo usar este playbook") + p(span(C.COMO_USAR), despues=10)
-    h += caja("Pendientes de validación (versión 1.0)", C.PENDIENTES, fondo=CREMA)
+    h += caja("Pendientes de validación (versión 1.1)", C.PENDIENTES, fondo=CREMA)
     h += sub("Contenido")
     h += tabla([[(p(span(n, 18, DORADO, True, font=TIT), despues=0), "border-bottom:1pt solid #D9DEE4"),
                  (p(span(t, 12, AZUL, True), despues=0), "border-bottom:1pt solid #D9DEE4")] for n, t in C.INDICE],
