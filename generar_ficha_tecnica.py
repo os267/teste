@@ -85,7 +85,7 @@ PRODUCTOS = [
         "concepto": (
             "Inhumación de la urna de cenizas en un contenedor enterrado con tapa "
             "de granito grabada, en un jardín de plantas de sombra: un lugar "
-            "físico permanente de homenaje."
+            "físico de homenaje por 30 años desde la primera inhumación, renovable."
         ),
         "capacidad": "Individual (1 urna).",
         "servicios": [
@@ -93,9 +93,10 @@ PRODUCTOS = [
             "Tapa de granito con los datos del difunto",
             "Ubicación en el Jardín 1, con paisajismo de plantas de sombra",
             "Espacio de contemplación con banco",
+            "Permanencia de 30 años desde la primera inhumación, renovable por igual período",
         ],
         "perfil": (
-            "Familias que desean un lugar permanente para visitar y rendir "
+            "Familias que desean un lugar propio para visitar y rendir "
             "homenaje, con una inversión moderada."
         ),
         "precio": 600,
@@ -110,6 +111,7 @@ PRODUCTOS = [
             ("Identificación", "Tapa de granito con la información del difunto"),
             ("Paisajismo", "Plantas de sombra de diferentes alturas y texturas"),
             ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
+            ("Permanencia", "30 años desde la primera inhumación, renovable por igual período"),
             ("Mantenimiento", "US$ 15 anual"),
         ],
     },
@@ -120,32 +122,32 @@ PRODUCTOS = [
         "categoria": "Destino final · Inhumación familiar",
         "concepto": (
             "Parcela familiar en el Jardín 1 con cuatro contenedores agrupados, "
-            "cada uno con tapa de granito grabada, sin plazo de permanencia."
+            "cada uno con tapa de granito grabada, con permanencia de 30 años desde la "
+            "primera inhumación, renovable por igual período."
         ),
         "capacidad": "Hasta 4 espacios (familiar).",
         "servicios": [
             "Inhumación de hasta 4 urnas",
             "Tapa de granito grabada para cada espacio",
             "Ubicación en el Jardín 1, con paisajismo de plantas de sombra",
-            "Lugar físico permanente de homenaje familiar, sin plazo",
+            "Lugar de homenaje familiar por 30 años, renovable por igual período",
         ],
         "perfil": (
-            "Familias que buscan un espacio propio y permanente para varias "
-            "generaciones."
+            "Familias que buscan un espacio propio para varias generaciones."
         ),
         "precio": 2000,
-        "precio_nota": "Por parcela familiar · hasta 4 espacios · mantenimiento US$ 25/año",
+        "precio_nota": "Por parcela familiar · hasta 4 espacios · mantenimiento US$ 24/año",
         "pago": (
             "Pago único o financiado según política comercial vigente. "
-            "Cuota de mantenimiento: US$ 25 anual."
+            "Cuota de mantenimiento: US$ 24 anual."
         ),
         "specs": [
             ("Ambiente", "Jardín 1"),
             ("Capacidad", "4 contenedores agrupados en losa"),
             ("Identificación", "Tapa de granito por espacio, con la información del difunto"),
-            ("Permanencia", "Sin plazo"),
+            ("Permanencia", "30 años desde la primera inhumación, renovable por igual período"),
             ("Acceso", "Camino de 1,2 m en gravilla con bordillo prefabricado"),
-            ("Mantenimiento", "US$ 25 anual"),
+            ("Mantenimiento", "US$ 24 anual"),
         ],
     },
     {
@@ -211,6 +213,7 @@ PRODUCTOS = [
             "cierre digno."
         ),
         "precio_texto": "US$ 400 / US$ 550",
+        "precios": (400, 550),
         "precio_nota": "US$ 400 solo espacio · US$ 550 con placa memorial",
         "pago": (
             "Pago único; puede contratarse como adicional al plan funerario. "
@@ -275,6 +278,23 @@ def texto_precio(p: dict) -> str:
     return f"{usd(p['precio_min'])} – {usd(p['precio_max'])}"
 
 
+DESCUENTO_LANZAMIENTO = 0.20
+ETIQUETA_DESCUENTO = f"Precio lanzamiento (−{DESCUENTO_LANZAMIENTO:.0%})"
+
+
+def texto_lanzamiento(p: dict) -> str:
+    """Precio con el descuento especial de lanzamiento (y cuota, si se financia en cuotas)."""
+    f = 1 - DESCUENTO_LANZAMIENTO
+    if "precios" in p:
+        return " / ".join(usd(v * f) for v in p["precios"])
+    if "precio" not in p:
+        return "A definir"
+    texto = usd(p["precio"] * f)
+    if p["id"] == "VG-CRE-01":
+        texto += f" · {N_CUOTAS} cuotas de aprox. {usd(8.50 * f)}/mes"
+    return texto
+
+
 def cuota_referencial(p: dict) -> str:
     """Cuota sin intereses sobre N_CUOTAS (referencia para la fuerza de ventas)."""
     if p["id"] != "VG-CRE-01":
@@ -306,6 +326,7 @@ COLUMNAS = [
     ("Servicios Incluidos & Diferenciales", 46),
     ("Perfil de Cliente", 36),
     ("Precio Sugerido (USD)", 22),
+    (ETIQUETA_DESCUENTO, 22),
     ("Condiciones de Pago / Financiamiento", 34),
 ]
 
@@ -325,6 +346,7 @@ def dataframe_comercial() -> pd.DataFrame:
             viñetas(p["servicios"]),
             p["perfil"],
             f"{texto_precio(p)}\n({p['precio_nota']})",
+            texto_lanzamiento(p) + ("" if p.get("proximo_lanzamiento") else "\n(descuento especial de lanzamiento)"),
             p["pago"],
         ])
     return pd.DataFrame(filas, columns=[c for c, _ in COLUMNAS])
@@ -511,6 +533,7 @@ def construir_fichas(ws) -> None:
 
         fila = _bloque_titulo(ws, fila, "Precio & Condiciones de Pago")
         fila = _fila_dato(ws, fila, "Precio sugerido", texto_precio(p), True, destacado=True)
+        fila = _fila_dato(ws, fila, ETIQUETA_DESCUENTO, texto_lanzamiento(p), False, destacado=True)
         fila = _fila_dato(ws, fila, "Base de precio", p["precio_nota"], False)
         fila = _fila_dato(ws, fila, "Condiciones", p["pago"], True)
         if cuota_referencial(p):
@@ -573,7 +596,7 @@ COMISIONES = [
 
 REGLAS_COMISION = [
     "Base de cálculo: valor efectivamente cobrado al cliente, sin IVA (13%).",
-    "No generan comisión: cuotas de mantenimiento anual (US$ 15 / US$ 25).",
+    "No generan comisión: cuotas de mantenimiento anual (US$ 15 / US$ 24).",
     "Bono de venta combinada: US$ 15 al vender la Solución Modular junto con cualquier jardín.",
     "Acelerador de campaña Día de los Muertos (opcional): +2 pp en Individual y Ecológico "
     "para ventas cerradas hasta el 30/11/2026.",
@@ -722,6 +745,8 @@ li {{ margin: 2px 0; }}
   letter-spacing: .1em; text-transform: uppercase; }}
 .precio .monto strong {{ font-size: 24px; font-family: "Playfair Display", Georgia, serif; }}
 .precio .monto span {{ display: block; font-size: 12px; opacity: .85; }}
+.precio .monto.lanz {{ background: var(--dorado); color: var(--azul-profundo); }}
+.precio .monto.lanz small {{ color: var(--azul-profundo); }}
 .precio .cond {{ flex: 1 1 260px; background: var(--alterno); padding: 12px 16px; font-size: 13.5px; }}
 .perfil {{ font-size: 14px; }}
 footer {{ border-top: 1px solid #E1E6EC; padding: 10px 28px; font-size: 11px; color: #7A8794;
@@ -772,6 +797,8 @@ def ficha_html(p: dict) -> str:
       <div class="precio">
         <div class="monto"><small>Precio sugerido</small><strong>{e(texto_precio(p))}</strong>
           <span>{e(p['precio_nota'])}</span></div>
+        <div class="monto lanz"><small>{e(ETIQUETA_DESCUENTO)}</small><strong>{e(texto_lanzamiento(p))}</strong>
+          <span>Descuento especial de lanzamiento</span></div>
         <div class="cond"><b>Condiciones:</b> {e(p['pago'])}{cuota_html}</div>
       </div>
     </section>
