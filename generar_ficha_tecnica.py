@@ -58,7 +58,7 @@ PRODUCTOS = [
             "Proceso completo de cremación individual",
             "Urna cineraria de línea modular",
             "Trámites legales básicos",
-            "Alquiler temporal de columbario por 1 año",
+            "Alquiler temporal de columbario por 1 año en Hogar de las Memorias",
             "Integración al plan funerario base (actual o nuevo)",
         ],
         "perfil": (
@@ -74,7 +74,7 @@ PRODUCTOS = [
             ("Modalidad de cremación", "Individual"),
             ("Urna", "Cineraria, línea modular"),
             ("Gestión legal", "Trámites básicos incluidos"),
-            ("Columbario", "Alquiler temporal · 12 meses incluido"),
+            ("Columbario", "Alquiler temporal · 12 meses incluido en Hogar de las Memorias"),
         ],
     },
     {
