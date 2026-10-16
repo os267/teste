@@ -496,12 +496,12 @@ PRODUCTOS_EXISTENTES = [
         ),
         "incluye": [
             "Incluye espacio permanente en columbario de ónix natural",
-            "Tamaño estándar: hasta 2 urnas, con ubicación definida (US$ 3.100)",
-            "Una opción familiar: hasta 4 urnas, con ubicación a futuro (US$ 5.000)",
+            "Tamaño estándar: hasta 2 urnas (US$ 3.100)",
+            "Una opción familiar: hasta 4 urnas (US$ 5.000)",
         ],
         "reglas": [
             "Cremación no incluida: se contrata aparte.",
-            "Con la modalidad estándar la ubicación es definida; con la familiar, a futuro.",
+            "Con ubicación definida o a futuro en ambas modalidades (según fila y nivel).",
         ],
         "para_quien": "Familias que buscan exclusividad y una piedra natural de alta gama para el homenaje.",
         "speech": (
@@ -533,7 +533,7 @@ PRODUCTOS_EXISTENTES = [
         "incluye": [
             "Incluye columbario familiar permanente para hasta 4 urnas",
             "Tapa exclusiva de ónix con obra de arte religiosa",
-            "Ubicación definida",
+            "Ubicación definida o a futuro",
         ],
         "reglas": [
             "Capacidad: hasta 4 urnas (familiar).",
