@@ -408,24 +408,24 @@ PRODUCTOS_EXISTENTES = [
     {
         "nombre": "Columbario Supremo Plus",
         "corto": "Supremo Plus",
-        "etiqueta": "Hogar de las Memorias · Funeral + cremación + columbario",
+        "etiqueta": "Hogar de las Memorias · Servicio completo",
         "etiqueta_precio": "PRECIO SEGÚN UBICACIÓN",
         "precio": "US$ 2.700 – 3.900",
         "pago": "Finados y noviembre (−15%): desde US$ 2.295 · Pago único o hasta 120 meses, con intereses",
         "que_es": (
-            "La solución más completa: servicio funerario, dos cremaciones y un columbario "
+            "Integra en un solo contrato el servicio funerario, dos cremaciones y un columbario "
             "permanente de cristal o mármol para hasta dos urnas, en El Hogar de las Memorias."
         ),
         "incluye": [
-            "Columbario estándar permanente de cristal o mármol, para hasta 2 urnas",
-            "2 cremaciones con certificado y 2 urnas cinerarias básicas",
-            "Sala de velación 24 h, ataúd ceremonial y carroza tradicional",
-            "Traslados, preparación y resguardo hasta 5 días, y Programa Vive de acompañamiento en el duelo",
+            "Incluye columbario estándar permanente de cristal o mármol, para hasta 2 urnas",
+            "Traslados, preparación y resguardo hasta 5 días; Programa Vive de acompañamiento en el duelo",
+            "Urnas cinerarias básicas (2) y 2 cremaciones con certificado",
+            "Capilla de velación 24 h, ataúd ceremonial y carroza tradicional",
         ],
         "reglas": [
             "Capacidad: hasta 2 urnas; incluye 2 cremaciones.",
-            "Ubicación definida: US$ 3.400 – 3.900. Ubicación a futuro: US$ 2.700 – 3.200 (según fila y nivel).",
-            "Velación en La Auxiliadora (Capilla Maquilishuat o Básica) o en Capillas Memoriales (Las Camelias o Básica).",
+            "Con ubicación definida: US$ 3.400 – 3.900; a futuro: US$ 2.700 – 3.200 (según fila y nivel).",
+            "Elija velación en La Auxiliadora (Maquilishuat o Básica) o en Capillas Memoriales (Las Camelias o Básica).",
         ],
         "para_quien": "Familias que quieren resolver en una sola compra el funeral, la cremación y un lugar permanente para dos seres queridos.",
         "speech": (
@@ -453,17 +453,17 @@ PRODUCTOS_EXISTENTES = [
         "precio": "US$ 1.200 – 2.600",
         "pago": "Finados y noviembre (−15%): desde US$ 1.020 · Pago único o hasta 120 meses, con intereses",
         "que_es": (
-            "Columbario permanente de mármol o cristal en El Hogar de las Memorias: un espacio "
-            "elegante y sereno, de diseño atemporal, para las urnas de la familia."
+            "Ideal para las cenizas de la familia: columbario permanente de mármol o cristal en "
+            "El Hogar de las Memorias, elegante, sereno y de diseño atemporal."
         ),
         "incluye": [
-            "Espacio permanente en columbario de mármol o cristal",
-            "Capacidad estándar: hasta 2 urnas",
+            "Incluye espacio permanente en columbario de mármol o cristal",
+            "Tamaño estándar: hasta 2 urnas",
             "Ubicación definida o a futuro, según la opción contratada",
         ],
         "reglas": [
-            "Solo columbario: la cremación se contrata aparte (por ejemplo, con la Solución Modular).",
-            "Ubicación definida: US$ 2.600. Ubicación a futuro: US$ 1.200 – 1.900 (según fila y nivel).",
+            "Cremación no incluida: se contrata aparte (por ejemplo, con la Solución Modular).",
+            "Con ubicación definida: US$ 2.600; a futuro: US$ 1.200 – 1.900 (según fila y nivel).",
         ],
         "para_quien": "Familias que ya tienen la cremación resuelta y buscan un lugar permanente y elegante para las cenizas.",
         "speech": (
@@ -489,19 +489,19 @@ PRODUCTOS_EXISTENTES = [
         "etiqueta": "Hogar de las Memorias · Columbario premium",
         "etiqueta_precio": "PRECIO SEGÚN MODALIDAD",
         "precio": "US$ 3.100 / 5.000",
-        "pago": "Finados y noviembre (−15%): US$ 2.635 / US$ 4.250 · Pago único o hasta 120 meses, con intereses",
+        "pago": "Finados y noviembre (−15%): US$ 2.635 / 4.250 · Único o hasta 120 meses, con intereses",
         "que_es": (
-            "Columbario de ónix natural, una piedra de tonos cálidos y apariencia luminosa, para "
-            "un homenaje exclusivo y perdurable."
+            "Inspirado en la belleza del ónix natural, de tonos cálidos y apariencia luminosa: un "
+            "columbario exclusivo para un homenaje perdurable."
         ),
         "incluye": [
-            "Espacio permanente en columbario de ónix natural",
-            "Estándar: hasta 2 urnas, con ubicación definida (US$ 3.100)",
-            "Familiar: hasta 4 urnas, con ubicación a futuro (US$ 5.000)",
+            "Incluye espacio permanente en columbario de ónix natural",
+            "Tamaño estándar: hasta 2 urnas, con ubicación definida (US$ 3.100)",
+            "Una opción familiar: hasta 4 urnas, con ubicación a futuro (US$ 5.000)",
         ],
         "reglas": [
-            "Solo columbario: la cremación se contrata aparte.",
-            "Estándar (2 urnas) con ubicación definida; Familiar (4 urnas) con ubicación a futuro.",
+            "Cremación no incluida: se contrata aparte.",
+            "Con la modalidad estándar la ubicación es definida; con la familiar, a futuro.",
         ],
         "para_quien": "Familias que buscan exclusividad y una piedra natural de alta gama para el homenaje.",
         "speech": (
@@ -522,22 +522,22 @@ PRODUCTOS_EXISTENTES = [
     {
         "nombre": "Columbario Obra de Arte",
         "corto": "Obra de Arte",
-        "etiqueta": "Hogar de las Memorias · Columbario familiar exclusivo",
+        "etiqueta": "Hogar de las Memorias · Columbario familiar",
         "etiqueta_precio": "PRECIO",
         "precio": "US$ 12.500",
         "pago": "Finados y noviembre (−15%): US$ 10.625 · Pago único o hasta 120 meses, con intereses",
         "que_es": (
-            "Columbario familiar con tapa de ónix y obra de arte religiosa: una expresión única de "
-            "fe, memoria y belleza para toda una familia."
+            "Imagen religiosa sobre tapa de ónix: un columbario familiar que es una expresión "
+            "única de fe, memoria y belleza."
         ),
         "incluye": [
-            "Columbario familiar permanente para hasta 4 urnas",
+            "Incluye columbario familiar permanente para hasta 4 urnas",
             "Tapa exclusiva de ónix con obra de arte religiosa",
             "Ubicación definida",
         ],
         "reglas": [
             "Capacidad: hasta 4 urnas (familiar).",
-            "Solo columbario: la cremación se contrata aparte.",
+            "Cremación no incluida: se contrata aparte.",
         ],
         "para_quien": "Familias de fe que desean un legado único y de máxima exclusividad.",
         "speech": (
@@ -559,24 +559,24 @@ PRODUCTOS_EXISTENTES = [
     {
         "nombre": "Columbario Cristal · Bella Vista",
         "corto": "Bella Vista",
-        "etiqueta": "Mausoleo vertical Bella Vista · Cremación + columbario",
+        "etiqueta": "Mausoleo Bella Vista · Cremación + columbario",
         "etiqueta_precio": "PRECIO SEGÚN UBICACIÓN",
         "precio": "US$ 1.300 – 2.900",
         "pago": "Finados y noviembre (−15%): desde US$ 1.105 · Pago único o hasta 120 meses, con intereses",
         "que_es": (
-            "Columbario de cristal en el mausoleo vertical Bella Vista, dentro del cementerio, con "
-            "el proceso completo de cremación incluido."
+            "Incluye el proceso completo de cremación y un columbario de cristal en el mausoleo "
+            "vertical Bella Vista, dentro del cementerio."
         ),
         "incluye": [
-            "Columbario de cristal permanente (30 × 30 × 30 cm)",
-            "Estándar: 2 cremaciones y 2 urnas · Familiar: 4 cremaciones y 4 urnas",
+            "Incluye columbario de cristal permanente (30 × 30 × 30 cm)",
             "Traslados, preparación y resguardo hasta 5 días",
+            "Urnas y cremaciones: 2 en la modalidad estándar, 4 en la familiar",
             "Certificado de cremación y ceremonia privada de colocación",
         ],
         "reglas": [
-            "Estándar: ubicación definida US$ 1.800 · a futuro US$ 1.300.",
-            "Familiar: ubicación definida US$ 2.900 · a futuro US$ 2.300.",
-            "La cremación está incluida: no hace falta contratarla aparte.",
+            "Con modalidad estándar: definida US$ 1.800 · a futuro US$ 1.300.",
+            "Con modalidad familiar: definida US$ 2.900 · a futuro US$ 2.300.",
+            "En este producto la cremación está incluida: no hace falta contratarla aparte.",
         ],
         "para_quien": "Familias que buscan la opción más accesible de cremación con columbario permanente, para 2 o 4 personas.",
         "speech": (
