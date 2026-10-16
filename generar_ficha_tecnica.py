@@ -262,6 +262,181 @@ PRODUCTOS = [
 
 
 # ---------------------------------------------------------------------------
+# Portafolio existente (columbarios con cremación) — aba propia, fuera del HTML
+# ---------------------------------------------------------------------------
+DESCUENTO_EXISTENTES = 0.15
+ETIQUETA_DESCUENTO_EXISTENTES = f"Precio Finados y noviembre (−{DESCUENTO_EXISTENTES:.0%})"
+PAGO_EXISTENTES = f"Pago único o financiado hasta {N_CUOTAS} meses, con intereses."
+UBICACION = ("Definida: se elige el nicho al contratar · A futuro: el nicho se asigna "
+             "más adelante. El precio varía según fila y nivel.")
+
+PRODUCTOS_EXISTENTES = [
+    {
+        "id": "VG-COL-01",
+        "nombre": "Columbario Supremo Plus",
+        "submarca": "El Hogar de las Memorias",
+        "categoria": "Servicio funerario + cremación + columbario",
+        "concepto": (
+            "Experiencia integral que combina servicio funerario y cremación, con un "
+            "espacio conmemorativo para resguardar hasta dos urnas cinerarias en un "
+            "entorno de respeto, acompañamiento y serenidad."
+        ),
+        "capacidad": "Hasta 2 urnas cinerarias (incluye 2 cremaciones).",
+        "specs": [
+            ("Material", "Cristal o mármol"),
+            ("Columbario", "Estándar, espacio permanente para hasta 2 urnas"),
+            ("Cremación", "2 cremaciones en crematorio propio, con certificado"),
+            ("Preparación y resguardo", "Preparación química y custodia en laboratorio hasta por 5 días"),
+            ("Velación", "Sala de velación 24 horas · La Auxiliadora: Capilla Maquilishuat o Básica · "
+                         "Capillas Memoriales: Capilla Las Camelias o Básica"),
+            ("Ubicación", UBICACION),
+        ],
+        "servicios": [
+            "Columbario estándar de cristal o mármol para hasta 2 urnas",
+            "Traslados durante todo el proceso funerario",
+            "Preparación química y resguardo hasta por 5 días",
+            "2 cremaciones y 2 urnas cinerarias básicas",
+            "Certificado de cremación y ceremonias privadas de colocación",
+            "Sala de velación 24 h, ataúd ceremonial y carroza tradicional",
+            "Asesoría en trámites, libro de condolencias y 50 tarjetas de agradecimiento",
+            "Programa Vive (acompañamiento en el duelo) y café y agua ilimitados",
+        ],
+        "opciones": [("Ubicación definida", 3400, 3900), ("Ubicación a futuro", 2700, 3200)],
+        "precio_nota": "Precio según fila y nivel del columbario",
+        "pago": PAGO_EXISTENTES,
+        "perfil": (
+            "Familias que quieren resolver en una sola compra el servicio funerario, la "
+            "cremación y un lugar permanente para dos seres queridos."
+        ),
+    },
+    {
+        "id": "VG-COL-02",
+        "nombre": "Columbario Mármol o Cristal",
+        "submarca": "El Hogar de las Memorias",
+        "categoria": "Destino final · Columbario",
+        "concepto": (
+            "Espacio permanente, elegante y sereno en mármol o cristal para preservar el "
+            "legado de quienes más ama la familia, con un diseño atemporal."
+        ),
+        "capacidad": "Estándar: hasta 2 urnas.",
+        "specs": [
+            ("Material", "Mármol o cristal"),
+            ("Permanencia", "Permanente"),
+            ("Ubicación", UBICACION),
+        ],
+        "servicios": [
+            "Espacio permanente en columbario de mármol o cristal",
+            "Ubicación definida o a futuro, según la opción contratada",
+        ],
+        "opciones": [("Ubicación definida", 2600, None), ("Ubicación a futuro", 1200, 1900)],
+        "precio_nota": "Solo columbario · precio según fila y nivel",
+        "pago": PAGO_EXISTENTES,
+        "perfil": (
+            "Familias que buscan un lugar permanente y elegante para las cenizas, con la "
+            "cremación ya resuelta o contratada aparte."
+        ),
+    },
+    {
+        "id": "VG-COL-03",
+        "nombre": "Columbario Ónix",
+        "submarca": "El Hogar de las Memorias",
+        "categoria": "Destino final · Columbario premium",
+        "concepto": (
+            "Columbario de ónix que combina la exclusividad de una piedra natural con un "
+            "diseño elegante; sus tonalidades cálidas y apariencia luminosa crean un "
+            "espacio de paz, respeto y recuerdo perdurable."
+        ),
+        "capacidad": "Estándar: hasta 2 urnas · Familiar: hasta 4 urnas.",
+        "specs": [
+            ("Material", "Ónix natural"),
+            ("Modalidades", "Estándar (2 urnas) y Familiar (4 urnas)"),
+            ("Permanencia", "Permanente"),
+        ],
+        "servicios": [
+            "Espacio permanente en columbario de ónix natural",
+            "Modalidad estándar o familiar",
+        ],
+        "opciones": [("Estándar · ubicación definida", 3100, None),
+                     ("Familiar · ubicación a futuro", 5000, None)],
+        "precio_nota": "Solo columbario",
+        "pago": PAGO_EXISTENTES,
+        "perfil": "Familias que buscan exclusividad y una piedra natural de alta gama para el homenaje.",
+    },
+    {
+        "id": "VG-COL-04",
+        "nombre": "Columbario Obra de Arte",
+        "submarca": "El Hogar de las Memorias",
+        "categoria": "Destino final · Columbario familiar exclusivo",
+        "concepto": (
+            "Una expresión única de fe, memoria y belleza: tapa de ónix con obra de arte "
+            "religiosa que preserva la memoria de toda una familia en un entorno de "
+            "serenidad y contemplación."
+        ),
+        "capacidad": "Familiar: hasta 4 urnas.",
+        "specs": [
+            ("Material", "Tapa de ónix con obra de arte religiosa"),
+            ("Modalidad", "Familiar (4 urnas)"),
+            ("Ubicación", "Definida"),
+            ("Permanencia", "Permanente"),
+        ],
+        "servicios": [
+            "Columbario familiar permanente para hasta 4 urnas",
+            "Tapa exclusiva de ónix con obra de arte religiosa",
+        ],
+        "opciones": [("Familiar · ubicación definida", 12500, None)],
+        "precio_nota": "Solo columbario",
+        "pago": PAGO_EXISTENTES,
+        "perfil": "Familias de fe que desean un legado único y de máxima exclusividad.",
+    },
+    {
+        "id": "VG-COL-05",
+        "nombre": "Columbario Cristal · Bella Vista",
+        "submarca": "Mausoleo vertical Bella Vista",
+        "categoria": "Cremación + columbario",
+        "concepto": (
+            "Columbario de cristal en el mausoleo vertical Bella Vista que incluye el proceso "
+            "completo de cremación: traslados, preparación, cremaciones, urnas y ceremonia "
+            "de colocación."
+        ),
+        "capacidad": "Estándar: 2 cremaciones y 2 urnas · Familiar: 4 cremaciones y 4 urnas.",
+        "specs": [
+            ("Ubicación", "Mausoleo vertical Bella Vista"),
+            ("Material", "Cristal"),
+            ("Medidas", "30 × 30 × 30 cm"),
+            ("Cremación", "2 (estándar) o 4 (familiar) cremaciones, con certificado"),
+            ("Preparación y resguardo", "Preparación química y custodia en laboratorio hasta por 5 días"),
+        ],
+        "servicios": [
+            "Columbario de cristal permanente (estándar o familiar)",
+            "Traslados durante todo el proceso",
+            "Preparación química y resguardo hasta por 5 días",
+            "2 o 4 cremaciones y 2 o 4 urnas cinerarias básicas",
+            "Certificado de cremación y ceremonias privadas de colocación",
+        ],
+        "opciones": [("Estándar · ubicación definida", 1800, None),
+                     ("Estándar · ubicación a futuro", 1300, None),
+                     ("Familiar · ubicación definida", 2900, None),
+                     ("Familiar · ubicación a futuro", 2300, None)],
+        "precio_nota": "Incluye cremación · precio según modalidad y ubicación",
+        "pago": PAGO_EXISTENTES,
+        "perfil": (
+            "Familias que buscan la opción más accesible de cremación con columbario "
+            "permanente, para 2 o 4 personas."
+        ),
+    },
+]
+
+
+def _rango(mn, mx, f=1.0) -> str:
+    return usd(mn * f) if mx is None else f"{usd(mn * f)} – {usd(mx * f)}"
+
+
+def texto_opciones(p: dict, f: float = 1.0) -> str:
+    """Una línea por opción de precio (ubicación / modalidad)."""
+    return "\n".join(f"{etq}: {_rango(mn, mx, f)}" for etq, mn, mx in p["opciones"])
+
+
+# ---------------------------------------------------------------------------
 # Utilidades de formato
 # ---------------------------------------------------------------------------
 def usd(valor: float) -> str:
@@ -324,6 +499,7 @@ COLUMNAS = [
 
 HOJA_TABLA = "Tabla Gral. - Visión Comercial"  # límite Excel: 31 caracteres
 HOJA_FICHA = "Ficha Técnica Consolidada"
+HOJA_EXISTENTES = "Portafolio existente"
 FILA_ENCABEZADO = 4  # 1: título, 2: subtítulo, 3: vacía, 4: encabezados
 
 
@@ -338,7 +514,7 @@ def dataframe_comercial() -> pd.DataFrame:
             viñetas(p["servicios"]),
             p["perfil"],
             f"{texto_precio(p)}\n({p['precio_nota']})",
-            texto_lanzamiento(p) + ("" if p.get("proximo_lanzamiento") else "\n(descuento especial de lanzamiento)"),
+            texto_lanzamiento(p) + ("" if p.get("proximo_lanzamiento") else "\n(descuento de lanzamiento · Finados y noviembre)"),
             p["pago"],
         ])
     return pd.DataFrame(filas, columns=[c for c, _ in COLUMNAS])
@@ -463,27 +639,40 @@ def _marco(ws, fila_ini: int, fila_fin: int) -> None:
             )
 
 
-def construir_fichas(ws) -> None:
+def _precios_lanzamiento(p: dict) -> list:
+    return [("Precio sugerido", texto_precio(p), True),
+            (ETIQUETA_DESCUENTO, texto_lanzamiento(p), True)]
+
+
+def _precios_existentes(p: dict) -> list:
+    return [("Precio", texto_opciones(p), True),
+            (ETIQUETA_DESCUENTO_EXISTENTES, texto_opciones(p, 1 - DESCUENTO_EXISTENTES), True)]
+
+
+def construir_fichas(ws, productos=None, titulo="FICHA TÉCNICA CONSOLIDADA",
+                     subtitulo=f"Portafolio de Cremación — {CAMPANA}",
+                     precios=_precios_lanzamiento) -> None:
+    productos = PRODUCTOS if productos is None else productos
     ws.sheet_view.showGridLines = False
     ws.sheet_properties.tabColor = DORADO
     for col, ancho in zip("ABCDEF", (3, 30, 30, 30, 30, 3)):
         ws.column_dimensions[col].width = ancho
 
     ws.merge_cells(start_row=1, start_column=COL_ETQ, end_row=1, end_column=COL_FIN)
-    c = ws.cell(row=1, column=COL_ETQ, value=f"FICHA TÉCNICA CONSOLIDADA  ·  {MARCA.upper()}")
+    c = ws.cell(row=1, column=COL_ETQ, value=f"{titulo}  ·  {MARCA.upper()}")
     c.font = Font(name="Calibri", size=16, bold=True, color=BLANCO)
     c.fill = relleno(AZUL_PROFUNDO)
     c.alignment = Alignment(horizontal="center", vertical="center")
     ws.row_dimensions[1].height = 34
     ws.merge_cells(start_row=2, start_column=COL_ETQ, end_row=2, end_column=COL_FIN)
-    c = ws.cell(row=2, column=COL_ETQ, value=f"Portafolio de Cremación — {CAMPANA}")
+    c = ws.cell(row=2, column=COL_ETQ, value=subtitulo)
     c.font = Font(name="Calibri", size=11, italic=True, color=DORADO)
     c.fill = relleno(AZUL_PROFUNDO)
     c.alignment = Alignment(horizontal="center", vertical="center")
 
     fila = 4
     saltos = []
-    for n, p in enumerate(PRODUCTOS):
+    for n, p in enumerate(productos):
         inicio = fila
 
         # Encabezado de la ficha
@@ -524,8 +713,8 @@ def construir_fichas(ws) -> None:
                           len(p["specs"]) % 2 == 0)
 
         fila = _bloque_titulo(ws, fila, "Precio & Condiciones de Pago")
-        fila = _fila_dato(ws, fila, "Precio sugerido", texto_precio(p), True, destacado=True)
-        fila = _fila_dato(ws, fila, ETIQUETA_DESCUENTO, texto_lanzamiento(p), False, destacado=True)
+        for i, (etq, valor, dest) in enumerate(precios(p)):
+            fila = _fila_dato(ws, fila, etq, valor, i % 2 == 0, destacado=dest)
         fila = _fila_dato(ws, fila, "Base de precio", p["precio_nota"], False)
         fila = _fila_dato(ws, fila, "Condiciones", p["pago"], True)
 
@@ -533,7 +722,7 @@ def construir_fichas(ws) -> None:
         fila = _fila_dato(ws, fila, "Cliente objetivo", p["perfil"], True)
 
         _marco(ws, inicio, fila - 1)
-        if n < len(PRODUCTOS) - 1:
+        if n < len(productos) - 1:
             saltos.append(fila)
         fila += 2  # separación entre fichas
 
@@ -678,11 +867,15 @@ def generar_excel(ruta: Path) -> None:
     with pd.ExcelWriter(ruta, engine="openpyxl") as writer:
         df.to_excel(writer, sheet_name=HOJA_TABLA, index=False, startrow=FILA_ENCABEZADO - 1)
         writer.book.create_sheet(HOJA_FICHA)
+        writer.book.create_sheet(HOJA_EXISTENTES)
         writer.book.create_sheet(HOJA_COMISIONES)
 
     wb = load_workbook(ruta)
     estilizar_tabla(wb[HOJA_TABLA])
     construir_fichas(wb[HOJA_FICHA])
+    construir_fichas(wb[HOJA_EXISTENTES], PRODUCTOS_EXISTENTES, "PORTAFOLIO EXISTENTE DE CREMACIÓN",
+                     f"Columbarios y cremación · descuento −{DESCUENTO_EXISTENTES:.0%} en Finados y noviembre",
+                     _precios_existentes)
     construir_comisiones(wb[HOJA_COMISIONES])
     wb.properties.title = f"Ficha Técnica Cremación — {MARCA}"
     wb.properties.creator = MARCA
@@ -789,7 +982,7 @@ def ficha_html(p: dict) -> str:
         <div class="monto"><small>Precio sugerido</small><strong>{e(texto_precio(p))}</strong>
           <span>{e(p['precio_nota'])}</span></div>
         <div class="monto lanz"><small>{e(ETIQUETA_DESCUENTO)}</small><strong>{e(texto_lanzamiento(p))}</strong>
-          <span>Descuento especial de lanzamiento</span></div>
+          <span>Lanzamiento · válido en Finados y noviembre</span></div>
         <div class="cond"><b>Condiciones:</b> {e(p['pago'])}</div>
       </div>
     </section>
