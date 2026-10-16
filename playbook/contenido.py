@@ -47,8 +47,8 @@ QUIENES_SOMOS = (
     "nichos, parcelas ni servicios: acompañamos a las familias salvadoreñas a honrar "
     "la memoria de quienes aman. La cremación es una decisión cada vez más elegida, y "
     "nuestros nuevos jardines de cenizas responden a una pregunta que muchas familias "
-    "se hacen y pocas se atreven a decir: «¿y después de la cremación, dónde las "
-    "visitamos?»."
+    "se hacen y pocas se atreven a decir: \"¿y después de la cremación, dónde las "
+    "visitamos?\"."
 )
 
 POR_QUE_AHORA = [
@@ -67,13 +67,13 @@ MODOS_DE_VENTA = [
      "Venta planificada, de ciclo largo. La familia contrata hoy para protegerse "
      "y pagar en cuotas. Es la venta que conducimos activamente."),
     ("Necesidad inmediata (emergencia)",
-     "En el momento de la pérdida. Aquí no se «vende»: se acoge, se informa con "
+     "En el momento de la pérdida. Aquí no se \"vende\": se acoge, se informa con "
      "calma y se resuelve con agilidad y respeto."),
 ]
 
 REGLA_DE_ORO = (
     "Nuestra diferencia no es el precio: es la atención. Antes de cada propuesta, "
-    "pregúntese: «¿esto acoge a la familia o solo cierra un negocio?»."
+    "pregúntese: \"¿esto acoge a la familia o solo cierra un negocio?\"."
 )
 
 # ---------------------------------------------------------------------------
@@ -144,7 +144,7 @@ RITUALES = [
 CONVERSACION = [
     ("Acoger", "Conectar antes de vender. ¿Quién es y qué lo trajo?"),
     ("Descubrir", "Más preguntas que afirmaciones. La solución nace de la escucha."),
-    ("Presentar valor", "Hablar de tranquilidad, cuidado y memoria, no de «producto»."),
+    ("Presentar valor", "Hablar de tranquilidad, cuidado y memoria, no de \"producto\"."),
     ("Resolver dudas", "Validar la emoción, reposicionar, nunca discutir."),
     ("Avanzar", "Un siguiente paso claro y amable: visita, propuesta o firma."),
 ]
@@ -178,20 +178,20 @@ PRODUCTOS = [
         ],
         "para_quien": "Afiliados actuales y nuevos que quieren sumar la cremación con una cuota mínima.",
         "speech": (
-            "«Usted ya protegió a su familia con su plan. Pagando en hasta 120 meses, "
+            "\"Usted ya protegió a su familia con su plan. Pagando en hasta 120 meses, "
             "puede sumar la cremación completa, con urna, trámites y un año de columbario incluido. Así "
-            "nadie tendrá que decidir ni pagar de golpe en un momento difícil.»"
+            "nadie tendrá que decidir ni pagar de golpe en un momento difícil.\""
         ),
         "preguntas": [
             "¿Su plan actual incluye la cremación o solo el servicio funerario?",
             "¿Ha conversado en familia qué preferencia tiene usted?",
             "¿Qué le preocupa más: el costo o tener que decidir de urgencia?",
         ],
-        "cierre": "«¿Le parece si lo sumamos a su plan desde este mes, con la primera cuota de hoy?»",
+        "cierre": "\"¿Le parece si lo sumamos a su plan desde este mes, con la primera cuota de hoy?\"",
         "objecion": (
-            "«Mi plan ya es suficiente.» → «Su plan cubre el servicio funerario; la "
+            "\"Mi plan ya es suficiente.\" → \"Su plan cubre el servicio funerario; la "
             "cremación y la urna se pagarían aparte y de una sola vez. Con el módulo "
-            "queda todo cubierto en cuotas pequeñas.»"
+            "queda todo cubierto en cuotas pequeñas.\""
         ),
         "tip": "Ofrézcalo siempre junto a un jardín: la familia resuelve cremación y destino final en una sola decisión.",
     },
@@ -218,21 +218,21 @@ PRODUCTOS = [
         ],
         "para_quien": "Familias que quieren un lugar propio para visitar, con una inversión moderada.",
         "speech": (
-            "«Después de la cremación, muchas familias se preguntan dónde dejar las "
+            "\"Después de la cremación, muchas familias se preguntan dónde dejar las "
             "cenizas. En nuestro Jardín 1, su ser querido descansa bajo una tapa de granito "
             "con su nombre, rodeado de plantas y con un banco para sentarse a recordar. "
-            "Es un lugar para volver, con la dignidad que merece.»"
+            "Es un lugar para volver, con la dignidad que merece.\""
         ),
         "preguntas": [
             "¿Dónde le gustaría poder visitar a su ser querido?",
             "¿Tienen hoy las cenizas en casa o en un columbario temporal?",
             "¿Quién más de la familia participaría en las visitas?",
         ],
-        "cierre": "«¿Le gustaría conocer el jardín esta semana para elegir el lugar con calma?»",
+        "cierre": "\"¿Le gustaría conocer el jardín esta semana para elegir el lugar con calma?\"",
         "objecion": (
-            "«Prefiero tener las cenizas en casa.» → «Es comprensible querer tenerlas cerca. "
+            "\"Prefiero tener las cenizas en casa.\" → \"Es comprensible querer tenerlas cerca. "
             "En el jardín, toda la familia puede visitarlas, y las cenizas quedan protegidas "
-            "si algún día hay mudanzas o cambios en el hogar.»"
+            "si algún día hay mudanzas o cambios en el hogar.\""
         ),
         "tip": "El jardín vende solo: priorice siempre la visita.",
     },
@@ -259,19 +259,19 @@ PRODUCTOS = [
         ],
         "para_quien": "Familias que buscan un espacio propio para varias generaciones.",
         "speech": (
-            "«Así como una familia comparte una casa, también puede compartir un lugar de "
+            "\"Así como una familia comparte una casa, también puede compartir un lugar de "
             "memoria. La parcela familiar reúne hasta cuatro seres queridos en un mismo "
-            "espacio, por 30 años renovables, y cuesta US$ 500 por espacio (US$ 400 con el precio de lanzamiento), menos que comprarlos por separado.»"
+            "espacio, por 30 años renovables, y cuesta US$ 500 por espacio (US$ 400 con el precio de lanzamiento), menos que comprarlos por separado.\""
         ),
         "preguntas": [
             "¿Les gustaría que la familia esté reunida en un mismo lugar?",
             "¿Cuántas personas de la familia considerarían este destino?",
             "¿Prefieren pagarlo de una vez o en cuotas?",
         ],
-        "cierre": "«¿Reservamos hoy la parcela para su familia y la pagan en cuotas cómodas?»",
+        "cierre": "\"¿Reservamos hoy la parcela para su familia y la pagan en cuotas cómodas?\"",
         "objecion": (
-            "«Es mucho dinero.» → «Son US$ 500 por cada espacio, con financiamiento. Y es "
-            "una decisión que se toma una sola vez para toda la familia.»"
+            "\"Es mucho dinero.\" → \"Son US$ 500 por cada espacio, con financiamiento. Y es "
+            "una decisión que se toma una sola vez para toda la familia.\""
         ),
         "tip": "Use el argumento por espacio (US$ 500) y no el total.",
     },
@@ -300,21 +300,21 @@ PRODUCTOS = [
         ],
         "para_quien": "Personas con conciencia ambiental que desean que sus cenizas vuelvan a la tierra.",
         "speech": (
-            "«Para quienes aman la naturaleza, el Jardín Ecológico es volver a la tierra. "
+            "\"Para quienes aman la naturaleza, el Jardín Ecológico es volver a la tierra. "
             "La urna se integra al suelo del bosque, junto al agua, y durante tres años la "
             "familia tiene un lugar señalado para visitar. Después, el nombre queda para "
-            "siempre en el monumento memorial del jardín.»"
+            "siempre en el monumento memorial del jardín.\""
         ),
         "preguntas": [
             "¿Su ser querido tenía un vínculo especial con la naturaleza?",
-            "¿Qué significa para ustedes «volver a la tierra»?",
+            "¿Qué significa para ustedes \"volver a la tierra\"?",
             "¿Es importante para la familia un lugar con nombre para siempre?",
         ],
-        "cierre": "«¿Le parece si visitamos el Bosque de las Orquídeas y elegimos juntos el lugar?»",
+        "cierre": "\"¿Le parece si visitamos el Bosque de las Orquídeas y elegimos juntos el lugar?\"",
         "objecion": (
-            "«¿Y después de 3 años?» → «La urna ya se habrá integrado a la tierra, como era "
+            "\"¿Y después de 3 años?\" → \"La urna ya se habrá integrado a la tierra, como era "
             "el deseo. El nombre pasa a la placa memorial del monumento, que queda para "
-            "siempre en el jardín.»"
+            "siempre en el jardín.\""
         ),
         "tip": "Para familias católicas, enfatice que las cenizas reposan en el cementerio, un lugar dedicado a la memoria.",
     },
@@ -341,19 +341,19 @@ PRODUCTOS = [
         ],
         "para_quien": "Familias que consideran a su mascota parte del hogar y desean un cierre digno.",
         "speech": (
-            "«Su compañero fue parte de la familia, y merece una despedida a la altura. En "
+            "\"Su compañero fue parte de la familia, y merece una despedida a la altura. En "
             "nuestro Jardín de Mascotas descansa con su nombre, en un lugar verde donde "
             "ustedes pueden volver a recordarlo. Y con la placa memorial, su nombre "
-            "queda para siempre en el monumento del jardín.»"
+            "queda para siempre en el monumento del jardín.\""
         ),
         "preguntas": [
             "¿Cómo se llamaba su compañero?",
             "¿Ya se realizó la cremación o necesitan también ese servicio?",
             "¿Les gustaría un lugar para visitarlo con los niños?",
         ],
-        "cierre": "«¿Prefieren la opción con cremación incluida, para resolver todo en un solo paso?»",
+        "cierre": "\"¿Prefieren la opción con cremación incluida, para resolver todo en un solo paso?\"",
         "objecion": (
-            "«Es solo una mascota.» → No discuta el vínculo de la familia. Si el cliente "
+            "\"Es solo una mascota.\" → No discuta el vínculo de la familia. Si el cliente "
             "minimiza, respete y ofrezca la información por escrito para que decida con calma."
         ),
         "tip": "Llame a la mascota por su nombre durante toda la conversación.",
@@ -375,12 +375,12 @@ PRODUCTOS = [
         ],
         "reglas": [
             "PRÓXIMO LANZAMIENTO: no se vende ni se cotiza todavía.",
-            "Si un cliente muestra interés, registre su contacto como «interesado Ceremonial».",
+            "Si un cliente muestra interés, registre su contacto como \"interesado Ceremonial\".",
         ],
         "para_quien": "Familias que valoran un rito de despedida simbólico y un entorno contemplativo.",
         "speech": (
-            "«Estamos preparando un nuevo jardín con una ceremonia de agua muy especial. "
-            "Si le interesa, con gusto le aviso apenas esté disponible.»"
+            "\"Estamos preparando un nuevo jardín con una ceremonia de agua muy especial. "
+            "Si le interesa, con gusto le aviso apenas esté disponible.\""
         ),
         "preguntas": ["¿Le gustaría que le avisemos cuando esté disponible?"],
         "cierre": "Registrar el interés y ofrecer, mientras tanto, el Jardín Individual o el Ecológico.",
@@ -429,19 +429,19 @@ PRODUCTOS_EXISTENTES = [
         ],
         "para_quien": "Familias que quieren resolver en una sola compra el funeral, la cremación y un lugar permanente para dos seres queridos.",
         "speech": (
-            "«Con el Supremo Plus su familia no tendrá que coordinar nada: el servicio funerario, "
+            "\"Con el Supremo Plus su familia no tendrá que coordinar nada: el servicio funerario, "
             "la cremación y el lugar donde descansarán las cenizas quedan resueltos en un solo "
-            "contrato, para dos personas y para siempre.»"
+            "contrato, para dos personas y para siempre.\""
         ),
         "preguntas": [
             "¿Han pensado dónde quedarían las cenizas después de la cremación?",
             "¿Lo considera para usted y su pareja, o para sus padres?",
             "¿Prefiere elegir hoy el nicho o dejar la ubicación para más adelante?",
         ],
-        "cierre": "«¿Aprovechamos el precio de noviembre y elegimos hoy la ubicación?»",
+        "cierre": "\"¿Aprovechamos el precio de noviembre y elegimos hoy la ubicación?\"",
         "objecion": (
-            "«Es una inversión alta.» → «Incluye todo para dos personas: funeral, dos cremaciones "
-            "y el columbario permanente. Y puede pagarse en hasta 120 meses.»"
+            "\"Es una inversión alta.\" → \"Incluye todo para dos personas: funeral, dos cremaciones "
+            "y el columbario permanente. Y puede pagarse en hasta 120 meses.\""
         ),
         "tip": "Si el presupuesto no alcanza para la ubicación definida, ofrezca la ubicación a futuro: el mismo producto, a menor precio.",
     },
@@ -467,19 +467,19 @@ PRODUCTOS_EXISTENTES = [
         ],
         "para_quien": "Familias que ya tienen la cremación resuelta y buscan un lugar permanente y elegante para las cenizas.",
         "speech": (
-            "«Las cenizas de su ser querido merecen un lugar propio y permanente. En El Hogar de "
+            "\"Las cenizas de su ser querido merecen un lugar propio y permanente. En El Hogar de "
             "las Memorias, el columbario de mármol o cristal guarda hasta dos urnas en un espacio "
-            "sereno, donde la familia siempre podrá volver.»"
+            "sereno, donde la familia siempre podrá volver.\""
         ),
         "preguntas": [
             "¿Las cenizas están hoy en casa o en un columbario temporal?",
             "¿Prefieren el mármol o el cristal?",
             "¿Pensarían en un espacio para dos personas de la familia?",
         ],
-        "cierre": "«¿Visitamos El Hogar de las Memorias para que elija la fila y el nivel?»",
+        "cierre": "\"¿Visitamos El Hogar de las Memorias para que elija la fila y el nivel?\"",
         "objecion": (
-            "«Ya tengo las cenizas en casa.» → «Es natural tenerlas cerca. En el columbario quedan "
-            "protegidas para siempre y toda la familia puede visitarlas.»"
+            "\"Ya tengo las cenizas en casa.\" → \"Es natural tenerlas cerca. En el columbario quedan "
+            "protegidas para siempre y toda la familia puede visitarlas.\""
         ),
         "tip": "Es el destino natural al terminar los 12 meses de columbario temporal de la Solución Modular.",
     },
@@ -505,17 +505,17 @@ PRODUCTOS_EXISTENTES = [
         ],
         "para_quien": "Familias que buscan exclusividad y una piedra natural de alta gama para el homenaje.",
         "speech": (
-            "«El ónix es una piedra natural única: su luz y sus tonos cálidos hacen de cada espacio "
-            "un lugar de paz. Es un homenaje distinto, a la altura de quien usted ama.»"
+            "\"El ónix es una piedra natural única: su luz y sus tonos cálidos hacen de cada espacio "
+            "un lugar de paz. Es un homenaje distinto, a la altura de quien usted ama.\""
         ),
         "preguntas": [
             "¿Qué tipo de homenaje imagina para su familia?",
             "¿Sería para dos personas o para la familia completa?",
         ],
-        "cierre": "«¿Le muestro el columbario de ónix para que vea la piedra en persona?»",
+        "cierre": "\"¿Le muestro el columbario de ónix para que vea la piedra en persona?\"",
         "objecion": (
-            "«Hay opciones más baratas.» → «Sí, y con gusto se las muestro. El ónix es para quien "
-            "busca algo único: una piedra natural que no se repite.»"
+            "\"Hay opciones más baratas.\" → \"Sí, y con gusto se las muestro. El ónix es para quien "
+            "busca algo único: una piedra natural que no se repite.\""
         ),
         "tip": "Muestre la piedra en persona: la luz del ónix se aprecia mejor que en cualquier foto.",
     },
@@ -541,18 +541,18 @@ PRODUCTOS_EXISTENTES = [
         ],
         "para_quien": "Familias de fe que desean un legado único y de máxima exclusividad.",
         "speech": (
-            "«Este columbario es una obra de arte de fe: la tapa de ónix con imagen religiosa "
+            "\"Este columbario es una obra de arte de fe: la tapa de ónix con imagen religiosa "
             "convierte el lugar de descanso de su familia en un espacio de oración y "
-            "contemplación, para generaciones.»"
+            "contemplación, para generaciones.\""
         ),
         "preguntas": [
             "¿Qué lugar tiene la fe en la forma en que su familia recuerda?",
             "¿Cuántos miembros de la familia lo considerarían?",
         ],
-        "cierre": "«¿Reservamos hoy el espacio familiar con el precio de noviembre?»",
+        "cierre": "\"¿Reservamos hoy el espacio familiar con el precio de noviembre?\"",
         "objecion": (
-            "«Es muy caro.» → «Es un legado para cuatro personas, para siempre, y puede pagarse en "
-            "hasta 120 meses. Es la opción más exclusiva del portafolio.»"
+            "\"Es muy caro.\" → \"Es un legado para cuatro personas, para siempre, y puede pagarse en "
+            "hasta 120 meses. Es la opción más exclusiva del portafolio.\""
         ),
         "tip": "Preséntelo con calma y en persona; no lo ofrezca a quien busca la opción más económica.",
     },
@@ -580,18 +580,18 @@ PRODUCTOS_EXISTENTES = [
         ],
         "para_quien": "Familias que buscan la opción más accesible de cremación con columbario permanente, para 2 o 4 personas.",
         "speech": (
-            "«Bella Vista resuelve en un solo paso la cremación y el lugar de descanso: un "
+            "\"Bella Vista resuelve en un solo paso la cremación y el lugar de descanso: un "
             "columbario de cristal en nuestro mausoleo vertical, para dos o cuatro personas, con "
-            "todo el proceso incluido.»"
+            "todo el proceso incluido.\""
         ),
         "preguntas": [
             "¿Lo considera para dos personas o para la familia?",
             "¿Prefieren elegir ya la ubicación o dejarla a futuro?",
         ],
-        "cierre": "«¿Aprovechamos el precio de noviembre y lo dejamos resuelto hoy?»",
+        "cierre": "\"¿Aprovechamos el precio de noviembre y lo dejamos resuelto hoy?\"",
         "objecion": (
-            "«Prefiero un jardín.» → «Perfecto, también tenemos los Jardines de Cenizas. Bella Vista "
-            "es para quien prefiere un columbario, con la cremación ya incluida.»"
+            "\"Prefiero un jardín.\" → \"Perfecto, también tenemos los Jardines de Cenizas. Bella Vista "
+            "es para quien prefiere un columbario, con la cremación ya incluida.\""
         ),
         "tip": "Es la puerta de entrada a los columbarios: cremación y destino final desde US$ 1.105 en noviembre.",
     },
@@ -601,49 +601,49 @@ PRODUCTOS_EXISTENTES = [
 # 05 · Objeciones
 # ---------------------------------------------------------------------------
 METODO_OBJECIONES = [
-    ("Validar", "Reconocer la emoción: «Entiendo, es una decisión importante.»"),
+    ("Validar", "Reconocer la emoción: \"Entiendo, es una decisión importante.\""),
     ("Reposicionar", "Mostrar el valor desde otro ángulo, sin discutir."),
     ("Avanzar", "Proponer un siguiente paso concreto y amable."),
 ]
 
 OBJECIONES = [
-    ("«No quiero pensar en eso, es de mala suerte.»",
+    ("\"No quiero pensar en eso, es de mala suerte.\"",
      "Entiendo, a nadie le gusta hablar de este tema.",
      "Planificar con calma es justamente lo que evita que su familia tenga que decidir "
      "en el peor momento. Es un acto de cuidado, no de pesimismo.",
      "¿Le dejo la información para que la conversen en casa?"),
-    ("«Soy católico, la cremación no está permitida.»",
+    ("\"Soy católico, la cremación no está permitida.\"",
      "Su fe es muy importante y la respetamos.",
      "La Iglesia Católica permite la cremación desde 1963. Lo que pide es que las cenizas "
      "reposen en un lugar dedicado, como el cementerio, y no en casa ni dispersas. "
      "Nuestros jardines cumplen exactamente con eso.",
      "¿Le gustaría conocer el jardín y ver cómo es el lugar?"),
-    ("«Prefiero la sepultura tradicional.»",
+    ("\"Prefiero la sepultura tradicional.\"",
      "Es una tradición muy valiosa.",
      "El jardín conserva lo esencial de la sepultura: un lugar con nombre para visitar, "
      "con un costo mucho menor y en un entorno natural.",
      "¿Le muestro la diferencia de inversión entre ambas opciones?"),
-    ("«Está caro.»",
+    ("\"Está caro.\"",
      "Comprendo, es una inversión.",
      "En la urgencia los costos son mayores y se pagan de golpe. Hoy fija el precio y lo "
      "paga en cuotas: la Solución Modular se paga en hasta 120 meses.",
      "¿Le resulta más cómodo pagarlo en cuotas mensuales?"),
-    ("«Tengo que hablarlo con mi familia.»",
+    ("\"Tengo que hablarlo con mi familia.\"",
      "Claro, es una decisión de familia.",
      "Facilite esa conversación: ofrezca un resumen simple y quedar disponible para "
      "resolver dudas de todos juntos.",
      "¿Puedo llamarle el [día] para ver si quedó alguna pregunta?"),
-    ("«Prefiero tener las cenizas en casa.»",
+    ("\"Prefiero tener las cenizas en casa.\"",
      "Es natural querer tenerlas cerca.",
      "En el jardín toda la familia puede visitarlas, quedan protegidas ante mudanzas o "
      "cambios, y tienen un lugar con su nombre.",
      "¿Le gustaría visitar el jardín antes de decidir?"),
-    ("«¿Por qué pagar mantenimiento cada año?»",
+    ("\"¿Por qué pagar mantenimiento cada año?\"",
      "Es una pregunta muy válida.",
      "La cuota (US$ 15 o US$ 24 al año) mantiene el jardín siempre cuidado: poda, riego "
      "y limpieza. Es lo que garantiza que el lugar luzca digno en cada visita.",
      "¿Le explico qué incluye el cuidado del jardín?"),
-    ("«No confío en estos planes.»",
+    ("\"No confío en estos planes.\"",
      "Es una preocupación válida.",
      "Somos La Auxiliadora, Hogar de las Memorias y Las Colinas, empresas de Vangrupo con trayectoria "
      "en El Salvador. El contrato es transparente y puede visitar el jardín cuando quiera.",
@@ -738,7 +738,7 @@ COMISION_CUIDADO = (
 HERRAMIENTAS = [
     ("Ficha Técnica de Cremación", "Precios, especificaciones y condiciones vigentes de cada producto."),
     ("Visita al jardín", "La herramienta de venta más poderosa. Agende siempre que sea posible."),
-    ("Presentación «Jardines de Cenizas»", "Fotos y medidas de cada jardín para mostrar en la visita o en la casa."),
+    ("Presentación \"Jardines de Cenizas\"", "Fotos y medidas de cada jardín para mostrar en la visita o en la casa."),
     ("Plazo de pago", "Comunique que se paga en hasta 120 meses con intereses; no prometa un valor de cuota."),
     ("Registro de contactos", "Un contacto no registrado no existe: sin datos no hay gestión ni comisión."),
 ]

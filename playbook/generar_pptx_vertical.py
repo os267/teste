@@ -72,7 +72,7 @@ def portada(prs):
           size=60, bold=True, color=BLANCO, font=TITULOS, interlineado=0.95, espacio=0)
     texto(s, MX + Inches(0.1), Inches(6.05), ANCHO, Inches(1.0), C.SUBTITULO, size=22, color="F1ECF7", font=TITULOS)
     caja(s, MX + Inches(0.15), Inches(7.25), Inches(1.4), Inches(0.06), fondo=DORADO)
-    texto(s, MX + Inches(0.1), Inches(7.5), ANCHO, Inches(0.9), f"«{C.LEMA}»", size=16, italic=True,
+    texto(s, MX + Inches(0.1), Inches(7.5), ANCHO, Inches(0.9), f"\"{C.LEMA}\"", size=16, italic=True,
           color=BLANCO, font=TITULOS)
     texto(s, MX + Inches(0.1), Inches(9.9), ANCHO, Inches(0.4), C.MARCAS, size=12, bold=True, color=DORADO)
     texto(s, MX + Inches(0.1), Inches(10.3), ANCHO, Inches(0.4), C.VERSION, size=10, color=P.TINTE)
@@ -242,8 +242,8 @@ def objeciones(prs, n, desde, hasta, con_metodo):
         texto(s, MX + Inches(0.15), y, ANCHO - Inches(0.3), Inches(0.45), f"{i}.  {obj}", size=12, bold=True,
               color=BLANCO, ancla=MSO_ANCHOR.MIDDLE)
         x = MX
-        for k, (letra, nombre, txt) in enumerate((("V", "Validar", f"«{val}»"), ("R", "Reposicionar", rep),
-                                                   ("A", "Avanzar", f"«{ava}»"))):
+        for k, (letra, nombre, txt) in enumerate((("V", "Validar", f"\"{val}\""), ("R", "Reposicionar", rep),
+                                                   ("A", "Avanzar", f"\"{ava}\""))):
             caja(s, x, y + Inches(0.5), anchos[k], Inches(1.75), fondo=CLARO)
             texto(s, x + Inches(0.1), y + Inches(0.55), anchos[k] - Inches(0.2), Inches(1.68), [
                 [(f"{letra}  ", {"font": TITULOS, "size": 14, "bold": True, "color": DORADO}),
@@ -336,7 +336,7 @@ def herramientas(prs, n):
 
 def cierre(prs):
     s = nueva(prs, AZUL)
-    texto(s, Inches(0.8), Inches(2.4), W - Inches(1.6), Inches(3.6), f"«{C.CIERRE_FRASE}»", size=26, italic=True,
+    texto(s, Inches(0.8), Inches(2.4), W - Inches(1.6), Inches(3.6), f"\"{C.CIERRE_FRASE}\"", size=26, italic=True,
           color=BLANCO, font=TITULOS, alinear=PP_ALIGN.CENTER, ancla=MSO_ANCHOR.MIDDLE)
     caja(s, (W - Inches(1.4)) // 2, Inches(6.3), Inches(1.4), Inches(0.06), fondo=DORADO)
     texto(s, MX, Inches(6.6), ANCHO, Inches(0.5), C.MARCAS, size=13, bold=True, color=DORADO, alinear=PP_ALIGN.CENTER)

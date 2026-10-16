@@ -179,7 +179,7 @@ def portada(prs):
     texto(s, MX + Inches(0.2), Inches(2.8), Inches(11), Inches(0.7), C.SUBTITULO,
           size=26, color="F1ECF7", font=TITULOS)
     caja(s, MX + Inches(0.25), Inches(3.65), Inches(1.4), Inches(0.06), fondo=DORADO)
-    texto(s, MX + Inches(0.2), Inches(3.9), Inches(11), Inches(0.5), f"«{C.LEMA}»",
+    texto(s, MX + Inches(0.2), Inches(3.9), Inches(11), Inches(0.5), f"\"{C.LEMA}\"",
           size=16, italic=True, color=BLANCO, font=TITULOS)
     # espacios para logos (reemplazar en Canva)
     ancho, alto, gap = Inches(3.3), Inches(1.15), Inches(0.35)
@@ -376,8 +376,8 @@ def objeciones(prs, n0):
             texto(s, MX + Inches(0.2), y, W - 2 * MX - Inches(0.4), Inches(0.55), f"{i + j + 1}.  {obj}",
                   size=15, bold=True, color=BLANCO, ancla=MSO_ANCHOR.MIDDLE)
             w = Inches(3.95)
-            for k, (letra, nombre, txt) in enumerate((("V", "Validar", f"«{val}»"), ("R", "Reposicionar", rep),
-                                                       ("A", "Avanzar", f"«{ava}»"))):
+            for k, (letra, nombre, txt) in enumerate((("V", "Validar", f"\"{val}\""), ("R", "Reposicionar", rep),
+                                                       ("A", "Avanzar", f"\"{ava}\""))):
                 x = MX + k * (w + Inches(0.15))
                 caja(s, x, y + Inches(0.62), w, Inches(1.8), fondo=CLARO)
                 texto(s, x + Inches(0.15), y + Inches(0.66), w - Inches(0.3), Inches(1.74), [
@@ -471,7 +471,7 @@ def herramientas(prs, n):
 def cierre(prs):
     s = nueva(prs, AZUL)
     caja(s, 0, H - Inches(0.25), W, Inches(0.25), fondo=DORADO)
-    texto(s, Inches(1.5), Inches(1.7), W - Inches(3), Inches(2.8), f"«{C.CIERRE_FRASE}»", size=30, italic=True,
+    texto(s, Inches(1.5), Inches(1.7), W - Inches(3), Inches(2.8), f"\"{C.CIERRE_FRASE}\"", size=30, italic=True,
           color=BLANCO, font=TITULOS, alinear=PP_ALIGN.CENTER, ancla=MSO_ANCHOR.MIDDLE)
     caja(s, (W - Inches(1.4)) // 2, Inches(4.7), Inches(1.4), Inches(0.06), fondo=DORADO)
     texto(s, Inches(1.5), Inches(5.0), W - Inches(3), Inches(0.5), C.MARCAS, size=15, bold=True,
@@ -505,7 +505,7 @@ def main():
     for p in C.PRODUCTOS_EXISTENTES:
         producto_a(prs, n, p); n += 1
         producto_b(prs, n, p); n += 1
-    separador(prs, n, "05", "Manejo de objeciones", "Una objeción no es un «no»: es una duda que aún no resolvimos."); n += 1
+    separador(prs, n, "05", "Manejo de objeciones", "Una objeción no es un \"no\": es una duda que aún no resolvimos."); n += 1
     figura_slide(prs, n, "05 · Manejo de objeciones", "El método V·R·A", "04_objeciones"); n += 1
     n = objeciones(prs, n)
     separador(prs, n, "06", "Precios, reglas y condiciones", "Transparencia desde la primera conversación."); n += 1

@@ -388,7 +388,7 @@ def portada(doc):
     p.paragraph_format.space_before = Pt(18)
     run(p, C.MARCAS, size=10.5, bold=True, color=DORADO)
     parrafo(doc, despues=30)
-    parrafo(doc, f"«{C.LEMA}»", size=15, italic=True, color=AZUL, font=TITULOS,
+    parrafo(doc, f"\"{C.LEMA}\"", size=15, italic=True, color=AZUL, font=TITULOS,
             alinear=WD_ALIGN_PARAGRAPH.CENTER, despues=60)
     parrafo(doc, C.VERSION, size=9, color=GRIS, alinear=WD_ALIGN_PARAGRAPH.CENTER)
     salto(doc)
@@ -531,7 +531,7 @@ def s04(doc):
 
 def s05(doc):
     seccion(doc, "05", "Manejo de objeciones",
-            "Una objeción no es un «no»: es una duda que aún no resolvimos.")
+            "Una objeción no es un \"no\": es una duda que aún no resolvimos.")
     figura(doc, "04_objeciones", pie="Figura 6 · Método V·R·A: Validar, Reposicionar, Avanzar.")
     for i, (obj, val, rep, ava) in enumerate(C.OBJECIONES, start=1):
         t = tabla_simple(doc, 4, 2, [Cm(3.2), Cm(13.8)])
@@ -547,7 +547,7 @@ def s05(doc):
             p0 = primer_parrafo(c0)
             run(p0, f"{letra}  ", size=12, bold=True, color=DORADO, font=TITULOS)
             run(p0, nombre, size=9, bold=True, color=AZUL)
-            texto = texto if letra == "R" else f"«{texto}»"
+            texto = texto if letra == "R" else f"\"{texto}\""
             run(primer_parrafo(c1), texto, size=10, italic=(letra != "R"))
         parrafo(doc, despues=6)
     salto(doc)

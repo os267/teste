@@ -1,5 +1,5 @@
 """
-Paleta del Playbook tomada de los logos de las marcas del grupo (hex sin «#»).
+Paleta del Playbook tomada de los logos de las marcas del grupo (hex sin \"#\").
 
 - PRINCIPAL / PRINCIPAL_O: morado de La Auxiliadora.
 - ACENTO / ACENTO_B: dorado arena del ornamento de La Auxiliadora.

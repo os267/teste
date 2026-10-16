@@ -194,7 +194,7 @@ def portada():
              + p(span(C.SUBTITULO, 16, "#E8EDF3", font=TIT), despues=14)
              + p(span(C.MARCAS, 10.5, DORADO, True), despues=0))
     h += tabla([[(banda, bg(AZUL) + f"padding:24pt;border-bottom:5pt solid {DORADO}")]])
-    h += p(span(f"«{C.LEMA}»", 15, AZUL, italic=True, font=TIT), "center", antes=24, despues=40)
+    h += p(span(f"\"{C.LEMA}\"", 15, AZUL, italic=True, font=TIT), "center", antes=24, despues=40)
     h += p(span(C.VERSION, 9, GRIS), "center")
     return h + salto()
 
@@ -275,10 +275,10 @@ def s04():
 
 
 def s05():
-    h = seccion("05", "Manejo de objeciones", "Una objeción no es un «no»: es una duda que aún no resolvimos.") + fig_vra()
+    h = seccion("05", "Manejo de objeciones", "Una objeción no es un \"no\": es una duda que aún no resolvimos.") + fig_vra()
     for i, (obj, val, rep, ava) in enumerate(C.OBJECIONES, start=1):
         filas = [[(p(span(f"{i}.  {obj}", 11, "#FFFFFF", True), despues=0), bg(AZUL)), ("", bg(AZUL))]]
-        for letra, nombre, txt in (("V", "Validar", f"«{val}»"), ("R", "Reposicionar", rep), ("A", "Avanzar", f"«{ava}»")):
+        for letra, nombre, txt in (("V", "Validar", f"\"{val}\""), ("R", "Reposicionar", rep), ("A", "Avanzar", f"\"{ava}\"")):
             filas.append([(p(span(letra + "  ", 12, DORADO, True, font=TIT) + span(nombre, 9, AZUL, True), despues=0),
                            bg(CLARO) + "border-bottom:1pt solid #D9DEE4"),
                           (p(span(txt, 10, italic=(letra != "R")), despues=0), "border-bottom:1pt solid #D9DEE4")])
