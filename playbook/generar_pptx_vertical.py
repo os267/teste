@@ -177,7 +177,7 @@ def producto(prs, n, p):
     texto(s, MX, Inches(0.55), Inches(4.6), Inches(0.95), p["nombre"], size=21, bold=True, color=BLANCO,
           font=TITULOS, interlineado=1.0)
     texto(s, Inches(5.1), Inches(0.25), Inches(2.62), Inches(0.3),
-          "PRÓXIMO LANZAMIENTO" if proximo else "PRECIO SUGERIDO", size=9.5, bold=True, color=DORADO,
+          "PRÓXIMO LANZAMIENTO" if proximo else p.get("etiqueta_precio", "PRECIO SUGERIDO"), size=9.5, bold=True, color=DORADO,
           alinear=PP_ALIGN.RIGHT)
     texto(s, Inches(5.1), Inches(0.55), Inches(2.62), Inches(0.95), p["precio"],
           size=26 if len(p["precio"]) <= 10 else 19, bold=True, color=BLANCO, alinear=PP_ALIGN.RIGHT,
@@ -270,6 +270,23 @@ def precios(prs, n):
     pie(s, n)
 
 
+def precios_existentes(prs, n):
+    s = nueva(prs)
+    encabezado(s, "06 · Precios, reglas y condiciones", "Portafolio existente: columbarios",
+               "Descuento de 15% válido en Finados y durante noviembre.")
+    texto(s, MX, Inches(2.15), ANCHO, Inches(1.2), C.INTRO_EXISTENTES, size=11.5)
+    tabla(s, MX, Inches(3.4), ANCHO, ["Producto", "Precio", "Finados y nov. (−15%)", "Capac.", "Incluye"],
+          [list(f) for f in C.TABLA_PRECIOS_EXISTENTES], [1.5, 2.2, 1.9, 0.9, 1.6], size=9.5,
+          alto_fila=Inches(0.8))
+    caja(s, MX, Inches(8.45), ANCHO, Inches(1.5), fondo=CREMA)
+    caja(s, MX, Inches(8.45), Inches(0.08), Inches(1.5), fondo=DORADO)
+    texto(s, MX + Inches(0.3), Inches(8.45), ANCHO - Inches(0.5), Inches(1.5),
+          [[("UBICACIÓN DEFINIDA O A FUTURO   ", {"bold": True, "color": AZUL, "size": 10}),
+            (C.UBICACION_DEFINIDA_FUTURO, {"size": 11})],
+           [(C.NOTA_EXISTENTES, {"size": 10, "italic": True, "color": GRIS})]], ancla=MSO_ANCHOR.MIDDLE, espacio=6)
+    pie(s, n)
+
+
 def reglas(prs, n):
     s = nueva(prs)
     encabezado(s, "06 · Precios, reglas y condiciones", "Reglas comerciales")
@@ -338,9 +355,11 @@ def main():
         producto(prs, n, p); n += 1
         if p["corto"] == "Jardín Ecológico":
             ciclo(prs, n); n += 1
+    for p in C.PRODUCTOS_EXISTENTES:
+        producto(prs, n, p); n += 1
     for desde, hasta, metodo in ((0, 2, True), (2, 5, False), (5, 8, False)):
         objeciones(prs, n, desde, hasta, metodo); n += 1
-    for f in (precios, reglas, comisiones, comisiones_reglas, herramientas):
+    for f in (precios, precios_existentes, reglas, comisiones, comisiones_reglas, herramientas):
         f(prs, n); n += 1
     cierre(prs)
     SALIDA.parent.mkdir(exist_ok=True)

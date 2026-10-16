@@ -468,7 +468,7 @@ def ficha_producto(doc, p):
     run(izq.add_paragraph(), p["nombre"], size=18, bold=True, color="FFFFFF", font=TITULOS)
     pd = primer_parrafo(der)
     pd.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run(pd, "PRÓXIMO LANZAMIENTO" if proximo else "PRECIO SUGERIDO", size=8.5, bold=True, color=DORADO)
+    run(pd, "PRÓXIMO LANZAMIENTO" if proximo else p.get("etiqueta_precio", "PRECIO SUGERIDO"), size=8.5, bold=True, color=DORADO)
     pd2 = der.add_paragraph()
     pd2.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     run(pd2, p["precio"], size=18, bold=True, color="FFFFFF")
@@ -519,6 +519,14 @@ def s04(doc):
             figura(doc, "06_ciclo_ecologico", pie="Figura 5 · El ciclo de 3 años del Jardín Ecológico "
                                                   "y de Mascotas, explicado al cliente.")
     salto(doc)
+    subtitulo(doc, "Portafolio existente: columbarios (−15% en Finados y noviembre)", antes=0)
+    parrafo(doc, C.INTRO_EXISTENTES, despues=6)
+    recuadro(doc, "Ubicación definida o a futuro", C.UBICACION_DEFINIDA_FUTURO, fondo=CREMA)
+    for i, p in enumerate(C.PRODUCTOS_EXISTENTES):
+        if i:
+            salto(doc)
+        ficha_producto(doc, p)
+    salto(doc)
 
 
 def s05(doc):
@@ -551,6 +559,10 @@ def s06(doc):
     tabla_datos(doc, ["Producto", "Precio", "Forma de pago", "Mantenimiento", "Plazo / condición"],
                 [list(f) for f in C.TABLA_PRECIOS], [Cm(3.4), Cm(2.6), Cm(4), Cm(2.8), Cm(4.2)],
                 resaltar=lambda f: f[0] == "Jardín Ceremonial")
+    subtitulo(doc, "Portafolio existente: columbarios")
+    tabla_datos(doc, ["Producto", "Precio", "Finados y noviembre (−15%)", "Capacidad", "Incluye"],
+                [list(f) for f in C.TABLA_PRECIOS_EXISTENTES], [Cm(2.8), Cm(4.4), Cm(4), Cm(2), Cm(3.8)])
+    parrafo(doc, C.NOTA_EXISTENTES, size=9.5, italic=True, color=GRIS, antes=4, despues=6)
     subtitulo(doc, "Reglas comerciales")
     tabla_datos(doc, ["Tema", "Regla"], [list(r) for r in C.REGLAS_COMERCIALES], [Cm(4), Cm(13)])
     recuadro(doc, "El descuento no es la salida", C.DESCUENTO_NO_ES_SALIDA, fondo=CREMA)
@@ -565,8 +577,8 @@ def s07(doc):
              fondo=CREMA, borde="B8860B", color_titulo="B8860B")
     figura(doc, "05_comisiones", pie="Figura 7 · Comisión por venta (8% sobre el precio sin IVA).")
     tabla_datos(doc, ["Producto", "%", "Comisión (sin IVA)", "Cuándo se paga", "Estorno"],
-                [list(f) for f in C.COMISIONES], [Cm(3.4), Cm(1.4), Cm(2.6), Cm(5.6), Cm(4)],
-                resaltar=lambda f: f[0] == "Jardín Ceremonial")
+                [list(f) for f in C.COMISIONES + [C.COMISION_EXISTENTES]], [Cm(3.4), Cm(1.4), Cm(2.6), Cm(5.6), Cm(4)],
+                resaltar=lambda f: f[0] in ("Jardín Ceremonial", "Portafolio existente (columbarios)"))
     subtitulo(doc, "Reglas de comisión")
     vinetas(doc, C.REGLAS_COMISION)
     parrafo(doc, despues=4)

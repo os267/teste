@@ -320,7 +320,7 @@ def producto_a(prs, n, p):
     texto(s, MX, Inches(0.28), Inches(8.5), Inches(0.35), p["etiqueta"].upper(), size=11, bold=True, color=DORADO)
     texto(s, MX, Inches(0.6), Inches(8.5), Inches(0.9), p["nombre"], size=30, bold=True, color=BLANCO, font=TITULOS)
     texto(s, Inches(8.8), Inches(0.28), Inches(3.95), Inches(0.35),
-          "PRÓXIMO LANZAMIENTO" if proximo else "PRECIO SUGERIDO", size=11, bold=True, color=DORADO,
+          "PRÓXIMO LANZAMIENTO" if proximo else p.get("etiqueta_precio", "PRECIO SUGERIDO"), size=11, bold=True, color=DORADO,
           alinear=PP_ALIGN.RIGHT)
     texto(s, Inches(8.8), Inches(0.6), Inches(3.95), Inches(0.9), p["precio"],
           size=32 if len(p["precio"]) <= 10 else 24, bold=True, ancla=MSO_ANCHOR.MIDDLE,
@@ -401,6 +401,19 @@ def precios(prs, n):
     texto(s, MX + Inches(0.25), Inches(6.2), W - 2 * MX - Inches(0.5), Inches(0.6),
           [[("EL DESCUENTO NO ES LA SALIDA   ", {"bold": True, "color": AZUL, "size": 10.5}),
             (C.DESCUENTO_NO_ES_SALIDA, {"size": 11})]], ancla=MSO_ANCHOR.MIDDLE)
+    pie(s, n)
+
+
+def precios_existentes(prs, n):
+    s = nueva(prs)
+    encabezado(s, "06 · Precios, reglas y condiciones", "Portafolio existente: columbarios",
+               "Descuento de 15% válido en Finados y durante noviembre. Pago único o hasta 120 meses, con intereses.")
+    tabla(s, MX, Inches(2.2), W - 2 * MX, ["Producto", "Precio", "Finados y noviembre (−15%)", "Capacidad", "Incluye"],
+          [list(f) for f in C.TABLA_PRECIOS_EXISTENTES], [2.0, 3.6, 3.0, 1.4, 2.8], size=12, alto_fila=Inches(0.62))
+    caja(s, MX, Inches(6.2), W - 2 * MX, Inches(0.6), fondo=CREMA)
+    texto(s, MX + Inches(0.25), Inches(6.2), W - 2 * MX - Inches(0.5), Inches(0.6),
+          [[("UBICACIÓN DEFINIDA O A FUTURO   ", {"bold": True, "color": AZUL, "size": 10.5}),
+            (C.UBICACION_DEFINIDA_FUTURO, {"size": 11})]], ancla=MSO_ANCHOR.MIDDLE)
     pie(s, n)
 
 
@@ -488,11 +501,16 @@ def main():
         if p["corto"] == "Jardín Ecológico":
             figura_slide(prs, n, "04 · Jardín Ecológico y de Mascotas", "Cómo explicar el ciclo de 3 años",
                          "06_ciclo_ecologico"); n += 1
+    separador(prs, n, "04", "Portafolio existente: columbarios", C.INTRO_EXISTENTES); n += 1
+    for p in C.PRODUCTOS_EXISTENTES:
+        producto_a(prs, n, p); n += 1
+        producto_b(prs, n, p); n += 1
     separador(prs, n, "05", "Manejo de objeciones", "Una objeción no es un «no»: es una duda que aún no resolvimos."); n += 1
     figura_slide(prs, n, "05 · Manejo de objeciones", "El método V·R·A", "04_objeciones"); n += 1
     n = objeciones(prs, n)
     separador(prs, n, "06", "Precios, reglas y condiciones", "Transparencia desde la primera conversación."); n += 1
     precios(prs, n); n += 1
+    precios_existentes(prs, n); n += 1
     reglas(prs, n); n += 1
     separador(prs, n, "07", "Política de comisiones", "La comisión premia la venta buena, no solo la venta."); n += 1
     comisiones(prs, n); n += 1

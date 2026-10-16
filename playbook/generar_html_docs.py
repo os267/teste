@@ -239,7 +239,7 @@ def ficha(pr):
     prox = pr.get("proximo")
     izq = (p(span(pr["etiqueta"].upper(), 8.5, DORADO, True), despues=2)
            + p(span(pr["nombre"], 17, "#FFFFFF", True, font=TIT), despues=0))
-    der = (p(span("PRÓXIMO LANZAMIENTO" if prox else "PRECIO SUGERIDO", 8.5, DORADO, True), "right", despues=2)
+    der = (p(span("PRÓXIMO LANZAMIENTO" if prox else pr.get("etiqueta_precio", "PRECIO SUGERIDO"), 8.5, DORADO, True), "right", despues=2)
            + p(span(pr["precio"], 17, "#FFFFFF", True), "right", despues=0))
     fondo = "#8A8F98" if prox else AZUL
     h = tabla([[(izq, bg(fondo) + f"border-bottom:4pt solid {DORADO};padding:10pt 12pt"),
@@ -267,6 +267,10 @@ def s04():
         h += (salto() if i else "") + ficha(pr)
         if pr["corto"] == "Jardín Ecológico":
             h += fig_ciclo()
+    h += salto() + sub("Portafolio existente: columbarios (−15% en Finados y noviembre)")
+    h += p(span(C.INTRO_EXISTENTES)) + caja("Ubicación definida o a futuro", C.UBICACION_DEFINIDA_FUTURO, fondo=CREMA)
+    for i, pr in enumerate(C.PRODUCTOS_EXISTENTES):
+        h += (salto() if i else "") + ficha(pr)
     return h + salto()
 
 
@@ -287,6 +291,10 @@ def s06():
     h += tabla_datos(["Producto", "Precio", "Forma de pago", "Mantenimiento", "Plazo / condición"],
                      [list(f) for f in C.TABLA_PRECIOS], ["20%", "15%", "24%", "16%", "25%"],
                      resaltar=lambda f: f[0] == "Jardín Ceremonial")
+    h += sub("Portafolio existente: columbarios")
+    h += tabla_datos(["Producto", "Precio", "Finados y noviembre (−15%)", "Capacidad", "Incluye"],
+                     [list(f) for f in C.TABLA_PRECIOS_EXISTENTES], ["17%", "27%", "24%", "11%", "21%"])
+    h += p(span(C.NOTA_EXISTENTES, 9.5, GRIS, italic=True), antes=4)
     h += sub("Reglas comerciales") + tabla_datos(["Tema", "Regla"], [list(r) for r in C.REGLAS_COMERCIALES], ["24%", "76%"])
     return h + caja("El descuento no es la salida", C.DESCUENTO_NO_ES_SALIDA, fondo=CREMA) + salto()
 
@@ -296,8 +304,9 @@ def s07():
     h += caja("Comisión única de 8%", "Todos los productos comisionan 8% sobre el precio sin IVA. "
               "Confirmar con la Gerencia Comercial antes de aplicar.", fondo=CREMA, borde="#B8860B", color_t="#B8860B")
     h += fig_comisiones()
-    h += tabla_datos(["Producto", "%", "Comisión (sin IVA)", "Cuándo se paga", "Estorno"], [list(f) for f in C.COMISIONES],
-                     ["20%", "8%", "15%", "33%", "24%"], resaltar=lambda f: f[0] == "Jardín Ceremonial")
+    h += tabla_datos(["Producto", "%", "Comisión (sin IVA)", "Cuándo se paga", "Estorno"], [list(f) for f in C.COMISIONES + [C.COMISION_EXISTENTES]],
+                     ["20%", "8%", "15%", "33%", "24%"],
+                     resaltar=lambda f: f[0] in ("Jardín Ceremonial", "Portafolio existente (columbarios)"))
     h += sub("Reglas de comisión") + "".join(p(span("■  ", 7.5, DORADO) + span(r), despues=3) for r in C.REGLAS_COMISION)
     return h + caja("Por qué la comisión está ligada al cobro", C.COMISION_CUIDADO) + salto()
 

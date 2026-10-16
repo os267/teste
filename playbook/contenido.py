@@ -174,7 +174,7 @@ PRODUCTOS = [
             "Cobertura individual: un módulo por titular o beneficiario.",
             "Debe estar pagado en su totalidad para usar la cremación y el columbario.",
             "El columbario temporal es por 12 meses; al término, la familia elige "
-            "destino final (oportunidad para ofrecer un Jardín de Cenizas).",
+            "destino final (oportunidad para ofrecer un Jardín de Cenizas o un columbario).",
         ],
         "para_quien": "Afiliados actuales y nuevos que quieren sumar la cremación con una cuota mínima.",
         "speech": (
@@ -390,6 +390,213 @@ PRODUCTOS = [
     },
 ]
 
+# Portafolio existente de columbarios (productos ya en venta; −15% en Finados y noviembre).
+# Fuente: Columbarios - Cremaciones (Drive Vangrupo).
+INTRO_EXISTENTES = (
+    "Además de los lanzamientos, el portafolio de cremación incluye los columbarios que ya "
+    "vendemos en El Hogar de las Memorias y en el mausoleo vertical Bella Vista. En Finados y "
+    "durante noviembre tienen 15% de descuento. Se pagan al contado o financiados en hasta "
+    "120 meses, con intereses."
+)
+
+UBICACION_DEFINIDA_FUTURO = (
+    "Ubicación definida: el nicho se elige al contratar. Ubicación a futuro: se compra hoy y "
+    "el nicho se asigna más adelante. El precio varía según la fila y el nivel."
+)
+
+PRODUCTOS_EXISTENTES = [
+    {
+        "nombre": "Columbario Supremo Plus",
+        "corto": "Supremo Plus",
+        "etiqueta": "Hogar de las Memorias · Funeral + cremación + columbario",
+        "etiqueta_precio": "PRECIO SEGÚN UBICACIÓN",
+        "precio": "US$ 2.700 – 3.900",
+        "pago": "Finados y noviembre (−15%): desde US$ 2.295 · Pago único o hasta 120 meses, con intereses",
+        "que_es": (
+            "La solución más completa: servicio funerario, dos cremaciones y un columbario "
+            "permanente de cristal o mármol para hasta dos urnas, en El Hogar de las Memorias."
+        ),
+        "incluye": [
+            "Columbario estándar permanente de cristal o mármol, para hasta 2 urnas",
+            "2 cremaciones con certificado y 2 urnas cinerarias básicas",
+            "Sala de velación 24 h, ataúd ceremonial y carroza tradicional",
+            "Traslados, preparación y resguardo hasta 5 días, y Programa Vive de acompañamiento en el duelo",
+        ],
+        "reglas": [
+            "Capacidad: hasta 2 urnas; incluye 2 cremaciones.",
+            "Ubicación definida: US$ 3.400 – 3.900. Ubicación a futuro: US$ 2.700 – 3.200 (según fila y nivel).",
+            "Velación en La Auxiliadora (Capilla Maquilishuat o Básica) o en Capillas Memoriales (Las Camelias o Básica).",
+        ],
+        "para_quien": "Familias que quieren resolver en una sola compra el funeral, la cremación y un lugar permanente para dos seres queridos.",
+        "speech": (
+            "«Con el Supremo Plus su familia no tendrá que coordinar nada: el servicio funerario, "
+            "la cremación y el lugar donde descansarán las cenizas quedan resueltos en un solo "
+            "contrato, para dos personas y para siempre.»"
+        ),
+        "preguntas": [
+            "¿Han pensado dónde quedarían las cenizas después de la cremación?",
+            "¿Lo considera para usted y su pareja, o para sus padres?",
+            "¿Prefiere elegir hoy el nicho o dejar la ubicación para más adelante?",
+        ],
+        "cierre": "«¿Aprovechamos el precio de noviembre y elegimos hoy la ubicación?»",
+        "objecion": (
+            "«Es una inversión alta.» → «Incluye todo para dos personas: funeral, dos cremaciones "
+            "y el columbario permanente. Y puede pagarse en hasta 120 meses.»"
+        ),
+        "tip": "Si el presupuesto no alcanza para la ubicación definida, ofrezca la ubicación a futuro: el mismo producto, a menor precio.",
+    },
+    {
+        "nombre": "Columbario Mármol o Cristal",
+        "corto": "Mármol o Cristal",
+        "etiqueta": "Hogar de las Memorias · Columbario",
+        "etiqueta_precio": "PRECIO SEGÚN UBICACIÓN",
+        "precio": "US$ 1.200 – 2.600",
+        "pago": "Finados y noviembre (−15%): desde US$ 1.020 · Pago único o hasta 120 meses, con intereses",
+        "que_es": (
+            "Columbario permanente de mármol o cristal en El Hogar de las Memorias: un espacio "
+            "elegante y sereno, de diseño atemporal, para las urnas de la familia."
+        ),
+        "incluye": [
+            "Espacio permanente en columbario de mármol o cristal",
+            "Capacidad estándar: hasta 2 urnas",
+            "Ubicación definida o a futuro, según la opción contratada",
+        ],
+        "reglas": [
+            "Solo columbario: la cremación se contrata aparte (por ejemplo, con la Solución Modular).",
+            "Ubicación definida: US$ 2.600. Ubicación a futuro: US$ 1.200 – 1.900 (según fila y nivel).",
+        ],
+        "para_quien": "Familias que ya tienen la cremación resuelta y buscan un lugar permanente y elegante para las cenizas.",
+        "speech": (
+            "«Las cenizas de su ser querido merecen un lugar propio y permanente. En El Hogar de "
+            "las Memorias, el columbario de mármol o cristal guarda hasta dos urnas en un espacio "
+            "sereno, donde la familia siempre podrá volver.»"
+        ),
+        "preguntas": [
+            "¿Las cenizas están hoy en casa o en un columbario temporal?",
+            "¿Prefieren el mármol o el cristal?",
+            "¿Pensarían en un espacio para dos personas de la familia?",
+        ],
+        "cierre": "«¿Visitamos El Hogar de las Memorias para que elija la fila y el nivel?»",
+        "objecion": (
+            "«Ya tengo las cenizas en casa.» → «Es natural tenerlas cerca. En el columbario quedan "
+            "protegidas para siempre y toda la familia puede visitarlas.»"
+        ),
+        "tip": "Es el destino natural al terminar los 12 meses de columbario temporal de la Solución Modular.",
+    },
+    {
+        "nombre": "Columbario Ónix",
+        "corto": "Columbario Ónix",
+        "etiqueta": "Hogar de las Memorias · Columbario premium",
+        "etiqueta_precio": "PRECIO SEGÚN MODALIDAD",
+        "precio": "US$ 3.100 / 5.000",
+        "pago": "Finados y noviembre (−15%): US$ 2.635 / US$ 4.250 · Pago único o hasta 120 meses, con intereses",
+        "que_es": (
+            "Columbario de ónix natural, una piedra de tonos cálidos y apariencia luminosa, para "
+            "un homenaje exclusivo y perdurable."
+        ),
+        "incluye": [
+            "Espacio permanente en columbario de ónix natural",
+            "Estándar: hasta 2 urnas, con ubicación definida (US$ 3.100)",
+            "Familiar: hasta 4 urnas, con ubicación a futuro (US$ 5.000)",
+        ],
+        "reglas": [
+            "Solo columbario: la cremación se contrata aparte.",
+            "Estándar (2 urnas) con ubicación definida; Familiar (4 urnas) con ubicación a futuro.",
+        ],
+        "para_quien": "Familias que buscan exclusividad y una piedra natural de alta gama para el homenaje.",
+        "speech": (
+            "«El ónix es una piedra natural única: su luz y sus tonos cálidos hacen de cada espacio "
+            "un lugar de paz. Es un homenaje distinto, a la altura de quien usted ama.»"
+        ),
+        "preguntas": [
+            "¿Qué tipo de homenaje imagina para su familia?",
+            "¿Sería para dos personas o para la familia completa?",
+        ],
+        "cierre": "«¿Le muestro el columbario de ónix para que vea la piedra en persona?»",
+        "objecion": (
+            "«Hay opciones más baratas.» → «Sí, y con gusto se las muestro. El ónix es para quien "
+            "busca algo único: una piedra natural que no se repite.»"
+        ),
+        "tip": "Muestre la piedra en persona: la luz del ónix se aprecia mejor que en cualquier foto.",
+    },
+    {
+        "nombre": "Columbario Obra de Arte",
+        "corto": "Obra de Arte",
+        "etiqueta": "Hogar de las Memorias · Columbario familiar exclusivo",
+        "etiqueta_precio": "PRECIO",
+        "precio": "US$ 12.500",
+        "pago": "Finados y noviembre (−15%): US$ 10.625 · Pago único o hasta 120 meses, con intereses",
+        "que_es": (
+            "Columbario familiar con tapa de ónix y obra de arte religiosa: una expresión única de "
+            "fe, memoria y belleza para toda una familia."
+        ),
+        "incluye": [
+            "Columbario familiar permanente para hasta 4 urnas",
+            "Tapa exclusiva de ónix con obra de arte religiosa",
+            "Ubicación definida",
+        ],
+        "reglas": [
+            "Capacidad: hasta 4 urnas (familiar).",
+            "Solo columbario: la cremación se contrata aparte.",
+        ],
+        "para_quien": "Familias de fe que desean un legado único y de máxima exclusividad.",
+        "speech": (
+            "«Este columbario es una obra de arte de fe: la tapa de ónix con imagen religiosa "
+            "convierte el lugar de descanso de su familia en un espacio de oración y "
+            "contemplación, para generaciones.»"
+        ),
+        "preguntas": [
+            "¿Qué lugar tiene la fe en la forma en que su familia recuerda?",
+            "¿Cuántos miembros de la familia lo considerarían?",
+        ],
+        "cierre": "«¿Reservamos hoy el espacio familiar con el precio de noviembre?»",
+        "objecion": (
+            "«Es muy caro.» → «Es un legado para cuatro personas, para siempre, y puede pagarse en "
+            "hasta 120 meses. Es la opción más exclusiva del portafolio.»"
+        ),
+        "tip": "Preséntelo con calma y en persona; no lo ofrezca a quien busca la opción más económica.",
+    },
+    {
+        "nombre": "Columbario Cristal · Bella Vista",
+        "corto": "Bella Vista",
+        "etiqueta": "Mausoleo vertical Bella Vista · Cremación + columbario",
+        "etiqueta_precio": "PRECIO SEGÚN UBICACIÓN",
+        "precio": "US$ 1.300 – 2.900",
+        "pago": "Finados y noviembre (−15%): desde US$ 1.105 · Pago único o hasta 120 meses, con intereses",
+        "que_es": (
+            "Columbario de cristal en el mausoleo vertical Bella Vista, dentro del cementerio, con "
+            "el proceso completo de cremación incluido."
+        ),
+        "incluye": [
+            "Columbario de cristal permanente (30 × 30 × 30 cm)",
+            "Estándar: 2 cremaciones y 2 urnas · Familiar: 4 cremaciones y 4 urnas",
+            "Traslados, preparación y resguardo hasta 5 días",
+            "Certificado de cremación y ceremonia privada de colocación",
+        ],
+        "reglas": [
+            "Estándar: ubicación definida US$ 1.800 · a futuro US$ 1.300.",
+            "Familiar: ubicación definida US$ 2.900 · a futuro US$ 2.300.",
+            "La cremación está incluida: no hace falta contratarla aparte.",
+        ],
+        "para_quien": "Familias que buscan la opción más accesible de cremación con columbario permanente, para 2 o 4 personas.",
+        "speech": (
+            "«Bella Vista resuelve en un solo paso la cremación y el lugar de descanso: un "
+            "columbario de cristal en nuestro mausoleo vertical, para dos o cuatro personas, con "
+            "todo el proceso incluido.»"
+        ),
+        "preguntas": [
+            "¿Lo considera para dos personas o para la familia?",
+            "¿Prefieren elegir ya la ubicación o dejarla a futuro?",
+        ],
+        "cierre": "«¿Aprovechamos el precio de noviembre y lo dejamos resuelto hoy?»",
+        "objecion": (
+            "«Prefiero un jardín.» → «Perfecto, también tenemos los Jardines de Cenizas. Bella Vista "
+            "es para quien prefiere un columbario, con la cremación ya incluida.»"
+        ),
+        "tip": "Es la puerta de entrada a los columbarios: cremación y destino final desde US$ 1.105 en noviembre.",
+    },
+]
+
 # ---------------------------------------------------------------------------
 # 05 · Objeciones
 # ---------------------------------------------------------------------------
@@ -460,9 +667,22 @@ TABLA_PRECIOS = [
     ("Jardín Ceremonial", "A definir", "A definir", "A definir", "Próximo lanzamiento"),
 ]
 
+TABLA_PRECIOS_EXISTENTES = [  # Producto, precio, Finados y noviembre (−15%), capacidad, incluye
+    ("Supremo Plus", "Definida US$ 3.400–3.900 · Futuro US$ 2.700–3.200", "US$ 2.890–3.315 · US$ 2.295–2.720", "2 urnas", "Funeral + 2 cremaciones + columbario"),
+    ("Mármol o Cristal", "Definida US$ 2.600 · Futuro US$ 1.200–1.900", "US$ 2.210 · US$ 1.020–1.615", "2 urnas", "Solo columbario"),
+    ("Columbario Ónix", "Estándar US$ 3.100 · Familiar US$ 5.000", "US$ 2.635 · US$ 4.250", "2 o 4 urnas", "Solo columbario"),
+    ("Obra de Arte", "Familiar US$ 12.500", "US$ 10.625", "4 urnas", "Solo columbario"),
+    ("Bella Vista", "Estándar US$ 1.800 / 1.300 · Familiar US$ 2.900 / 2.300", "US$ 1.530 / 1.105 · US$ 2.465 / 1.955", "2 o 4 urnas", "Cremación + columbario"),
+]
+
+NOTA_EXISTENTES = (
+    "Precios según fila y nivel (Bella Vista: definida / a futuro). Pago único o financiado en hasta "
+    "120 meses, con intereses. El 15% vale solo en Finados y durante noviembre."
+)
+
 REGLAS_COMERCIALES = [
     ("Precios", "Precios sugeridos en US$ con IVA incluido. Consulte siempre la Ficha Técnica vigente."),
-    ("Descuentos", "Precio de lanzamiento: 20% en los productos de lanzamiento de este playbook (ver Ficha Técnica). Demás productos del portafolio de cremación: 15%. Cualquier otro descuento, solo con autorización del supervisor (emergencia: máximo 5%)."),
+    ("Descuentos", "Productos de lanzamiento (ver Ficha Técnica): 20%. Portafolio existente de columbarios: 15%. Ambos descuentos valen solo en Finados y durante noviembre. Cualquier otro descuento, solo con autorización del supervisor (emergencia: máximo 5%)."),
     ("Mantenimiento", "Individual US$ 15/año y Familiar US$ 24/año. No es opcional: se explica antes de firmar."),
     ("Plazos", "Individual y Familiar: 30 años desde la primera inhumación, renovables. Ecológico y Mascotas: 3 años. Se explica con total transparencia en la primera conversación."),
     ("Placas memoriales", "Incluida en el Jardín Ecológico y en el Jardín de Mascotas."),
@@ -489,6 +709,9 @@ COMISIONES = [
     ("Jardín Ceremonial", "A definir", "—", "—", "—"),
 ]
 
+# Solo en las versiones documento (en las presentaciones va como regla de comisión).
+COMISION_EXISTENTES = ("Portafolio existente (columbarios)", "A definir", "—", "Sistema de comisión propio, en preparación", "—")
+
 COMISIONES_VALORES = [  # para la figura
     ("Solución Modular", 70.80), ("Jardín Individual", 42.48), ("Jardín Familiar", 141.59),
     ("Jardín Ecológico", 53.10), ("Mascotas · solo espacio", 28.32), ("Mascotas · jardín + cremación", 38.94),
@@ -501,6 +724,7 @@ REGLAS_COMISION = [
     "Bono de venta combinada: US$ 15 al vender la Solución Modular junto con cualquier jardín.",
     "Acelerador Día de los Muertos (opcional): +2 pp en Individual y Ecológico hasta el 30/11/2026.",
     "Estorno: la comisión se descuenta de los pagos siguientes al asesor.",
+    "Portafolio existente (columbarios): la comisión se definirá en un sistema propio, en preparación.",
 ]
 
 COMISION_CUIDADO = (
