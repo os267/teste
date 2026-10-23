@@ -737,9 +737,9 @@ def construir_fichas(ws, productos=None, titulo="FICHA TÉCNICA CONSOLIDADA",
 
 
 # ---------------------------------------------------------------------------
-# Aba 3: Comisiones · Política 2026 (aprobada)
+# Aba 3: Política de comisiones de los productos de cremación
 # ---------------------------------------------------------------------------
-HOJA_COMISIONES = "Comisiones 2026"
+HOJA_COMISIONES = "Política de Comisiones"
 IVA = 0.13
 PRECIO_MODULAR = 1000  # con IVA; base del ejemplo de la escala
 
@@ -805,13 +805,13 @@ def construir_comisiones(ws) -> None:
         ws.column_dimensions[get_column_letter(col)].width = ancho
 
     ws.merge_cells(f"A1:{ultima}1")
-    ws["A1"] = f"{MARCA.upper()}  |  POLÍTICA DE COMISIONES 2026 · CREMACIÓN"
+    ws["A1"] = f"{MARCA.upper()}  |  POLÍTICA DE COMISIONES DE LOS PRODUCTOS DE CREMACIÓN"
     ws["A1"].font = Font(name="Calibri", size=16, bold=True, color=BLANCO)
     ws["A1"].fill = relleno(AZUL_PROFUNDO)
     ws["A1"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
     ws.row_dimensions[1].height = 34
     ws.merge_cells(f"A2:{ultima}2")
-    ws["A2"] = "POLÍTICA 2026 · APROBADA · comisión según la cantidad de ventas del mes"
+    ws["A2"] = "Vigente en 2026 · comisión según la cantidad de ventas del mes (8% · 10% · 12%)"
     ws["A2"].font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
     ws["A2"].fill = relleno(DORADO_BRILLO)
     ws["A2"].alignment = Alignment(horizontal="left", vertical="center", indent=1)

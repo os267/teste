@@ -23,7 +23,7 @@ COMO_USAR = (
 )
 
 PENDIENTES = [
-    "Política de comisiones 2026 (aprobada): 1 venta en el mes = 8%, 2 ventas = 10%, 3 o más = 12% sobre la facturación.",
+    "Política de comisiones de los productos de cremación: 1 venta en el mes = 8%, 2 ventas = 10%, 3 o más = 12% sobre la facturación.",
     "Placas de madera: confirmar el tratamiento de la madera para contacto con el suelo.",
     "Jardín Ceremonial: producto en definición. No se vende ni se cotiza todavía.",
 ]
@@ -35,7 +35,7 @@ INDICE = [
     ("04", "Producto por producto: speech y reglas"),
     ("05", "Manejo de objeciones"),
     ("06", "Precios, reglas y condiciones"),
-    ("07", "Política de comisiones 2026"),
+    ("07", "Política de comisiones de los productos de cremación"),
     ("08", "Herramientas de apoyo"),
 ]
 
@@ -697,11 +697,11 @@ DESCUENTO_NO_ES_SALIDA = (
 )
 
 # ---------------------------------------------------------------------------
-# 07 · Comisiones · Política 2026 (aprobada): % según cantidad de ventas del mes
+# 07 · Política de comisiones de los productos de cremación: % según cantidad de ventas del mes
 # ---------------------------------------------------------------------------
 COMISION_TITULO = "Comisión por cantidad de ventas: 8% · 10% · 12%"
 COMISION_RESUMEN = (
-    "Política de comisiones 2026, aprobada. El porcentaje depende de cuántas ventas de "
+    "Vigente en 2026 para todos los productos de cremación. El porcentaje depende de cuántas ventas de "
     "cremación cierra el asesor en el mes (cualquier producto: Solución Modular, jardines o "
     "columbarios) y se aplica sobre toda la facturación del mes, sin IVA."
 )

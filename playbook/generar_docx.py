@@ -570,7 +570,7 @@ def s06(doc):
 
 
 def s07(doc):
-    seccion(doc, "07", "Política de comisiones 2026")
+    seccion(doc, "07", "Política de comisiones de los productos de cremación")
     recuadro(doc, C.COMISION_TITULO, C.COMISION_RESUMEN,
              fondo=CREMA, borde="B8860B", color_titulo="B8860B")
     tabla_datos(doc, ["Ventas en el mes", "% comisión", "Ejemplo: facturación (Solución Modular)", "Comisión del ejemplo"],

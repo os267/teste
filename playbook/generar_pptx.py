@@ -427,7 +427,7 @@ def reglas(prs, n):
 
 def comisiones(prs, n):
     s = nueva(prs)
-    encabezado(s, "07 · Política de comisiones 2026", C.COMISION_TITULO,
+    encabezado(s, "07 · Comisiones · productos de cremación", C.COMISION_TITULO,
                "Según la cantidad de ventas del mes, sobre toda la facturación sin IVA.")
     imagen(s, "05_comisiones", MX, Inches(2.1), Inches(6.6), Inches(4.4))
     x = Inches(7.45)
@@ -442,7 +442,7 @@ def comisiones(prs, n):
 
 def comisiones_tabla(prs, n):
     s = nueva(prs)
-    encabezado(s, "07 · Política de comisiones 2026", "Escala, pago y estorno")
+    encabezado(s, "07 · Comisiones · productos de cremación", "Escala, pago y estorno")
     tabla(s, MX, Inches(1.8), W - 2 * MX, ["Ventas en el mes", "% comisión", "Ejemplo: facturación (Solución Modular)", "Comisión del ejemplo"],
           [list(f) for f in C.ESCALA_COMISION], [3.0, 2.2, 4.4, 3.2], size=12, alto_fila=Inches(0.5))
     tabla(s, MX, Inches(4.15), W - 2 * MX, ["Producto", "Cuándo se paga", "Estorno"],
@@ -513,7 +513,7 @@ def main():
     precios(prs, n); n += 1
     precios_existentes(prs, n); n += 1
     reglas(prs, n); n += 1
-    separador(prs, n, "07", "Política de comisiones 2026", "La comisión premia la venta buena, no solo la venta."); n += 1
+    separador(prs, n, "07", "Política de comisiones", "La comisión premia la venta buena, no solo la venta."); n += 1
     comisiones(prs, n); n += 1
     comisiones_tabla(prs, n); n += 1
     separador(prs, n, "08", "Herramientas de apoyo", "Todo lo que necesita para vender con confianza."); n += 1

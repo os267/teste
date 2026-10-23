@@ -300,7 +300,7 @@ def s06():
 
 
 def s07():
-    h = seccion("07", "Política de comisiones 2026")
+    h = seccion("07", "Política de comisiones de los productos de cremación")
     h += caja(C.COMISION_TITULO, C.COMISION_RESUMEN, fondo=CREMA, borde="#B8860B", color_t="#B8860B")
     h += tabla_datos(["Ventas en el mes", "% comisión", "Ejemplo: facturación (Solución Modular)", "Comisión del ejemplo"],
                      [list(f) for f in C.ESCALA_COMISION], ["24%", "18%", "32%", "26%"])
