@@ -23,7 +23,7 @@ COMO_USAR = (
 )
 
 PENDIENTES = [
-    "Política de comisiones: 8% en todos los productos. Confirmar con el Gerente Comercial antes de aplicar.",
+    "Política de comisiones 2026 (aprobada): 1 venta en el mes = 8%, 2 ventas = 10%, 3 o más = 12% sobre la facturación.",
     "Placas de madera: confirmar el tratamiento de la madera para contacto con el suelo.",
     "Jardín Ceremonial: producto en definición. No se vende ni se cotiza todavía.",
 ]
@@ -35,7 +35,7 @@ INDICE = [
     ("04", "Producto por producto: speech y reglas"),
     ("05", "Manejo de objeciones"),
     ("06", "Precios, reglas y condiciones"),
-    ("07", "Política de comisiones"),
+    ("07", "Política de comisiones 2026"),
     ("08", "Herramientas de apoyo"),
 ]
 
@@ -697,34 +697,42 @@ DESCUENTO_NO_ES_SALIDA = (
 )
 
 # ---------------------------------------------------------------------------
-# 07 · Comisiones (8%)
+# 07 · Comisiones · Política 2026 (aprobada): % según cantidad de ventas del mes
 # ---------------------------------------------------------------------------
-COMISIONES = [
-    ("Solución Modular", "8%", "US$ 70,80", "Pago único al pagar el cliente la 3ª cuota", "Si cancela antes de la 12ª cuota"),
-    ("Jardín Individual", "8%", "US$ 42,48", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
-    ("Jardín Familiar", "8%", "US$ 141,59", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
-    ("Jardín Ecológico", "8%", "US$ 53,10", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
-    ("Mascotas · solo espacio", "8%", "US$ 28,32", "Mes siguiente al pago", "Cancelación en 90 días"),
-    ("Mascotas · jardín + cremación", "8%", "US$ 38,94", "Mes siguiente al pago", "Cancelación en 90 días"),
-    ("Jardín Ceremonial", "A definir", "—", "—", "—"),
+COMISION_TITULO = "Comisión por cantidad de ventas: 8% · 10% · 12%"
+COMISION_RESUMEN = (
+    "Política de comisiones 2026, aprobada. El porcentaje depende de cuántas ventas de "
+    "cremación cierra el asesor en el mes (cualquier producto: Solución Modular, jardines o "
+    "columbarios) y se aplica sobre toda la facturación del mes, sin IVA."
+)
+
+# (ventas en el mes, %, facturación de ejemplo con Solución Modular, comisión del ejemplo)
+ESCALA_COMISION = [
+    ("1 venta", "8%", "US$ 885", "US$ 70,80"),
+    ("2 ventas", "10%", "US$ 1.770", "US$ 177,00"),
+    ("3 ventas o más", "12%", "US$ 2.655", "US$ 318,60"),
 ]
 
-# Solo en las versiones documento (en las presentaciones va como regla de comisión).
-COMISION_EXISTENTES = ("Portafolio existente (columbarios)", "A definir", "—", "Sistema de comisión propio, en preparación", "—")
+COMISIONES_VALORES = [  # para la figura: comisión del mes con N Soluciones Modulares (US$ 885 sin IVA c/u)
+    ("1 venta · 8%", 70.80), ("2 ventas · 10%", 177.00), ("3 ventas · 12%", 318.60),
+]
 
-COMISIONES_VALORES = [  # para la figura
-    ("Solución Modular", 70.80), ("Jardín Individual", 42.48), ("Jardín Familiar", 141.59),
-    ("Jardín Ecológico", 53.10), ("Mascotas · solo espacio", 28.32), ("Mascotas · jardín + cremación", 38.94),
+# (producto, cuándo se paga, estorno)
+COMISIONES = [
+    ("Solución Modular", "Pago único al pagar el cliente la 3ª cuota", "Si cancela antes de la 12ª cuota"),
+    ("Jardines de Cenizas", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
+    ("Jardín de Mascotas", "Mes siguiente al pago", "Cancelación en 90 días"),
+    ("Columbarios (portafolio existente)", "Contado: mes siguiente · Financiado: proporcional a lo cobrado", "Cancelación en 90 días"),
 ]
 
 REGLAS_COMISION = [
-    "Base de cálculo: valor efectivamente cobrado al cliente, sin IVA (13%).",
-    "Comisión única de 8% para todos los productos.",
-    "No generan comisión: cuotas de mantenimiento anual (US$ 15 / US$ 24).",
-    "Bono de venta combinada: US$ 15 al vender la Solución Modular junto con cualquier jardín.",
-    "Acelerador Día de los Muertos (opcional): +2 pp en Individual y Ecológico hasta el 30/11/2026.",
-    "Estorno: la comisión se descuenta de los pagos siguientes al asesor.",
-    "Portafolio existente (columbarios): la comisión se definirá en un sistema propio, en preparación.",
+    "1 venta en el mes = 8%; 2 ventas = 10%; 3 o más = 12%, sobre toda la facturación del mes.",
+    "Cuenta cualquier producto de cremación (nuevos y columbarios): cada contrato es 1 venta.",
+    "Base de cálculo: facturación sin IVA (13%), neta de descuentos; se paga sobre lo cobrado.",
+    "Mismo criterio para call center, contratados y freelancers. Sin bonos adicionales.",
+    "Venta compartida (call center agenda, otro cierra): 1 venta para ambos; comisión 30% / 70%.",
+    "No cuentan ni comisionan: cuotas de mantenimiento anual (US$ 15 / US$ 24).",
+    "Estorno: la comisión se descuenta de los pagos siguientes al asesor; ventas anuladas no cuentan.",
 ]
 
 COMISION_CUIDADO = (

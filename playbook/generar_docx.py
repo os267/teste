@@ -570,15 +570,15 @@ def s06(doc):
 
 
 def s07(doc):
-    seccion(doc, "07", "Política de comisiones")
-    recuadro(doc, "Comisión única de 8%",
-             "Todos los productos comisionan 8% sobre el precio sin IVA. Confirmar con la Gerencia "
-             "Comercial antes de aplicar.",
+    seccion(doc, "07", "Política de comisiones 2026")
+    recuadro(doc, C.COMISION_TITULO, C.COMISION_RESUMEN,
              fondo=CREMA, borde="B8860B", color_titulo="B8860B")
-    figura(doc, "05_comisiones", pie="Figura 7 · Comisión por venta (8% sobre el precio sin IVA).")
-    tabla_datos(doc, ["Producto", "%", "Comisión (sin IVA)", "Cuándo se paga", "Estorno"],
-                [list(f) for f in C.COMISIONES + [C.COMISION_EXISTENTES]], [Cm(3.4), Cm(1.4), Cm(2.6), Cm(5.6), Cm(4)],
-                resaltar=lambda f: f[0] in ("Jardín Ceremonial", "Portafolio existente (columbarios)"))
+    tabla_datos(doc, ["Ventas en el mes", "% comisión", "Ejemplo: facturación (Solución Modular)", "Comisión del ejemplo"],
+                [list(f) for f in C.ESCALA_COMISION], [Cm(4), Cm(3), Cm(5.5), Cm(4.5)])
+    figura(doc, "05_comisiones", pie="Figura 7 · Comisión del mes según cantidad de ventas (ejemplo con Solución Modular).")
+    subtitulo(doc, "Cuándo se paga y cuándo se descuenta")
+    tabla_datos(doc, ["Producto", "Cuándo se paga", "Estorno"],
+                [list(f) for f in C.COMISIONES], [Cm(5), Cm(7.5), Cm(4.5)])
     subtitulo(doc, "Reglas de comisión")
     vinetas(doc, C.REGLAS_COMISION)
     parrafo(doc, despues=4)

@@ -737,125 +737,135 @@ def construir_fichas(ws, productos=None, titulo="FICHA TÉCNICA CONSOLIDADA",
 
 
 # ---------------------------------------------------------------------------
-# Aba 3: Comisiones (uso interno, propuesta pendiente de validación)
+# Aba 3: Comisiones · Política 2026 (aprobada)
 # ---------------------------------------------------------------------------
-HOJA_COMISIONES = "Comisiones - uso interno"
+HOJA_COMISIONES = "Comisiones 2026"
 IVA = 0.13
+PRECIO_MODULAR = 1000  # con IVA; base del ejemplo de la escala
 
-# (producto, precio con IVA o None, % comisión o None, momento de pago, estorno, observaciones)
-COMISIONES = [
-    ("Solución Modular de Cremación", 1000, 0.08,
-     "Pago único cuando el cliente paga la 3ª cuota",
-     "Si el cliente cancela antes de la 12ª cuota",
-     "Alternativa: comisión = 10 primeras cuotas del cliente, "
-     "pagadas mes a mes, sin estorno."),
-    ("Jardín de Cenizas · Individual", 600, 0.08,
+# (ventas en el mes, % comisión, cantidad de Soluciones Modulares del ejemplo, lectura)
+ESCALA_COMISION = [
+    ("1 venta", 0.08, 1, "Entrada"),
+    ("2 ventas", 0.10, 2, ""),
+    ("3 ventas o más", 0.12, 3, "Máximo"),
+]
+
+# (producto, momento de pago, estorno, observaciones)
+PAGO_COMISION = [
+    ("Solución Modular de Cremación", "Pago único cuando el cliente paga la 3ª cuota",
+     "Si el cliente cancela antes de la 12ª cuota", ""),
+    ("Jardines de Cenizas (Individual, Familiar, Ecológico)",
      "Contado: mes siguiente al pago. Financiado: proporcional a lo cobrado",
-     "Cancelación en los primeros 90 días",
-     ""),
-    ("Jardín de Cenizas · Familiar", 2000, 0.08,
+     "Cancelación en los primeros 90 días", ""),
+    ("Jardín de Mascotas", "Mes siguiente al pago (pago único)", "Cancelación en los primeros 90 días", ""),
+    ("Columbarios (portafolio existente)",
      "Contado: mes siguiente al pago. Financiado: proporcional a lo cobrado",
-     "Cancelación en los primeros 90 días",
-     ""),
-    ("Jardín de Cenizas · Ecológico", 750, 0.08,
-     "Contado: mes siguiente al pago. Financiado: proporcional a lo cobrado",
-     "Cancelación en los primeros 90 días",
-     ""),
-    ("Jardín de Mascotas · solo espacio", 400, 0.08,
-     "Mes siguiente al pago (pago único)",
-     "Cancelación en los primeros 90 días",
-     ""),
-    ("Jardín de Mascotas · jardín + cremación", 550, 0.08,
-     "Mes siguiente al pago (pago único)",
-     "Cancelación en los primeros 90 días",
-     ""),
-    ("Jardín de Cenizas · Ceremonial", None, None,
-     "A definir", "A definir", "Próximo lanzamiento; precio a definir."),
+     "Cancelación en los primeros 90 días", "Mismo criterio de cantidad de ventas que los productos nuevos."),
 ]
 
 REGLAS_COMISION = [
-    "Base de cálculo: valor efectivamente cobrado al cliente, sin IVA (13%).",
-    "No generan comisión: cuotas de mantenimiento anual (US$ 15 / US$ 24).",
-    "Bono de venta combinada: US$ 15 al vender la Solución Modular junto con cualquier jardín.",
-    "Acelerador de campaña Día de los Muertos (opcional): +2 pp en Individual y Ecológico "
-    "para ventas cerradas hasta el 30/11/2026.",
-    "Estorno: la comisión se descuenta de los pagos siguientes al vendedor.",
+    "1 venta en el mes de cualquier producto de cremación = 8%; 2 ventas = 10%; 3 o más = 12%, "
+    "sobre toda la facturación del mes.",
+    "Cada contrato vendido cuenta como 1 venta, sin distinción por grupo de producto (nuevos y columbarios).",
+    "Base de cálculo: facturación sin IVA (13%), neta de descuentos. La comisión se paga sobre lo cobrado.",
+    "Mismo criterio para call center, contratados y freelancers. No hay bonos adicionales.",
+    "Venta compartida (call center agenda, otro vendedor cierra): 1 venta para ambos; comisión 30% / 70%.",
+    "No generan comisión ni cuentan como venta: cuotas de mantenimiento anual (US$ 15 / US$ 24).",
+    "Estorno: la comisión se descuenta de los pagos siguientes al vendedor. Ventas anuladas no cuentan.",
 ]
 
-COLUMNAS_COMISION = [
-    ("Producto", 34), ("Precio (c/ IVA)", 14), ("Precio sin IVA", 14),
-    ("% Comisión", 12), ("Comisión por venta (sin IVA)", 18),
-    ("Momento de pago", 38), ("Estorno", 28), ("Observaciones", 42),
-]
+ANCHOS_COMISION = [40, 30, 40, 36]
+
+
+def _encabezado_tabla(ws, fila, titulos) -> None:
+    for col, titulo in enumerate(titulos, start=1):
+        c = ws.cell(row=fila, column=col, value=titulo)
+        c.font = Font(name="Calibri", size=11, bold=True, color=BLANCO)
+        c.fill = relleno(AZUL_MARINO)
+        c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        c.border = Border(bottom=Side(style="medium", color=DORADO))
+    ws.row_dimensions[fila].height = 32
+
+
+def _franja(ws, fila, texto, ncols) -> None:
+    ws.merge_cells(start_row=fila, start_column=1, end_row=fila, end_column=ncols)
+    c = ws.cell(row=fila, column=1, value=texto)
+    c.font = Font(name="Calibri", size=10, bold=True, color=AZUL_PROFUNDO)
+    c.fill = relleno(DORADO)
+    c.alignment = Alignment(vertical="center", indent=1)
+    ws.row_dimensions[fila].height = 20
 
 
 def construir_comisiones(ws) -> None:
     ws.sheet_view.showGridLines = False
     ws.sheet_properties.tabColor = AZUL_PROFUNDO
-    ncols = len(COLUMNAS_COMISION)
+    ncols = len(ANCHOS_COMISION)
     ultima = get_column_letter(ncols)
+    for col, ancho in enumerate(ANCHOS_COMISION, start=1):
+        ws.column_dimensions[get_column_letter(col)].width = ancho
 
     ws.merge_cells(f"A1:{ultima}1")
-    ws["A1"] = f"{MARCA.upper()}  |  POLÍTICA DE COMISIONES — USO INTERNO"
+    ws["A1"] = f"{MARCA.upper()}  |  POLÍTICA DE COMISIONES 2026 · CREMACIÓN"
     ws["A1"].font = Font(name="Calibri", size=16, bold=True, color=BLANCO)
     ws["A1"].fill = relleno(AZUL_PROFUNDO)
     ws["A1"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
     ws.row_dimensions[1].height = 34
     ws.merge_cells(f"A2:{ultima}2")
-    ws["A2"] = "PROPUESTA · pendiente de validación con el Gerente Comercial"
+    ws["A2"] = "POLÍTICA 2026 · APROBADA · comisión según la cantidad de ventas del mes"
     ws["A2"].font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
     ws["A2"].fill = relleno(DORADO_BRILLO)
     ws["A2"].alignment = Alignment(horizontal="left", vertical="center", indent=1)
     ws.row_dimensions[2].height = 22
 
-    fila_enc = 4
-    for col, (titulo, ancho) in enumerate(COLUMNAS_COMISION, start=1):
-        ws.column_dimensions[get_column_letter(col)].width = ancho
-        c = ws.cell(row=fila_enc, column=col, value=titulo)
-        c.font = Font(name="Calibri", size=11, bold=True, color=BLANCO)
-        c.fill = relleno(AZUL_MARINO)
-        c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-        c.border = Border(bottom=Side(style="medium", color=DORADO))
-    ws.row_dimensions[fila_enc].height = 36
-
     borde_fino = borde("D5DCE4")
-    for i, (prod, precio, pct, pago, estorno, obs) in enumerate(COMISIONES):
-        f = fila_enc + 1 + i
-        if precio is None:
-            valores = [prod, "A definir", "", "A definir", "", pago, estorno, obs]
-        else:
-            valores = [prod, precio, f"=B{f}*100/{round(100 * (1 + IVA))}", pct, f"=C{f}*D{f}", pago, estorno, obs]
+
+    def fila_datos(f, valores, i):
         fondo = relleno(FONDO_ALTERNO if i % 2 == 0 else BLANCO)
         for col, v in enumerate(valores, start=1):
             c = ws.cell(row=f, column=col, value=v)
             c.fill = fondo
             c.border = borde_fino
             c.font = Font(name="Calibri", size=10, color=TEXTO)
-            c.alignment = Alignment(vertical="top", wrap_text=True)
+            c.alignment = Alignment(vertical="center", wrap_text=True)
         ws.cell(row=f, column=1).font = Font(name="Calibri", size=11, bold=True, color=AZUL_MARINO)
-        for col in (2, 3, 5):
-            ws.cell(row=f, column=col).number_format = '"US$" #,##0.00'
-        ws.cell(row=f, column=4).number_format = "0%"
-        ws.cell(row=f, column=4).font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
-        ws.cell(row=f, column=5).font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
-        ws.row_dimensions[f].height = 44
 
-    f = fila_enc + len(COMISIONES) + 2
-    ws.merge_cells(start_row=f, start_column=1, end_row=f, end_column=ncols)
-    c = ws.cell(row=f, column=1, value="REGLAS GENERALES")
-    c.font = Font(name="Calibri", size=10, bold=True, color=AZUL_PROFUNDO)
-    c.fill = relleno(DORADO)
-    c.alignment = Alignment(vertical="center", indent=1)
-    ws.row_dimensions[f].height = 20
+    f = 4
+    _franja(ws, f, "1. ESCALA POR CANTIDAD DE VENTAS EN EL MES (cualquier producto de cremación)", ncols)
+    f += 1
+    _encabezado_tabla(ws, f, ["Ventas en el mes", "% comisión",
+                              "Ejemplo: facturación con Solución Modular (sin IVA)", "Comisión del ejemplo"])
+    sin_iva = round(100 * (1 + IVA))
+    for i, (ventas, pct, cant, _lectura) in enumerate(ESCALA_COMISION):
+        f += 1
+        fila_datos(f, [ventas, pct, f"={cant}*{PRECIO_MODULAR}*100/{sin_iva}", f"=B{f}*C{f}"], i)
+        ws.cell(row=f, column=2).number_format = "0%"
+        ws.cell(row=f, column=2).font = Font(name="Calibri", size=12, bold=True, color=AZUL_PROFUNDO)
+        ws.cell(row=f, column=2).alignment = Alignment(horizontal="center", vertical="center")
+        for col in (3, 4):
+            ws.cell(row=f, column=col).number_format = '"US$" #,##0.00'
+            ws.cell(row=f, column=col).alignment = Alignment(horizontal="center", vertical="center")
+        ws.cell(row=f, column=4).font = Font(name="Calibri", size=11, bold=True, color=AZUL_PROFUNDO)
+        ws.row_dimensions[f].height = 24
+
+    f += 2
+    _franja(ws, f, "2. CUÁNDO SE PAGA Y CUÁNDO SE DESCUENTA", ncols)
+    f += 1
+    _encabezado_tabla(ws, f, ["Producto", "Momento de pago", "Estorno", "Observaciones"])
+    for i, valores in enumerate(PAGO_COMISION):
+        f += 1
+        fila_datos(f, list(valores), i)
+        ws.row_dimensions[f].height = 36
+
+    f += 2
+    _franja(ws, f, "3. REGLAS GENERALES", ncols)
     for n, regla in enumerate(REGLAS_COMISION, start=1):
         f += 1
         ws.merge_cells(start_row=f, start_column=1, end_row=f, end_column=ncols)
         c = ws.cell(row=f, column=1, value=f"{n}. {regla}")
         c.font = Font(name="Calibri", size=10, color=TEXTO)
         c.alignment = Alignment(vertical="center", wrap_text=True, indent=1)
-        ws.row_dimensions[f].height = 20
+        ws.row_dimensions[f].height = 22
 
-    ws.freeze_panes = ws.cell(row=fila_enc + 1, column=2)
     ws.page_setup.orientation = "landscape"
     ws.page_setup.fitToWidth = 1
     ws.page_setup.fitToHeight = 0

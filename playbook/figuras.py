@@ -183,8 +183,8 @@ def comisiones():
     .val {{ font-size: 14px; font-weight:700; color:{AZUL}; white-space:nowrap; }}
     .nota {{ font-size: 11.5px; color:#7D7887; margin-top: 8px; }}
     </style>"""
-    return render("05_comisiones", css + "<div class='titulo'>Comisión por venta · 8% sobre el precio sin IVA</div>"
-                  + filas + "<div class='nota'>Valores por venta; mantenimiento anual no genera comisión.</div>",
+    return render("05_comisiones", css + "<div class='titulo'>Comisión del mes según cantidad de ventas</div>"
+                  + filas + "<div class='nota'>Ejemplo con Solución Modular (US$ 885 sin IVA c/u). El % se aplica sobre toda la facturación del mes; mantenimiento anual no comisiona.</div>",
                   960, 700)
 
 

@@ -297,18 +297,19 @@ def reglas(prs, n):
 
 def comisiones(prs, n):
     s = nueva(prs)
-    encabezado(s, "07 · Política de comisiones", "Comisión única de 8%",
-               "Sobre el precio sin IVA. Validar con la Gerencia Comercial.")
-    imagen(s, "05_comisiones", MX, Inches(2.15), ANCHO, Inches(2.75))
-    tabla(s, MX, Inches(5.1), ANCHO, ["Producto", "%", "Comisión", "Cuándo se paga", "Estorno"],
-          [list(f) for f in C.COMISIONES], [2.0, 0.6, 1.2, 2.4, 1.6], size=9.5, alto_fila=Inches(0.72),
-          resaltar=lambda f: f[0] == "Jardín Ceremonial")
+    encabezado(s, "07 · Política de comisiones 2026", C.COMISION_TITULO,
+               "Según la cantidad de ventas del mes, sobre toda la facturación sin IVA.")
+    tabla(s, MX, Inches(2.15), ANCHO, ["Ventas en el mes", "%", "Ejemplo: facturación", "Comisión"],
+          [list(f) for f in C.ESCALA_COMISION], [2.2, 1.2, 2.2, 2.2], size=11, alto_fila=Inches(0.6))
+    imagen(s, "05_comisiones", MX, Inches(4.75), ANCHO, Inches(2.75))
+    tabla(s, MX, Inches(7.75), ANCHO, ["Producto", "Cuándo se paga", "Estorno"],
+          [list(f) for f in C.COMISIONES], [2.4, 3.6, 1.8], size=9.5, alto_fila=Inches(0.72))
     pie(s, n)
 
 
 def comisiones_reglas(prs, n):
     s = nueva(prs)
-    encabezado(s, "07 · Política de comisiones", "Reglas de comisión")
+    encabezado(s, "07 · Política de comisiones 2026", "Reglas de comisión")
     texto(s, MX, Inches(1.85), ANCHO, Inches(4.6), lista(C.REGLAS_COMISION, size=13), espacio=10)
     caja(s, MX, Inches(6.6), ANCHO, Inches(1.5), fondo=AZUL)
     texto(s, MX + Inches(0.3), Inches(6.6), ANCHO - Inches(0.6), Inches(1.5), C.COMISION_CUIDADO, size=13,

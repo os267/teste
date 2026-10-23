@@ -181,7 +181,7 @@ def fig_comisiones():
         filas.append([(p(span(nombre, 10, AZUL_P, True), "right", despues=0), "padding:3pt 8pt"),
                       (p(span("█" * max(1, round(valor / maximo * 26)), 10, AZUL)
                          + span(f"  US$ {monto}", 10, AZUL, True), despues=0), "padding:3pt 8pt")])
-    return tabla(filas, ["28%", "72%"]) + pie("Figura 7 · Comisión por venta (8% sobre el precio sin IVA).")
+    return tabla(filas, ["28%", "72%"]) + pie("Figura 7 · Comisión del mes según cantidad de ventas (ejemplo con Solución Modular).")
 
 
 # ---------------------------------------------------------------------------
@@ -300,13 +300,13 @@ def s06():
 
 
 def s07():
-    h = seccion("07", "Política de comisiones")
-    h += caja("Comisión única de 8%", "Todos los productos comisionan 8% sobre el precio sin IVA. "
-              "Confirmar con la Gerencia Comercial antes de aplicar.", fondo=CREMA, borde="#B8860B", color_t="#B8860B")
+    h = seccion("07", "Política de comisiones 2026")
+    h += caja(C.COMISION_TITULO, C.COMISION_RESUMEN, fondo=CREMA, borde="#B8860B", color_t="#B8860B")
+    h += tabla_datos(["Ventas en el mes", "% comisión", "Ejemplo: facturación (Solución Modular)", "Comisión del ejemplo"],
+                     [list(f) for f in C.ESCALA_COMISION], ["24%", "18%", "32%", "26%"])
     h += fig_comisiones()
-    h += tabla_datos(["Producto", "%", "Comisión (sin IVA)", "Cuándo se paga", "Estorno"], [list(f) for f in C.COMISIONES + [C.COMISION_EXISTENTES]],
-                     ["20%", "8%", "15%", "33%", "24%"],
-                     resaltar=lambda f: f[0] in ("Jardín Ceremonial", "Portafolio existente (columbarios)"))
+    h += sub("Cuándo se paga y cuándo se descuenta")
+    h += tabla_datos(["Producto", "Cuándo se paga", "Estorno"], [list(f) for f in C.COMISIONES], ["30%", "44%", "26%"])
     h += sub("Reglas de comisión") + "".join(p(span("■  ", 7.5, DORADO) + span(r), despues=3) for r in C.REGLAS_COMISION)
     return h + caja("Por qué la comisión está ligada al cobro", C.COMISION_CUIDADO) + salto()
 
