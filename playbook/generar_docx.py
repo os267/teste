@@ -208,19 +208,25 @@ def nat_logos(doc):
 
 
 def nat_portafolio(doc):
-    colores = [AZUL, "4F7A5A", AZUL, "4F7A5A", DORADO, "8A8F98"]
-    t = tabla_simple(doc, 2, 3, [Cm(5.67)] * 3)
-    for i, (p, col) in enumerate(zip(C.PRODUCTOS, colores)):
-        c = t.cell(i // 3, i % 3)
-        bordes(c, top=(col, 36), left=("FFFFFF", 24), right=("FFFFFF", 24), bottom=("FFFFFF", 24))
-        par = _celda(c, CREMA if p.get("proximo") else CLARO, 0.3)
-        if p.get("proximo"):
-            run(par, "PRÓXIMO LANZAMIENTO", size=7.5, bold=True, color="B8860B")
-            par = _nuevo_parrafo(c)
-        run(par, p["etiqueta"].upper(), size=7.5, color=GRIS)
-        run(_nuevo_parrafo(c), p["corto"], size=12.5, bold=True, color=AZUL_P)
-        run(_nuevo_parrafo(c), p["precio"], size=16, bold=True, color=col)
-        run(_nuevo_parrafo(c), p["pago"], size=8.5)
+    def grupo(titulo, productos, colores):
+        parrafo(doc, titulo, size=9, bold=True, color=AZUL, despues=2)
+        t = tabla_simple(doc, 2, 3, [Cm(5.67)] * 3)
+        for i, (p, col) in enumerate(zip(productos, colores)):
+            c = t.cell(i // 3, i % 3)
+            bordes(c, top=(col, 36), left=("FFFFFF", 24), right=("FFFFFF", 24), bottom=("FFFFFF", 24))
+            par = _celda(c, CREMA if p.get("proximo") else CLARO, 0.3)
+            if p.get("proximo"):
+                run(par, "PRÓXIMO LANZAMIENTO", size=7.5, bold=True, color="B8860B")
+                par = _nuevo_parrafo(c)
+            run(par, p["etiqueta"].upper(), size=7.5, color=GRIS)
+            run(_nuevo_parrafo(c), p["corto"], size=12.5, bold=True, color=AZUL_P)
+            run(_nuevo_parrafo(c), p["precio"], size=16, bold=True, color=col)
+            run(_nuevo_parrafo(c), p["pago"], size=8.5)
+
+    grupo("LANZAMIENTOS DE FINADOS · −20% EN FINADOS Y NOVIEMBRE", C.PRODUCTOS,
+          [AZUL, "4F7A5A", AZUL, "4F7A5A", DORADO, "8A8F98"])
+    grupo("COLUMBARIOS · PORTAFOLIO EXISTENTE · −15% EN FINADOS Y NOVIEMBRE", C.PRODUCTOS_EXISTENTES,
+          [AZUL_P] * len(C.PRODUCTOS_EXISTENTES))
 
 
 def nat_embudo(doc):

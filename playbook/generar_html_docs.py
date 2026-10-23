@@ -108,18 +108,25 @@ def fig_logos():
 
 
 def fig_portafolio():
-    colores = [AZUL, VERDE, AZUL, VERDE, DORADO, "#8A8F98"]
-    celdas = []
-    for pr, col in zip(C.PRODUCTOS, colores):
-        h = p(span("PRÓXIMO LANZAMIENTO", 7.5, "#B8860B", True), despues=2) if pr.get("proximo") else ""
-        h += p(span(pr["etiqueta"].upper(), 7.5, GRIS), despues=2)
-        h += p(span(pr["corto"], 12.5, AZUL_P, True), despues=2)
-        h += p(span(pr["precio"], 16, col, True), despues=2)
-        h += p(span(pr["pago"], 8.5), despues=0)
-        celdas.append((h, bg(CREMA if pr.get("proximo") else CLARO) + f"border-top:4pt solid {col};"
-                       "border-left:4pt solid #FFFFFF;border-right:4pt solid #FFFFFF;border-bottom:6pt solid #FFFFFF"))
-    return tabla([celdas[:3], celdas[3:]], ["33%", "34%", "33%"]) + pie(
-        "Figura 1 · El portafolio en un vistazo. Precios sugeridos, IVA incluido.")
+    def grupo(titulo, productos, colores):
+        celdas = []
+        for pr, col in zip(productos, colores):
+            h = p(span("PRÓXIMO LANZAMIENTO", 7.5, "#B8860B", True), despues=2) if pr.get("proximo") else ""
+            h += p(span(pr["etiqueta"].upper(), 7.5, GRIS), despues=2)
+            h += p(span(pr["corto"], 12.5, AZUL_P, True), despues=2)
+            h += p(span(pr["precio"], 16, col, True), despues=2)
+            h += p(span(pr["pago"], 8.5), despues=0)
+            celdas.append((h, bg(CREMA if pr.get("proximo") else CLARO) + f"border-top:4pt solid {col};"
+                           "border-left:4pt solid #FFFFFF;border-right:4pt solid #FFFFFF;border-bottom:6pt solid #FFFFFF"))
+        while len(celdas) % 3:
+            celdas.append(("", ""))
+        filas = [celdas[i:i + 3] for i in range(0, len(celdas), 3)]
+        return p(span(titulo, 9, AZUL, True), despues=2) + tabla(filas, ["33%", "34%", "33%"])
+    return (grupo("LANZAMIENTOS DE FINADOS · −20% EN FINADOS Y NOVIEMBRE", C.PRODUCTOS,
+                  [AZUL, VERDE, AZUL, VERDE, DORADO, "#8A8F98"])
+            + grupo("COLUMBARIOS · PORTAFOLIO EXISTENTE · −15% EN FINADOS Y NOVIEMBRE", C.PRODUCTOS_EXISTENTES,
+                    [AZUL_P] * len(C.PRODUCTOS_EXISTENTES))
+            + pie("Figura 1 · El portafolio en un vistazo. Precios sugeridos, IVA incluido."))
 
 
 def fig_embudo():

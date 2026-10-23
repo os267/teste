@@ -60,32 +60,44 @@ def recortar(destino: Path, margen: int = 40) -> None:
         img.crop((0, 0, img.width, min(img.height, caja[3] + margen))).save(destino)
 
 
-def portafolio():
-    tarjetas = ""
-    colores = [AZUL, VERDE, "#" + P.TERRACOTA, VERDE, DORADO, "#" + P.APAGADO]
-    for p, col in zip(C.PRODUCTOS, colores):
-        extra = "<div class='prox'>PRÓXIMO LANZAMIENTO</div>" if p.get("proximo") else ""
-        tarjetas += f"""
-        <div class='card' style='border-top:6px solid {col}'>
-          {extra}
-          <div class='et'>{e(p['etiqueta'])}</div>
-          <div class='nom'>{e(p['corto'])}</div>
-          <div class='pre' style='color:{col}'>{e(p['precio'])}</div>
-          <div class='pag'>{e(p['pago'])}</div>
-        </div>"""
+def portafolio(nombre="01_portafolio", nuevos=None):
+    nuevos = C.PRODUCTOS if nuevos is None else nuevos
+    def tarjetas(productos, colores):
+        html = ""
+        for p, col in zip(productos, colores):
+            extra = "<div class='prox'>PRÓXIMAMENTE</div>" if p.get("proximo") else ""
+            html += f"""
+            <div class='card' style='border-top:5px solid {col}'>
+              {extra}
+              <div class='et'>{e(p['etiqueta'].split(' · ')[0])}</div>
+              <div class='nom'>{e(p['corto'])}</div>
+              <div class='pre' style='color:{col}'>{e(p['precio'].replace(' / US$ ', ' / '))}</div>
+              <div class='pag'>{e(p['pago'].split(' · ')[0])}</div>
+            </div>"""
+        return html
+    columnas = len(nuevos)
+    nuevos = tarjetas(nuevos, [AZUL, VERDE, "#" + P.TERRACOTA, VERDE, DORADO, "#" + P.APAGADO])
+    existentes = tarjetas(C.PRODUCTOS_EXISTENTES, [AZUL_P] * len(C.PRODUCTOS_EXISTENTES))
     css = f"""
     <style>
-    .grid {{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }}
-    .card {{ background:{CLARO}; border-radius: 10px; padding: 16px 18px 18px; position:relative; min-height: 150px; }}
-    .et {{ font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color:#7D7887; }}
-    .nom {{ font-size: 21px; font-weight: 700; color:{AZUL_P}; margin: 6px 0 8px; }}
-    .pre {{ font-size: 26px; font-weight: 700; }}
-    .pag {{ font-size: 12px; margin-top: 6px; line-height: 1.35; }}
-    .prox {{ position:absolute; top:-12px; right:12px; background:{DORADO_B}; color:{AZUL_P};
-      font-size:10px; font-weight:700; letter-spacing:.08em; padding:4px 8px; border-radius: 4px; }}
+    .grupo {{ font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color:{AZUL};
+      margin: 4px 0 8px; }}
+    .grid {{ display:grid; gap: 10px; margin-bottom: 14px; }}
+    .g6 {{ grid-template-columns: repeat(6, 1fr); }}
+    .g5 {{ grid-template-columns: repeat(5, 1fr); }}
+    .card {{ background:{CLARO}; border-radius: 8px; padding: 10px 11px 12px; position:relative; }}
+    .et {{ font-size: 9px; text-transform: uppercase; letter-spacing: .06em; color:#7D7887; }}
+    .nom {{ font-size: 14px; font-weight: 700; color:{AZUL_P}; margin: 4px 0 5px; line-height: 1.2; }}
+    .pre {{ font-size: 15px; font-weight: 700; }}
+    .pag {{ font-size: 10.5px; margin-top: 4px; line-height: 1.3; }}
+    .prox {{ position:absolute; top:-9px; right:8px; background:{DORADO_B}; color:{AZUL_P};
+      font-size:8px; font-weight:700; letter-spacing:.06em; padding:3px 6px; border-radius: 4px; }}
     </style>"""
-    return render("01_portafolio", css + "<div class='titulo'>Portafolio de cremación y jardines</div>"
-                  f"<div class='grid'>{tarjetas}</div>", 960, 900)
+    return render(nombre, css + "<div class='titulo'>Portafolio de cremación</div>"
+                  "<div class='grupo'>Lanzamientos de Finados · −20% en Finados y noviembre</div>"
+                  f"<div class='grid g{columnas}'>{nuevos}</div>"
+                  "<div class='grupo'>Columbarios · portafolio existente · −15% en Finados y noviembre</div>"
+                  f"<div class='grid g5'>{existentes}</div>", 960, 600)
 
 
 def embudo():
