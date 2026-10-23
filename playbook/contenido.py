@@ -9,15 +9,16 @@ Estructura inspirada en el Playbook de Ventas Alta Loma.
 """
 
 TITULO = "Playbook Comercial"
-SUBTITULO = "Portafolio de Cremación y Jardines de Cenizas"
+SUBTITULO = "Portafolio de Cremación: lanzamientos y columbarios"
 MARCAS = "La Auxiliadora · Hogar de las Memorias · Las Colinas · Vangrupo"
 CAMPANA = "Campaña Día de los Muertos 2026"
 LEMA = "Acompañar, no vender: la familia primero, siempre."
 VERSION = "Versión 1.1 · Octubre 2026 · Uso interno del equipo comercial"
 
 COMO_USAR = (
-    "Este playbook es la referencia única del equipo comercial para el portafolio "
-    "de cremación y jardines de cenizas. Reúne reglas, precios, discurso por producto, "
+    "Este playbook es la referencia única del equipo comercial para todo el portafolio "
+    "de cremación: los lanzamientos de Finados (Solución Modular y jardines de cenizas) y los "
+    "columbarios que ya vendemos. Reúne reglas, precios, discurso por producto, "
     "manejo de objeciones y política de comisiones. Se revisa cada trimestre con la "
     "Gerencia Comercial. Si algo cambia en la Ficha Técnica, este documento se actualiza."
 )
@@ -48,12 +49,13 @@ QUIENES_SOMOS = (
     "la memoria de quienes aman. La cremación es una decisión cada vez más elegida, y "
     "nuestros nuevos jardines de cenizas responden a una pregunta que muchas familias "
     "se hacen y pocas se atreven a decir: \"¿y después de la cremación, dónde las "
-    "visitamos?\"."
+    "visitamos?\". A los nuevos jardines se suman los columbarios que ya ofrecemos en El Hogar "
+    "de las Memorias y en el mausoleo Bella Vista."
 )
 
 POR_QUE_AHORA = [
     ("Un lugar para volver",
-     "La familia tiene un sitio físico, digno y verde para visitar y recordar."),
+     "La familia tiene un sitio físico y digno para visitar y recordar: un jardín o un columbario."),
     ("Precio accesible",
      "Desde US$ 320 en lanzamiento y con financiamiento: un destino final al alcance de más familias."),
     ("Naturaleza y legado",
@@ -83,15 +85,15 @@ PERFILES = [
     ("El Planificador", "45–65 años, compra para sí mismo.",
      "Tranquilidad y legado. No quiere dejar cargas a su familia.",
      "Calma, sin prisa, datos claros.",
-     "Solución Modular · Jardín Individual · Jardín Familiar"),
+     "Solución Modular · Jardín Individual o Familiar · Columbario Mármol o Cristal, Ónix u Obra de Arte"),
     ("El Hijo Cuidador", "25–45 años, compra para sus padres.",
      "Practicidad, control del presupuesto, evitar improvisar.",
      "Claro, práctico, comparativo.",
-     "Solución Modular · Jardín Familiar"),
+     "Solución Modular · Jardín Familiar · Columbario Supremo Plus"),
     ("La Familia en Urgencia", "En el momento de la pérdida.",
      "Quitar peso, dignidad, agilidad.",
      "Acogida total, nunca comercial.",
-     "Jardín Individual · Jardín Ecológico"),
+     "Supremo Plus o Bella Vista (incluyen la cremación) · Jardín Individual o Ecológico"),
     ("El Consciente Ecológico", "30–55 años, valora la naturaleza.",
      "Volver a la tierra, sencillez, sostenibilidad.",
      "Inspirador, natural, sin solemnidad excesiva.",
@@ -124,16 +126,18 @@ EMBUDO = [
 
 EQUIPOS = [
     ("UAF · Unidad de Apoyo Familiar",
-     "Acompaña a la familia durante el servicio y trabaja referidos.",
-     "Jardín Individual y Ecológico como destino de las cenizas; Solución Modular "
-     "para el resto de la familia (venta de prenecesidad posterior)."),
+     "Acompaña a la familia durante el servicio y trabaja referidos."),
     ("Pilares Alternativos",
-     "Eventos, centros comerciales, bases de cancelaciones y telemercadeo.",
-     "Solución Modular (cuota baja, fácil de explicar) y Jardín de Mascotas."),
+     "Eventos, centros comerciales, bases de cancelaciones y telemercadeo."),
     ("AML · Puerta a puerta",
-     "Prospección sistemática en colonias.",
-     "Solución Modular + Jardín Individual: la combinación más completa para el hogar."),
+     "Prospección sistemática en colonias."),
 ]
+
+EQUIPOS_TITULO = "Equipos de venta"
+EQUIPOS_NOTA = (
+    "Todos los equipos venden todo el portafolio de cremación (Solución Modular, jardines de "
+    "cenizas y columbarios), con la misma política de comisiones."
+)
 
 RITUALES = [
     ("Diario", "Alineación rápida de 10 minutos: pendientes y bloqueos."),
@@ -616,7 +620,7 @@ OBJECIONES = [
      "Su fe es muy importante y la respetamos.",
      "La Iglesia Católica permite la cremación desde 1963. Lo que pide es que las cenizas "
      "reposen en un lugar dedicado, como el cementerio, y no en casa ni dispersas. "
-     "Nuestros jardines cumplen exactamente con eso.",
+     "Nuestros jardines y columbarios cumplen exactamente con eso.",
      "¿Le gustaría conocer el jardín y ver cómo es el lugar?"),
     ("\"Prefiero la sepultura tradicional.\"",
      "Es una tradición muy valiosa.",
@@ -626,7 +630,7 @@ OBJECIONES = [
     ("\"Está caro.\"",
      "Comprendo, es una inversión.",
      "En la urgencia los costos son mayores y se pagan de golpe. Hoy fija el precio y lo "
-     "paga en cuotas: la Solución Modular se paga en hasta 120 meses.",
+     "paga en cuotas: la Solución Modular y los columbarios se pagan en hasta 120 meses.",
      "¿Le resulta más cómodo pagarlo en cuotas mensuales?"),
     ("\"Tengo que hablarlo con mi familia.\"",
      "Claro, es una decisión de familia.",
@@ -635,9 +639,9 @@ OBJECIONES = [
      "¿Puedo llamarle el [día] para ver si quedó alguna pregunta?"),
     ("\"Prefiero tener las cenizas en casa.\"",
      "Es natural querer tenerlas cerca.",
-     "En el jardín toda la familia puede visitarlas, quedan protegidas ante mudanzas o "
+     "En el jardín o en el columbario toda la familia puede visitarlas, quedan protegidas ante mudanzas o "
      "cambios, y tienen un lugar con su nombre.",
-     "¿Le gustaría visitar el jardín antes de decidir?"),
+     "¿Le gustaría visitar el jardín o el columbario antes de decidir?"),
     ("\"¿Por qué pagar mantenimiento cada año?\"",
      "Es una pregunta muy válida.",
      "La cuota (US$ 15 o US$ 24 al año) mantiene el jardín siempre cuidado: poda, riego "
@@ -646,7 +650,7 @@ OBJECIONES = [
     ("\"No confío en estos planes.\"",
      "Es una preocupación válida.",
      "Somos La Auxiliadora, Hogar de las Memorias y Las Colinas, empresas de Vangrupo con trayectoria "
-     "en El Salvador. El contrato es transparente y puede visitar el jardín cuando quiera.",
+     "en El Salvador. El contrato es transparente y puede visitar el jardín o el columbario cuando quiera.",
      "¿Agendamos una visita sin compromiso?"),
 ]
 
@@ -745,7 +749,7 @@ COMISION_CUIDADO = (
 # ---------------------------------------------------------------------------
 HERRAMIENTAS = [
     ("Ficha Técnica de Cremación", "Precios, especificaciones y condiciones vigentes de cada producto."),
-    ("Visita al jardín", "La herramienta de venta más poderosa. Agende siempre que sea posible."),
+    ("Visita al jardín o al columbario", "La herramienta de venta más poderosa. Agende siempre que sea posible."),
     ("Presentación \"Jardines de Cenizas\"", "Fotos y medidas de cada jardín para mostrar en la visita o en la casa."),
     ("Plazo de pago", "Comunique que se paga en hasta 120 meses con intereses; no prometa un valor de cuota."),
     ("Registro de contactos", "Un contacto no registrado no existe: sin datos no hay gestión ni comisión."),
@@ -753,7 +757,7 @@ HERRAMIENTAS = [
 
 CHECKLIST_CIERRE = [
     "Expliqué qué incluye el producto y qué no incluye.",
-    "Expliqué la cuota de mantenimiento y el plazo (30 años renovables o 3 años), según el caso.",
+    "Expliqué la cuota de mantenimiento y el plazo (30 años renovables o 3 años) o, en columbarios, la ubicación (definida o a futuro).",
     "Confirmé el precio y la forma de pago con la Ficha Técnica vigente.",
     "El descuento, si lo hubo, está dentro de la política y autorizado.",
     "El cliente recibió copia del contrato y el contacto de su asesor.",

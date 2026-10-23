@@ -217,22 +217,20 @@ def ciclo():
 
 def equipos():
     cols = ""
-    for nombre, rol, producto in C.EQUIPOS:
+    for nombre, rol in C.EQUIPOS:
         cols += f"""<div class='col'><div class='cab'>{e(nombre)}</div>
-          <div class='rol'>{e(rol)}</div><div class='flecha'>▼</div>
-          <div class='prod'>{e(producto)}</div></div>"""
+          <div class='rol'>{e(rol)}</div></div>"""
     css = f"""
     <style>
     .grid {{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }}
     .cab {{ background:{AZUL}; color:#fff; font-weight:700; font-size: 15px; padding: 12px 14px; border-radius: 8px 8px 0 0;
       border-bottom: 4px solid {DORADO}; }}
     .rol {{ background:{CLARO}; padding: 12px 14px; font-size: 13px; line-height:1.4; min-height: 64px; }}
-    .flecha {{ text-align:center; color:{DORADO}; font-size: 20px; padding: 4px 0; }}
-    .prod {{ border: 2px solid {DORADO}; border-radius: 8px; padding: 12px 14px; font-size: 13px; line-height:1.4;
-      min-height: 100px; }}
+    .nota {{ margin-top: 16px; border: 2px solid {DORADO}; border-radius: 8px; padding: 12px 14px; font-size: 14px;
+      line-height:1.4; font-weight:700; color:{AZUL}; }}
     </style>"""
-    return render("07_equipos", css + "<div class='titulo'>Qué producto lleva cada equipo</div>"
-                  f"<div class='grid'>{cols}</div>", 960, 800)
+    return render("07_equipos", css + f"<div class='titulo'>{e(C.EQUIPOS_TITULO)}</div>"
+                  f"<div class='grid'>{cols}</div><div class='nota'>{e(C.EQUIPOS_NOTA)}</div>", 960, 420)
 
 
 def logos():

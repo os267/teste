@@ -119,18 +119,18 @@ def momentos(prs, n):
     for i, (tit, txt) in enumerate(C.MODOS_DE_VENTA):
         tarjeta(s, MX, Inches(1.8) + i * Inches(1.75), ANCHO, Inches(1.6), tit, txt,
                 acento=AZUL if i == 0 else VERDE, size_t=15, size_c=12)
-    texto(s, MX, Inches(5.45), ANCHO, Inches(0.5), "Qué producto lleva cada equipo", size=18, bold=True,
+    texto(s, MX, Inches(5.45), ANCHO, Inches(0.5), C.EQUIPOS_TITULO, size=18, bold=True,
           color=AZUL, font=TITULOS)
-    for i, (eq, desc, prod) in enumerate(C.EQUIPOS):
-        y = Inches(6.05) + i * Inches(1.65)
-        caja(s, MX, y, Inches(2.3), Inches(1.5), fondo=AZUL)
-        texto(s, MX + Inches(0.12), y, Inches(2.06), Inches(1.5), eq, size=12, bold=True, color=BLANCO,
+    for i, (eq, desc) in enumerate(C.EQUIPOS):
+        y = Inches(6.05) + i * Inches(1.25)
+        caja(s, MX, y, Inches(2.3), Inches(1.1), fondo=AZUL)
+        texto(s, MX + Inches(0.12), y, Inches(2.06), Inches(1.1), eq, size=12, bold=True, color=BLANCO,
               ancla=MSO_ANCHOR.MIDDLE)
-        caja(s, MX + Inches(2.3), y, ANCHO - Inches(2.3), Inches(1.5), fondo=CLARO)
-        texto(s, MX + Inches(2.45), y + Inches(0.1), ANCHO - Inches(2.6), Inches(1.35),
-              [[(desc, {"size": 10.5, "italic": True, "color": GRIS})],
-               [("Producto foco: ", {"size": 10.5, "bold": True, "color": DORADO}), (prod, {"size": 10.5, "bold": True})]],
-              espacio=4)
+        caja(s, MX + Inches(2.3), y, ANCHO - Inches(2.3), Inches(1.1), fondo=CLARO)
+        texto(s, MX + Inches(2.45), y, ANCHO - Inches(2.6), Inches(1.1), desc, size=10.5, italic=True,
+              color=GRIS, ancla=MSO_ANCHOR.MIDDLE)
+    texto(s, MX, Inches(6.05) + 3 * Inches(1.25), ANCHO, Inches(0.8), C.EQUIPOS_NOTA, size=11, bold=True,
+          color=AZUL)
     pie(s, n)
 
 

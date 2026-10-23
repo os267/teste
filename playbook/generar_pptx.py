@@ -252,14 +252,15 @@ def momentos(prs, n):
     for i, (tit, txt) in enumerate(C.MODOS_DE_VENTA):
         tarjeta(s, MX + i * (w + Inches(0.25)), Inches(1.9), w, Inches(2.4), tit, txt,
                 acento=AZUL if i == 0 else VERDE, size_t=18, size_c=15)
-    texto(s, MX, Inches(4.7), W - 2 * MX, Inches(0.5), "Qué producto lleva cada equipo",
+    texto(s, MX, Inches(4.7), W - 2 * MX, Inches(0.5), C.EQUIPOS_TITULO,
           size=18, bold=True, color=AZUL, font=TITULOS)
     w3 = Inches(3.9)
-    for i, (eq, desc, prod) in enumerate(C.EQUIPOS):
+    for i, (eq, desc) in enumerate(C.EQUIPOS):
         x = MX + i * (w3 + Inches(0.2))
-        caja(s, x, Inches(5.25), w3, Inches(1.55), fondo=CLARO)
-        texto(s, x + Inches(0.15), Inches(5.32), w3 - Inches(0.3), Inches(1.45),
-              [[(eq, {"bold": True, "color": AZUL, "size": 12})], [(prod, {"size": 11})]], espacio=3)
+        caja(s, x, Inches(5.25), w3, Inches(1.1), fondo=CLARO)
+        texto(s, x + Inches(0.15), Inches(5.32), w3 - Inches(0.3), Inches(1.0),
+              [[(eq, {"bold": True, "color": AZUL, "size": 12})], [(desc, {"size": 11})]], espacio=3)
+    texto(s, MX, Inches(6.45), W - 2 * MX, Inches(0.45), C.EQUIPOS_NOTA, size=11, italic=True, color=GRIS)
     pie(s, n)
 
 

@@ -142,11 +142,9 @@ def fig_conversacion():
 
 def fig_equipos():
     cab = [(p(span(eq, 10.5, "#FFFFFF", True), despues=0), bg(AZUL) + f"border-bottom:3pt solid {DORADO};border-right:4pt solid #FFFFFF")
-           for eq, _, _ in C.EQUIPOS]
-    mid = [(p(span(desc, 9.5), despues=0), bg(CLARO) + "border-right:4pt solid #FFFFFF") for _, desc, _ in C.EQUIPOS]
-    fin = [(p(span("▼ PRODUCTO FOCO", 7.5, DORADO, True), despues=2) + p(span(prod, 9.5, AZUL, True), despues=0),
-            f"border:1.5pt solid {DORADO}") for _, _, prod in C.EQUIPOS]
-    return tabla([cab, mid, fin], ["33%", "34%", "33%"]) + pie("Figura 4 · Enfoque de producto por canal.")
+           for eq, _ in C.EQUIPOS]
+    mid = [(p(span(desc, 9.5), despues=0), bg(CLARO) + "border-right:4pt solid #FFFFFF") for _, desc in C.EQUIPOS]
+    return tabla([cab, mid], ["33%", "34%", "33%"]) + pie("Figura 4 · " + C.EQUIPOS_NOTA)
 
 
 def fig_ciclo():
@@ -230,7 +228,7 @@ def s02():
 
 def s03():
     h = seccion("03", "El proceso de venta", "Un camino claro, del primer contacto a la posventa. Cada etapa tiene un objetivo.")
-    h += fig_embudo() + fig_conversacion() + sub("Qué producto lleva cada equipo") + fig_equipos()
+    h += fig_embudo() + fig_conversacion() + sub(C.EQUIPOS_TITULO) + fig_equipos()
     h += sub("Rituales del equipo") + tabla_datos(["Frecuencia", "Ritual"], [list(r) for r in C.RITUALES], ["20%", "80%"])
     return h + salto()
 

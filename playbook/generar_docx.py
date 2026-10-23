@@ -250,18 +250,13 @@ def nat_conversacion(doc):
 
 
 def nat_equipos(doc):
-    t = tabla_simple(doc, 3, 3, [Cm(5.67)] * 3)
-    for i, (eq, desc, prod) in enumerate(C.EQUIPOS):
-        cab, mid, pie = t.cell(0, i), t.cell(1, i), t.cell(2, i)
+    t = tabla_simple(doc, 2, 3, [Cm(5.67)] * 3)
+    for i, (eq, desc) in enumerate(C.EQUIPOS):
+        cab, mid = t.cell(0, i), t.cell(1, i)
         bordes(cab, bottom=(DORADO, 24), left=("FFFFFF", 24), right=("FFFFFF", 24))
         run(_celda(cab, AZUL), eq, size=10.5, bold=True, color="FFFFFF")
         bordes(mid, left=("FFFFFF", 24), right=("FFFFFF", 24))
         run(_celda(mid, CLARO), desc, size=9.5)
-        borde = (DORADO, 12)
-        bordes(pie, top=borde, left=borde, bottom=borde, right=borde)
-        p = _celda(pie)
-        run(p, "▼ PRODUCTO FOCO  ", size=7.5, bold=True, color=DORADO)
-        run(_nuevo_parrafo(pie), prod, size=9.5, bold=True, color=AZUL)
 
 
 def nat_ciclo(doc):
@@ -447,8 +442,8 @@ def s03(doc):
             "Un camino claro, del primer contacto a la posventa. Cada etapa tiene un objetivo.")
     figura(doc, "02_embudo", ancho=Cm(16), pie="Figura 2 · Las 7 etapas del embudo de prenecesidad.")
     figura(doc, "03_conversacion", pie="Figura 3 · Toda conversación sigue cinco pasos.")
-    subtitulo(doc, "Qué producto lleva cada equipo")
-    figura(doc, "07_equipos", pie="Figura 4 · Enfoque de producto por canal.")
+    subtitulo(doc, C.EQUIPOS_TITULO)
+    figura(doc, "07_equipos", pie="Figura 4 · " + C.EQUIPOS_NOTA)
     subtitulo(doc, "Rituales del equipo")
     tabla_datos(doc, ["Frecuencia", "Ritual"], [list(r) for r in C.RITUALES], [Cm(3.5), Cm(13.5)])
     salto(doc)
