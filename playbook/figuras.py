@@ -25,6 +25,7 @@ DORADO_B = "#" + P.ACENTO_B
 CLARO = "#" + P.CLARO
 TEXTO = "#" + P.TEXTO
 VERDE = "#" + P.VERDE
+TONO_EMBUDO = "91,63,128"  # morado La Auxiliadora, en RGB para la transparencia de cada etapa
 
 BASE_CSS = f"""
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -105,7 +106,7 @@ def embudo():
     n = len(C.EMBUDO)
     for i, (etapa, desc) in enumerate(C.EMBUDO):
         ancho = 100 - i * 8
-        tono = f"rgba(91,63,128,{1 - i * 0.1:.2f})"  # morado La Auxiliadora
+        tono = f"rgba({TONO_EMBUDO},{1 - i * 0.1:.2f})"
         filas += f"""
         <div class='fila'>
           <div class='barra' style='width:{ancho}%; background:{tono}'>
