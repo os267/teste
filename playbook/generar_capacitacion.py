@@ -216,22 +216,22 @@ def portada(prs):
     texto(s, 96, 300, 1150, 60, C.CAMPANA.upper(), size=14, bold=True, color=AMARILLO, espaciado=150)
     texto(s, 96, 360, 1150, 200, "Portafolio de Cremación: lanzamientos y columbarios", size=34,
           bold=True, color=BLANCO, interlineado=1.1)
-    texto(s, 96, 560, 1150, 60, "Equipo comercial Vangrupo · Sesión online · 85 minutos", size=16, color=CLARO_T)
+    texto(s, 96, 560, 1150, 60, "Equipo comercial Vangrupo · Sesión online en grupo · 85 minutos", size=16, color=CLARO_T)
     caja(s, 0, 756, 1920, 64, fondo=AMARILLO)
     texto(s, 96, 851, 1250, 105, "CAPACITACIÓN", size=48, bold=True, color=BLANCO, interlineado=1.05)
     texto(s, 96, 952, 1250, 105, "COMERCIAL", size=48, color=BLANCO, interlineado=1.05)
     logo_mil(s, 1430, 885, 380, oscuro=True)
-    notas(s, "Abrir la sala 5 minutos antes. Dar la bienvenida a medida que se conectan y "
-             "confirmar que todos ven la pantalla.")
+    notas(s, "Conectarse 5 minutos antes y confirmar con la sala que se ve la pantalla y se escucha bien "
+             "en los dos sentidos (audio y micrófono de la sala).")
 
 
 def acuerdos(prs, n):
     s = nueva(prs)
-    encabezado(s, "Bienvenida", "Acuerdos para la sesión online", pill="Bienvenida")
+    encabezado(s, "Bienvenida", "Acuerdos para la sesión", pill="Bienvenida")
     items = [
-        ("Cámara encendida", "Nos vemos las caras: es una capacitación, no un webinar."),
-        ("Micrófono en silencio", "Lo activamos para participar en las prácticas y en las dudas."),
-        ("Preguntas en el chat", "Las anotamos y respondemos al final de cada bloque y en el espacio de dudas."),
+        ("Una sola sala", "Seguimos juntos la transmisión: es una capacitación en grupo, no un webinar."),
+        ("Celulares en silencio", "Para no perder el hilo; solo los usamos como calculadora en el ejercicio."),
+        ("Preguntas en voz alta", "Levante la mano: respondemos al final de cada bloque y en el espacio de dudas."),
         ("Material disponible", "El Playbook Comercial y la Ficha Técnica quedan como consulta después de la sesión."),
     ]
     w = (ANCHO - 3 * 32) / 4
@@ -244,7 +244,7 @@ def acuerdos(prs, n):
           "calculadora para el ejercicio de comisiones.", size=16)
     pie(s, n)
     notas(s, "00 · Bienvenida (5 min en total con objetivos y agenda). Presentarse, explicar los "
-             "acuerdos y pedir a cada uno que escriba en el chat su nombre y equipo.")
+             "acuerdos y hacer una ronda rápida en la sala: nombre y equipo de cada uno.")
 
 
 def objetivos(prs, n):
@@ -266,7 +266,7 @@ def objetivos(prs, n):
         texto(s, X0 + 96, y, ANCHO - 96, 64, it, size=17, ancla=MSO_ANCHOR.MIDDLE)
     pie(s, n)
     notas(s, "Leer los objetivos y preguntar: ¿cuál de estos temas le genera más dudas hoy? "
-             "Pedir respuestas en el chat para ajustar el énfasis de la sesión.")
+             "Escuchar 2 o 3 respuestas de la sala para ajustar el énfasis de la sesión.")
 
 
 def agenda(prs, n):
@@ -286,7 +286,7 @@ def agenda(prs, n):
           "para llegar a 1 h 30.", size=12, italic=True, color=GRIS_T)
     pie(s, n)
     notas(s, "Mostrar la agenda y el tiempo de cada bloque. El bloque de productos es el más largo: "
-             "pedir que las dudas de precios se dejen en el chat para el bloque 07.")
+             "pedir que anoten las dudas de precios para el bloque 07.")
 
 
 # ---------------------------------------------------------------------------
@@ -402,9 +402,9 @@ def producto(prs, n, p, nota):
     etiqueta(s, xi + 32, 310, wi - 64, p.get("etiqueta_precio", "Precio de lista"), color=AMARILLO, size=10)
     texto(s, xi + 32, 342, wi - 64, 64, p["precio"], size=26, bold=True, color=BLANCO)
     texto(s, xi + 32, 404, wi - 64, 60, p["pago"], size=10.5, color=CLARO_T)
-    texto(s, xi, 486, wi, 140, p["que_es"], size=12.5, italic=True, color=GRIS_T)
-    etiqueta(s, xi, 636, wi, "Qué incluye")
-    texto(s, xi, 672, wi, 270, lista(p["incluye"], size=12.5), espacio=5)
+    texto(s, xi, 486, wi, 150, p["que_es"], size=12, italic=True, color=GRIS_T)
+    etiqueta(s, xi, 652, wi, "Qué incluye")
+    texto(s, xi, 688, wi, 260, lista(p["incluye"], size=12), espacio=4)
     # columna derecha: reglas, speech, cierre
     xd, wd = 968, 824
     etiqueta(s, xd, 290, wd, "Reglas que no se negocian")
@@ -443,9 +443,9 @@ def columbarios(prs, n):
     s = nueva(prs)
     encabezado(s, "03 · Portafolio existente", "Columbarios: lo que ya vendemos", C.INTRO_EXISTENTES,
                pill="Productos")
-    tabla(s, X0, 375, ANCHO, ["Producto", "Precio de lista", "Finados y noviembre (−15%)", "Capacidad", "Incluye"],
+    tabla(s, X0, 390, ANCHO, ["Producto", "Precio de lista", "Finados y noviembre (−15%)", "Capacidad", "Incluye"],
           [tuple(f) for f in C.TABLA_PRECIOS_EXISTENTES], [1.3, 3.0, 2.4, 1.1, 2.3], size=11.5, alto_fila=76)
-    texto(s, X0, 815, ANCHO, 80, C.UBICACION_DEFINIDA_FUTURO, size=11.5, italic=True, color=GRIS_T)
+    texto(s, X0, 830, ANCHO, 80, C.UBICACION_DEFINIDA_FUTURO, size=11.5, italic=True, color=GRIS_T)
     pie(s, n)
     notas(s, "Recordar la diferencia clave: Supremo Plus y Bella Vista incluyen la cremación; Mármol o "
              "Cristal, Ónix y Obra de Arte son solo columbario (la cremación se contrata aparte, por "
@@ -460,7 +460,7 @@ def columbarios_speech(prs, n):
         x = X0 + i * (w + 24)
         caja(s, x, 290, w, 650, fondo=BLANCO, borde=BORDE, forma=MSO_SHAPE.ROUNDED_RECTANGLE, radio=0.04)
         caja(s, x + 22, 312, 56, 6, fondo=AMARILLO)
-        texto(s, x + 20, 330, w - 40, 60, p["corto"], size=16, bold=True)
+        texto(s, x + 20, 330, w - 40, 60, p["corto"], size=13.5, bold=True)
         texto(s, x + 20, 388, w - 40, 40, p["precio"], size=12, bold=True, color=AZUL)
         etiqueta(s, x + 20, 440, w - 40, "Para quién", size=9)
         texto(s, x + 20, 472, w - 40, 230, p["para_quien"], size=11, color=GRIS_T)
@@ -477,7 +477,7 @@ def precios(prs, n):
                "Precios sugeridos en US$ con IVA incluido. Consulte siempre la Ficha Técnica vigente.",
                pill="Productos")
     filas = [f for f in C.TABLA_PRECIOS if f[0] != "Jardín Ceremonial"]
-    tabla(s, X0, 330, ANCHO, ["Producto", "Precio · lanzamiento (−20%)", "Pago", "Mantenimiento", "Plazo y notas"],
+    tabla(s, X0, 330, ANCHO, ["Producto", "Precio · lanzamiento (−20%)", "Pago", "Cuota anual", "Plazo y notas"],
           filas, [1.5, 2.3, 1.9, 1.2, 3.2], size=11.5, alto_fila=66)
     etiqueta(s, X0, 726, 1000, "Reglas comerciales clave")
     reglas = dict(C.REGLAS_COMERCIALES)
@@ -533,7 +533,7 @@ def comisiones_pago(prs, n):
 def ejercicio_comision(prs, n):
     s = nueva(prs)
     encabezado(s, "04 · Ejercicio", "¿Cuánto gana Ana este mes?",
-               "Calcule en 2 minutos y escriba su respuesta en el chat.", pill="Comisiones")
+               "Calcule en 2 minutos y diga su respuesta en voz alta.", pill="Comisiones")
     caja(s, X0, 340, 800, 440, fondo=BLANCO, borde=BORDE, forma=MSO_SHAPE.ROUNDED_RECTANGLE, radio=0.05)
     etiqueta(s, X0 + 40, 370, 700, "El caso")
     texto(s, X0 + 40, 412, 720, 350, lista([
@@ -551,7 +551,7 @@ def ejercicio_comision(prs, n):
           "neta de descuentos, y se paga sobre lo cobrado.", size=11, italic=True, color=GRIS_T)
     pie(s, n)
     notas(s, "Mostrar primero solo el caso (tapar la respuesta o revelarla después de las respuestas en "
-             "el chat). Preguntar: ¿qué pasa si Ana cierra una tercera venta?")
+             "la sala). Preguntar: ¿qué pasa si Ana cierra una tercera venta?")
 
 
 # ---------------------------------------------------------------------------
@@ -633,7 +633,7 @@ def objeciones(prs, n, grupo, titulo):
 def practica(prs, n):
     s = nueva(prs)
     encabezado(s, "06 · Práctica", "Role-play en parejas · 5 minutos",
-               "En salas separadas: uno es el asesor, el otro es la familia. Después cambian de rol.",
+               "En parejas, dentro de la sala: uno es el asesor, el otro es la familia. Después cambian de rol.",
                pill="Objeciones")
     casos = [
         ("Caso A · El Hijo Cuidador", "Busca la Solución Modular para sus padres y dice: \"Está caro\"."),
@@ -643,15 +643,15 @@ def practica(prs, n):
     w = (ANCHO - 64) / 3
     for i, (t, c) in enumerate(casos):
         tarjeta(s, X0 + i * (w + 32), 340, w, 320, t, c, size_t=16, size_c=14)
-    etiqueta(s, X0, 690, 1200, "Al volver a la sala principal")
+    etiqueta(s, X0, 690, 1200, "Al terminar, en grupo")
     texto(s, X0, 728, ANCHO, 220, lista([
         "¿Qué frase de validación usó?",
         "¿Cómo reposicionó el valor sin discutir?",
         "¿Cuál fue el siguiente paso que propuso (visita, propuesta o firma)?",
     ], size=14), espacio=6)
     pie(s, n)
-    notas(s, "Abrir salas de 2 personas por 5 minutos (2,5 por rol). Al volver, pedir a 2 parejas que "
-             "compartan su respuesta.")
+    notas(s, "Formar parejas con quien está al lado, 5 minutos (2,5 por rol). Luego, pedir a 2 parejas "
+             "que compartan su respuesta con todo el grupo.")
 
 
 # ---------------------------------------------------------------------------
@@ -684,10 +684,10 @@ def dudas(prs, n):
     temas = ["Productos y reglas", "Precios y descuentos", "Comisiones", "Casos de clientes"]
     for i, t in enumerate(temas):
         pastilla(s, X0 + (i % 2) * 470, 610 + (i // 2) * 100, 440, 76, t, size=14)
-    texto(s, X0, 830, 1000, 90, "Las preguntas del chat que no alcancemos a responder se contestan por escrito "
+    texto(s, X0, 830, 1000, 90, "Las preguntas que no alcancemos a responder se anotan y se contestan por escrito "
           "después de la sesión.", size=13, italic=True, color=CLARO_T)
     pie(s, n, oscuro=True)
-    notas(s, "Responder primero las preguntas acumuladas en el chat, agrupadas por tema. Anotar las que "
+    notas(s, "Responder primero las preguntas anotadas durante la sesión, agrupadas por tema. Anotar las que "
              "requieren validación de la Gerencia Comercial.")
 
 
