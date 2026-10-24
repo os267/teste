@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+
+# Logos de Mil Advisory (descargar del Drive) y la presentación que los incluye
+playbook/logos/mil_advisory_*.png
+playbook/salida/Capacitacion_Comercial_Cremacion_Vangrupo.pptx
