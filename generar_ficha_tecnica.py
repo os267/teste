@@ -262,7 +262,7 @@ PRODUCTOS = [
 
 
 # ---------------------------------------------------------------------------
-# Portafolio existente (columbarios con cremación) — aba propia, fuera del HTML
+# Portafolio existente (columbarios con cremación) — en la Ficha Técnica, fuera del HTML
 # ---------------------------------------------------------------------------
 DESCUENTO_EXISTENTES = 0.15
 ETIQUETA_DESCUENTO_EXISTENTES = f"Precio Finados y noviembre (−{DESCUENTO_EXISTENTES:.0%})"
@@ -499,7 +499,6 @@ COLUMNAS = [
 
 HOJA_TABLA = "Tabla Gral. - Visión Comercial"  # límite Excel: 31 caracteres
 HOJA_FICHA = "Ficha Técnica Consolidada"
-HOJA_EXISTENTES = "Portafolio existente"
 FILA_ENCABEZADO = 4  # 1: título, 2: subtítulo, 3: vacía, 4: encabezados
 
 
@@ -649,10 +648,29 @@ def _precios_existentes(p: dict) -> list:
             (ETIQUETA_DESCUENTO_EXISTENTES, texto_opciones(p, 1 - DESCUENTO_EXISTENTES), True)]
 
 
-def construir_fichas(ws, productos=None, titulo="FICHA TÉCNICA CONSOLIDADA",
-                     subtitulo=f"Portafolio de Cremación — {CAMPANA}",
-                     precios=_precios_lanzamiento) -> None:
-    productos = PRODUCTOS if productos is None else productos
+def _seccion(ws, fila: int, titulo: str, subtitulo: str) -> int:
+    """Franja que separa los grupos de fichas dentro de la misma aba."""
+    for texto, tamano, color, alto in ((titulo, 13, BLANCO, 30), (subtitulo, 10, DORADO, 20)):
+        ws.merge_cells(start_row=fila, start_column=COL_ETQ, end_row=fila, end_column=COL_FIN)
+        c = ws.cell(row=fila, column=COL_ETQ, value=texto)
+        c.font = Font(name="Calibri", size=tamano, bold=True, color=color)
+        c.fill = relleno(AZUL_PROFUNDO)
+        c.alignment = Alignment(horizontal="center", vertical="center")
+        ws.row_dimensions[fila].height = alto
+        fila += 1
+    return fila + 1
+
+
+def construir_fichas(ws, titulo="FICHA TÉCNICA CONSOLIDADA",
+                     subtitulo=f"Portafolio de Cremación — {CAMPANA} y portafolio existente") -> None:
+    secciones = [
+        ("LANZAMIENTOS · FINADOS 2026",
+         "Solución Modular y Jardines de la Memoria · descuento de lanzamiento −20%",
+         PRODUCTOS, _precios_lanzamiento),
+        ("PORTAFOLIO EXISTENTE · COLUMBARIOS",
+         f"Columbarios y cremación · descuento −{DESCUENTO_EXISTENTES:.0%} en Finados y noviembre",
+         PRODUCTOS_EXISTENTES, _precios_existentes),
+    ]
     ws.sheet_view.showGridLines = False
     ws.sheet_properties.tabColor = DORADO
     for col, ancho in zip("ABCDEF", (3, 30, 30, 30, 30, 3)):
@@ -672,7 +690,16 @@ def construir_fichas(ws, productos=None, titulo="FICHA TÉCNICA CONSOLIDADA",
 
     fila = 4
     saltos = []
-    for n, p in enumerate(productos):
+    fichas = []
+    for sec_titulo, sec_sub, productos, precios in secciones:
+        fichas.append((sec_titulo, sec_sub, None, None))
+        fichas += [(None, None, p, precios) for p in productos]
+    for n, (sec_titulo, sec_sub, p, precios) in enumerate(fichas):
+        if p is None:
+            if n:
+                saltos.append(fila - 2)
+            fila = _seccion(ws, fila, sec_titulo, sec_sub)
+            continue
         inicio = fila
 
         # Encabezado de la ficha
@@ -722,7 +749,7 @@ def construir_fichas(ws, productos=None, titulo="FICHA TÉCNICA CONSOLIDADA",
         fila = _fila_dato(ws, fila, "Cliente objetivo", p["perfil"], True)
 
         _marco(ws, inicio, fila - 1)
-        if n < len(productos) - 1:
+        if n < len(fichas) - 1 and fichas[n + 1][2] is not None:
             saltos.append(fila)
         fila += 2  # separación entre fichas
 
@@ -877,15 +904,11 @@ def generar_excel(ruta: Path) -> None:
     with pd.ExcelWriter(ruta, engine="openpyxl") as writer:
         df.to_excel(writer, sheet_name=HOJA_TABLA, index=False, startrow=FILA_ENCABEZADO - 1)
         writer.book.create_sheet(HOJA_FICHA)
-        writer.book.create_sheet(HOJA_EXISTENTES)
         writer.book.create_sheet(HOJA_COMISIONES)
 
     wb = load_workbook(ruta)
     estilizar_tabla(wb[HOJA_TABLA])
     construir_fichas(wb[HOJA_FICHA])
-    construir_fichas(wb[HOJA_EXISTENTES], PRODUCTOS_EXISTENTES, "PORTAFOLIO EXISTENTE DE CREMACIÓN",
-                     f"Columbarios y cremación · descuento −{DESCUENTO_EXISTENTES:.0%} en Finados y noviembre",
-                     _precios_existentes)
     construir_comisiones(wb[HOJA_COMISIONES])
     wb.properties.title = f"Ficha Técnica Cremación — {MARCA}"
     wb.properties.creator = MARCA
